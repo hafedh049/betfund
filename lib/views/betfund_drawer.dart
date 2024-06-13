@@ -65,11 +65,7 @@ class _BetFundDrawerState extends State<BetFundDrawer> {
                                 const SizedBox(width: 20),
                                 AnimatedDefaultTextStyle(
                                   duration: 300.ms,
-                                  style: GoogleFonts.abel(
-                                    fontSize: _currentTab == _tabs.indexOf(tab) ? 17 : 16,
-                                    color: _currentTab == _tabs.indexOf(tab) ? dark : lightGreen,
-                                    fontWeight: _currentTab == _tabs.indexOf(tab) ? FontWeight.bold : FontWeight.w500,
-                                  ),
+                                  style: GoogleFonts.abel(fontSize: 16, color: _currentTab == _tabs.indexOf(tab) ? dark : lightGreen, fontWeight: FontWeight.w500),
                                   child: Text(tab["tab"]),
                                 ),
                                 if (tab["tab"] == "My Picks") ...<Widget>[
@@ -81,11 +77,7 @@ class _BetFundDrawerState extends State<BetFundDrawer> {
                                       padding: const EdgeInsets.all(1),
                                       child: AnimatedDefaultTextStyle(
                                         duration: 300.ms,
-                                        style: GoogleFonts.abel(
-                                          fontSize: _currentTab == _tabs.indexOf(tab) ? 13 : 12,
-                                          color: _currentTab == _tabs.indexOf(tab) ? lightGreen : dark,
-                                          fontWeight: _currentTab == _tabs.indexOf(tab) ? FontWeight.bold : FontWeight.w500,
-                                        ),
+                                        style: GoogleFonts.abel(fontSize: 12, color: _currentTab == _tabs.indexOf(tab) ? lightGreen : dark, fontWeight: FontWeight.w500),
                                         child: Text(tab["picks"].toString()),
                                       ),
                                     ),

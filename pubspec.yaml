@@ -17,6 +17,11 @@ dependencies:
   toastification: ^2.0.0
   flutter_animate: ^4.5.0
   google_fonts: ^6.2.1
+  dotted_dashed_line: ^0.0.3
+  date_format: ^2.0.7
+  custom_pop_up_menu: ^1.2.4
+  ripple_wave: ^0.1.4
+  fl_chart: ^0.68.0
 
 dev_dependencies:
   flutter_test:
