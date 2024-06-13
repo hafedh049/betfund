@@ -77,6 +77,14 @@ class _MyPicksState extends State<MyPicks> {
     },
   );
 
+  List<Map<String, dynamic>> _picksHelper = <Map<String, dynamic>>[];
+
+  @override
+  void initState() {
+    _picksHelper = <Map<String, dynamic>>[..._picks.where((Map<String, dynamic> element) => element["state"] == "Active")];
+    super.initState();
+  }
+
   @override
   void dispose() {
     _picksController.dispose();
@@ -151,14 +159,22 @@ class _MyPicksState extends State<MyPicks> {
                       const Spacer(),
                       Container(
                         padding: padding8,
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: aC),
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: aZero),
                         child: StatefulBuilder(
                           builder: (BuildContext context, void Function(void Function()) _) {
                             return Row(
                               mainAxisSize: MainAxisSize.min,
                               children: <Widget>[
                                 InkWell(
-                                  onTap: () => _(() => _selectedPick = 0),
+                                  onTap: () {
+                                    _(
+                                      () {
+                                        _selectedPick = 0;
+                                        _picksHelper = <Map<String, dynamic>>[..._picks.where((Map<String, dynamic> element) => element["state"] == "Active")];
+                                      },
+                                    );
+                                    _picksController.animateToPage(_selectedPick, duration: 300.ms, curve: Curves.linear);
+                                  },
                                   child: AnimatedContainer(
                                     duration: 300.ms,
                                     padding: padding4,
@@ -173,7 +189,12 @@ class _MyPicksState extends State<MyPicks> {
                                 const SizedBox(width: 10),
                                 InkWell(
                                   onTap: () {
-                                    _(() => _selectedPick = 1);
+                                    _(
+                                      () {
+                                        _selectedPick = 1;
+                                        _picksHelper = <Map<String, dynamic>>[..._picks.where((Map<String, dynamic> element) => element["state"] != "Active")];
+                                      },
+                                    );
                                     _picksController.animateToPage(_selectedPick, duration: 300.ms, curve: Curves.linear);
                                   },
                                   child: AnimatedContainer(
@@ -198,44 +219,84 @@ class _MyPicksState extends State<MyPicks> {
                   Expanded(
                     child: PageView.builder(
                       controller: _picksController,
-                      itemBuilder: (BuildContext context, int index) => GridView.builder(
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3),
-                        itemBuilder: (BuildContext context, int index) => Container(
-                          padding: padding8,
-                          width: 350,
-                          decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: elevenThirteen),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              Container(
-                                padding: padding4,
-                                decoration: BoxDecoration(color: oneC, borderRadius: BorderRadius.circular(5)),
-                                child: Row(
+                      itemBuilder: (BuildContext context, int index) => _picksHelper.isEmpty
+                          ? Center(child: Text("NO ITEMS YET", style: GoogleFonts.abel(color: white, fontSize: 22, fontWeight: FontWeight.bold)))
+                          : GridView.builder(
+                              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, crossAxisSpacing: 10, mainAxisSpacing: 10),
+                              itemBuilder: (BuildContext context, int index) => Container(
+                                padding: padding8,
+                                width: 300,
+                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: elevenThirteen),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisSize: MainAxisSize.min,
                                   children: <Widget>[
                                     Container(
-                                      padding: padding4,
-                                      decoration: BoxDecoration(color: const <String>["Active", "Won"].contains(_picks[index]["state"]) ? lightGreen : red, borderRadius: BorderRadius.circular(5)),
-                                      child: Text(_picks[index]["state"], style: GoogleFonts.abel(color: dark, fontSize: 16, fontWeight: FontWeight.bold)),
+                                      padding: padding8,
+                                      decoration: BoxDecoration(color: oneC, borderRadius: BorderRadius.circular(5)),
+                                      child: Row(
+                                        children: <Widget>[
+                                          Container(
+                                            padding: padding4,
+                                            decoration: BoxDecoration(color: const <String>["Active", "Won"].contains(_picksHelper[index]["state"]) ? lightGreen : red, borderRadius: BorderRadius.circular(5)),
+                                            child: Text(_picksHelper[index]["state"], style: GoogleFonts.abel(color: dark, fontSize: 16, fontWeight: FontWeight.bold)),
+                                          ),
+                                          const Spacer(),
+                                          Text(formatDate(_picksHelper[index]["date"], const <String>[M, " ", dd, ", ", HH, ":", nn, " ", am]), style: GoogleFonts.abel(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
+                                          const SizedBox(width: 10),
+                                          const Icon(FontAwesome.copy, size: 20, color: white),
+                                        ],
+                                      ),
                                     ),
-                                    const Spacer(),
-                                    Text(formatDate(_picks[index]["date"], const <String>[M, " ", dd, ", ", HH, ":", nn, " ", am]), style: GoogleFonts.abel(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
-                                    const SizedBox(width: 10),
-                                    const Icon(FontAwesome.clipboard, size: 15, color: white),
+                                    const SizedBox(height: 10),
+                                    for (final Map<String, dynamic> pick in _picksHelper[index]["picks"]) ...<Widget>[
+                                      Row(
+                                        children: <Widget>[
+                                          const Icon(FontAwesome.caret_right_solid, size: 15, color: lightGreen),
+                                          const SizedBox(width: 5),
+                                          Text(pick["item"], style: GoogleFonts.abel(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
+                                        ],
+                                      ),
+                                      const SizedBox(height: 10),
+                                      Text("Total Goals", style: GoogleFonts.abel(color: white, fontSize: 14, fontWeight: FontWeight.bold)),
+                                      const SizedBox(height: 10),
+                                      Row(
+                                        children: <Widget>[
+                                          Text(pick["left"], style: GoogleFonts.abel(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
+                                          const Spacer(),
+                                          Text(pick["right"], style: GoogleFonts.abel(color: lightGreen, fontSize: 16, fontWeight: FontWeight.bold)),
+                                        ],
+                                      ),
+                                      const SizedBox(height: 10),
+                                    ],
+                                    Row(
+                                      children: <Widget>[
+                                        Text("Parlay Odds", style: GoogleFonts.abel(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
+                                        const Spacer(),
+                                        Text(_picksHelper[index]["parlay odds"], style: GoogleFonts.abel(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Row(
+                                      children: <Widget>[
+                                        Text("Total Picks", style: GoogleFonts.abel(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
+                                        const Spacer(),
+                                        Text(_picksHelper[index]["total picks"], style: GoogleFonts.abel(color: lightGreen, fontSize: 16, fontWeight: FontWeight.bold)),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Row(
+                                      children: <Widget>[
+                                        Text("Parlay Picks", style: GoogleFonts.abel(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
+                                        const Spacer(),
+                                        Text(_picksHelper[index]["pick odds"], style: GoogleFonts.abel(color: lightGreen, fontSize: 16, fontWeight: FontWeight.bold)),
+                                      ],
+                                    ),
                                   ],
                                 ),
                               ),
-                              const SizedBox(height: 10),
-                              for (final Map<String, dynamic> pick in _picks[index]["picks"]) ...<Widget>[
-                                Row(
-                                  children: <Widget>[],
-                                ),
-                              ],
-                            ],
-                          ),
-                        ),
-                        itemCount: _picks.length,
-                      ),
+                              itemCount: _picksHelper.length,
+                            ),
                     ),
                   ),
                 ],
