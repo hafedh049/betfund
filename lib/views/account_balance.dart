@@ -54,9 +54,9 @@ class _AccountBalanceState extends State<AccountBalance> {
                 children: <Widget>[
                   Row(
                     children: <Widget>[
-                      Text("Balance History", style: GoogleFonts.abel(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
+                      Text("Balance History", style: GoogleFonts.kronaOne(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
                       const Spacer(),
-                      Text("\$49807.83", style: GoogleFonts.abel(color: lightGreen, fontSize: 16, fontWeight: FontWeight.bold)),
+                      Text("\$49807.83", style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 16, fontWeight: FontWeight.bold)),
                     ],
                   ),
                   const SizedBox(height: 10),
@@ -75,7 +75,7 @@ class _AccountBalanceState extends State<AccountBalance> {
                               getTitlesWidget: (double value, TitleMeta meta) => _data.any(((double, double) e) => e.$2 == value)
                                   ? Text(
                                       _formatNumbers(value),
-                                      style: GoogleFonts.abel(color: white, fontSize: 12, fontWeight: FontWeight.bold),
+                                      style: GoogleFonts.kronaOne(color: white, fontSize: 12, fontWeight: FontWeight.bold),
                                     )
                                   : const SizedBox(),
                             ),
@@ -86,7 +86,7 @@ class _AccountBalanceState extends State<AccountBalance> {
                               getTitlesWidget: (double value, TitleMeta meta) => _data.any(((double, double) e) => e.$1 == value) && value > 5
                                   ? Text(
                                       "${value.toInt()}th May",
-                                      style: GoogleFonts.abel(color: white, fontSize: 12, fontWeight: FontWeight.bold),
+                                      style: GoogleFonts.kronaOne(color: white, fontSize: 12, fontWeight: FontWeight.bold),
                                     )
                                   : const SizedBox(),
                             ),

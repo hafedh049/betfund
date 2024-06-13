@@ -110,9 +110,9 @@ class _MyPicksState extends State<MyPicks> {
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text(pick["key"], style: GoogleFonts.abel(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
+                        Text(pick["key"], style: GoogleFonts.kronaOne(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
                         const SizedBox(height: 10),
-                        Text(pick["value"], style: GoogleFonts.abel(color: lightGreen, fontSize: 22, fontWeight: FontWeight.bold)),
+                        Text(pick["value"], style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 22, fontWeight: FontWeight.bold)),
                       ],
                     ),
                   ),
@@ -134,9 +134,9 @@ class _MyPicksState extends State<MyPicks> {
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text(pick["key"], style: GoogleFonts.abel(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
+                        Text(pick["key"], style: GoogleFonts.kronaOne(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
                         const SizedBox(height: 10),
-                        Text(pick["value"], style: GoogleFonts.abel(color: lightGreen, fontSize: 22, fontWeight: FontWeight.bold)),
+                        Text(pick["value"], style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 22, fontWeight: FontWeight.bold)),
                       ],
                     ),
                   ),
@@ -155,7 +155,7 @@ class _MyPicksState extends State<MyPicks> {
                 children: <Widget>[
                   Row(
                     children: <Widget>[
-                      Text("Picks", style: GoogleFonts.abel(color: lightGreen, fontSize: 22, fontWeight: FontWeight.bold)),
+                      Text("Picks", style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 22, fontWeight: FontWeight.bold)),
                       const Spacer(),
                       Container(
                         padding: padding8,
@@ -181,7 +181,7 @@ class _MyPicksState extends State<MyPicks> {
                                     decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: _selectedPick == 0 ? lightGreen : transparent),
                                     child: AnimatedDefaultTextStyle(
                                       duration: 300.ms,
-                                      style: GoogleFonts.abel(color: _selectedPick == 0 ? dark : white, fontSize: 16, fontWeight: FontWeight.bold),
+                                      style: GoogleFonts.kronaOne(color: _selectedPick == 0 ? dark : white, fontSize: 16, fontWeight: FontWeight.bold),
                                       child: const Text("Active"),
                                     ),
                                   ),
@@ -203,7 +203,7 @@ class _MyPicksState extends State<MyPicks> {
                                     decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: _selectedPick == 1 ? lightGreen : transparent),
                                     child: AnimatedDefaultTextStyle(
                                       duration: 300.ms,
-                                      style: GoogleFonts.abel(color: _selectedPick == 1 ? dark : white, fontSize: 16, fontWeight: FontWeight.bold),
+                                      style: GoogleFonts.kronaOne(color: _selectedPick == 1 ? dark : white, fontSize: 16, fontWeight: FontWeight.bold),
                                       child: const Text("Closed"),
                                     ),
                                   ),
@@ -220,7 +220,7 @@ class _MyPicksState extends State<MyPicks> {
                     child: PageView.builder(
                       controller: _picksController,
                       itemBuilder: (BuildContext context, int index) => _picksHelper.isEmpty
-                          ? Center(child: Text("NO ITEMS YET", style: GoogleFonts.abel(color: white, fontSize: 22, fontWeight: FontWeight.bold)))
+                          ? Center(child: Text("NO ITEMS YET", style: GoogleFonts.kronaOne(color: white, fontSize: 22, fontWeight: FontWeight.bold)))
                           : GridView.builder(
                               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, crossAxisSpacing: 10, mainAxisSpacing: 10),
                               itemBuilder: (BuildContext context, int index) => Container(
@@ -239,10 +239,10 @@ class _MyPicksState extends State<MyPicks> {
                                           Container(
                                             padding: padding4,
                                             decoration: BoxDecoration(color: const <String>["Active", "Won"].contains(_picksHelper[index]["state"]) ? lightGreen : red, borderRadius: BorderRadius.circular(5)),
-                                            child: Text(_picksHelper[index]["state"], style: GoogleFonts.abel(color: dark, fontSize: 16, fontWeight: FontWeight.bold)),
+                                            child: Text(_picksHelper[index]["state"], style: GoogleFonts.kronaOne(color: dark, fontSize: 16, fontWeight: FontWeight.bold)),
                                           ),
                                           const Spacer(),
-                                          Text(formatDate(_picksHelper[index]["date"], const <String>[M, " ", dd, ", ", HH, ":", nn, " ", am]), style: GoogleFonts.abel(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
+                                          Text(formatDate(_picksHelper[index]["date"], const <String>[M, " ", dd, ", ", HH, ":", nn, " ", am]), style: GoogleFonts.kronaOne(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
                                           const SizedBox(width: 10),
                                           const Icon(FontAwesome.copy, size: 20, color: white),
                                         ],
@@ -254,42 +254,42 @@ class _MyPicksState extends State<MyPicks> {
                                         children: <Widget>[
                                           const Icon(FontAwesome.caret_right_solid, size: 15, color: lightGreen),
                                           const SizedBox(width: 5),
-                                          Text(pick["item"], style: GoogleFonts.abel(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
+                                          Text(pick["item"], style: GoogleFonts.kronaOne(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
                                         ],
                                       ),
                                       const SizedBox(height: 10),
-                                      Text("Total Goals", style: GoogleFonts.abel(color: white, fontSize: 14, fontWeight: FontWeight.bold)),
+                                      Text("Total Goals", style: GoogleFonts.kronaOne(color: white, fontSize: 14, fontWeight: FontWeight.bold)),
                                       const SizedBox(height: 10),
                                       Row(
                                         children: <Widget>[
-                                          Text(pick["left"], style: GoogleFonts.abel(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
+                                          Text(pick["left"], style: GoogleFonts.kronaOne(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
                                           const Spacer(),
-                                          Text(pick["right"], style: GoogleFonts.abel(color: lightGreen, fontSize: 16, fontWeight: FontWeight.bold)),
+                                          Text(pick["right"], style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 16, fontWeight: FontWeight.bold)),
                                         ],
                                       ),
                                       const SizedBox(height: 10),
                                     ],
                                     Row(
                                       children: <Widget>[
-                                        Text("Parlay Odds", style: GoogleFonts.abel(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
+                                        Text("Parlay Odds", style: GoogleFonts.kronaOne(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
                                         const Spacer(),
-                                        Text(_picksHelper[index]["parlay odds"], style: GoogleFonts.abel(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
+                                        Text(_picksHelper[index]["parlay odds"], style: GoogleFonts.kronaOne(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
                                       ],
                                     ),
                                     const SizedBox(height: 10),
                                     Row(
                                       children: <Widget>[
-                                        Text("Total Picks", style: GoogleFonts.abel(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
+                                        Text("Total Picks", style: GoogleFonts.kronaOne(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
                                         const Spacer(),
-                                        Text(_picksHelper[index]["total picks"], style: GoogleFonts.abel(color: lightGreen, fontSize: 16, fontWeight: FontWeight.bold)),
+                                        Text(_picksHelper[index]["total picks"], style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 16, fontWeight: FontWeight.bold)),
                                       ],
                                     ),
                                     const SizedBox(height: 10),
                                     Row(
                                       children: <Widget>[
-                                        Text("Parlay Picks", style: GoogleFonts.abel(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
+                                        Text("Parlay Picks", style: GoogleFonts.kronaOne(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
                                         const Spacer(),
-                                        Text(_picksHelper[index]["pick odds"], style: GoogleFonts.abel(color: lightGreen, fontSize: 16, fontWeight: FontWeight.bold)),
+                                        Text(_picksHelper[index]["pick odds"], style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 16, fontWeight: FontWeight.bold)),
                                       ],
                                     ),
                                   ],

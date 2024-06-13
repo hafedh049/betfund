@@ -111,12 +111,12 @@ class _HomeState extends State<Home> {
       children: <Widget>[
         Text(
           "${date.hour.toString().padLeft(2, "0")} : ${date.minute.toString().padLeft(2, "0")} (${timeZone.toUpperCase()})",
-          style: GoogleFonts.abel(color: white, fontSize: 14, fontWeight: FontWeight.bold),
+          style: GoogleFonts.kronaOne(color: white, fontSize: 14, fontWeight: FontWeight.bold),
         ),
         const SizedBox(height: 10),
         Text(
           formatDate(date, const <String>[M, " ", d]).toUpperCase(),
-          style: GoogleFonts.abel(color: grey, fontSize: 14, fontWeight: FontWeight.bold),
+          style: GoogleFonts.kronaOne(color: grey, fontSize: 14, fontWeight: FontWeight.bold),
         ),
       ],
     );
@@ -158,7 +158,7 @@ class _HomeState extends State<Home> {
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
                               AnimatedDefaultTextStyle(
-                                style: GoogleFonts.abel(
+                                style: GoogleFonts.kronaOne(
                                   color: _selectedTab == _categories.indexOf(tab) ? dark : white,
                                   fontSize: 14,
                                   fontWeight: FontWeight.bold,
@@ -189,12 +189,12 @@ class _HomeState extends State<Home> {
                     return TextField(
                       controller: _searchController,
                       onChanged: (String value) {},
-                      style: GoogleFonts.abel(color: grey, fontSize: 14, fontWeight: FontWeight.bold),
+                      style: GoogleFonts.kronaOne(color: grey, fontSize: 14, fontWeight: FontWeight.bold),
                       decoration: InputDecoration(
                         hintText: "Search by team name",
-                        hintStyle: GoogleFonts.abel(color: grey, fontSize: 14, fontWeight: FontWeight.bold),
+                        hintStyle: GoogleFonts.kronaOne(color: grey, fontSize: 14, fontWeight: FontWeight.bold),
                         labelText: "Perform your search",
-                        labelStyle: GoogleFonts.abel(color: grey, fontSize: 14, fontWeight: FontWeight.bold),
+                        labelStyle: GoogleFonts.kronaOne(color: grey, fontSize: 14, fontWeight: FontWeight.bold),
                         border: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: const BorderSide(color: grey, width: 2)),
                         suffixIcon: const Icon(FontAwesome.magnifying_glass_solid, size: 15, color: grey),
                       ),
@@ -208,7 +208,7 @@ class _HomeState extends State<Home> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
-                    for (final String state in _states) Text(state, style: GoogleFonts.abel(color: white, fontSize: 14, fontWeight: FontWeight.bold)),
+                    for (final String state in _states) Text(state, style: GoogleFonts.kronaOne(color: white, fontSize: 14, fontWeight: FontWeight.bold)),
                   ],
                 ),
               ),
@@ -247,7 +247,7 @@ class _HomeState extends State<Home> {
                                   children: <Widget>[
                                     Image.network(product["productImage"], width: 20, height: 20),
                                     const SizedBox(width: 10),
-                                    Text(product["productName"], style: GoogleFonts.abel(color: white, fontSize: 14, fontWeight: FontWeight.bold)),
+                                    Text(product["productName"], style: GoogleFonts.kronaOne(color: white, fontSize: 14, fontWeight: FontWeight.bold)),
                                   ],
                                 ),
                               ),
@@ -259,9 +259,9 @@ class _HomeState extends State<Home> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   mainAxisSize: MainAxisSize.min,
                                   children: <Widget>[
-                                    Text(product["spread"].first, style: GoogleFonts.abel(color: white, fontSize: 14, fontWeight: FontWeight.bold)),
+                                    Text(product["spread"].first, style: GoogleFonts.kronaOne(color: white, fontSize: 14, fontWeight: FontWeight.bold)),
                                     const SizedBox(width: 10),
-                                    Text(product["spread"].last, style: GoogleFonts.abel(color: lightGreen, fontSize: 14, fontWeight: FontWeight.bold)),
+                                    Text(product["spread"].last, style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 14, fontWeight: FontWeight.bold)),
                                   ],
                                 ),
                               ),
@@ -271,9 +271,9 @@ class _HomeState extends State<Home> {
                                 decoration: BoxDecoration(color: oneE, borderRadius: BorderRadius.circular(10)),
                                 child: Row(
                                   children: <Widget>[
-                                    Text(product["total"].first, style: GoogleFonts.abel(color: white, fontSize: 14, fontWeight: FontWeight.bold)),
+                                    Text(product["total"].first, style: GoogleFonts.kronaOne(color: white, fontSize: 14, fontWeight: FontWeight.bold)),
                                     const SizedBox(width: 10),
-                                    Text(product["moneyline"].last, style: GoogleFonts.abel(color: lightGreen, fontSize: 14, fontWeight: FontWeight.bold)),
+                                    Text(product["moneyline"].last, style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 14, fontWeight: FontWeight.bold)),
                                   ],
                                 ),
                               ),
@@ -281,7 +281,7 @@ class _HomeState extends State<Home> {
                                 alignment: Alignment.center,
                                 padding: padding16,
                                 decoration: BoxDecoration(color: oneE, borderRadius: BorderRadius.circular(10)),
-                                child: Text(product["spread"].last, style: GoogleFonts.abel(color: lightGreen, fontSize: 14, fontWeight: FontWeight.bold)),
+                                child: Text(product["spread"].last, style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 14, fontWeight: FontWeight.bold)),
                               ),
                             ],
                           ),
@@ -292,7 +292,7 @@ class _HomeState extends State<Home> {
                             onTap: () {},
                             color: lightGreen,
                             fill: true,
-                            child: Text("More Picks", style: GoogleFonts.abel(color: dark, fontSize: 16, fontWeight: FontWeight.bold)),
+                            child: Text("More Picks", style: GoogleFonts.kronaOne(color: dark, fontSize: 16, fontWeight: FontWeight.bold)),
                           ),
                         ),
                       ],

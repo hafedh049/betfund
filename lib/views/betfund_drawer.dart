@@ -65,7 +65,7 @@ class _BetFundDrawerState extends State<BetFundDrawer> {
                                 const SizedBox(width: 20),
                                 AnimatedDefaultTextStyle(
                                   duration: 300.ms,
-                                  style: GoogleFonts.abel(fontSize: 16, color: _currentTab == _tabs.indexOf(tab) ? dark : lightGreen, fontWeight: FontWeight.w500),
+                                  style: GoogleFonts.kronaOne(fontSize: 16, color: _currentTab == _tabs.indexOf(tab) ? dark : lightGreen, fontWeight: FontWeight.w500),
                                   child: Text(tab["tab"]),
                                 ),
                                 if (tab["tab"] == "My Picks") ...<Widget>[
@@ -77,7 +77,7 @@ class _BetFundDrawerState extends State<BetFundDrawer> {
                                       padding: const EdgeInsets.all(1),
                                       child: AnimatedDefaultTextStyle(
                                         duration: 300.ms,
-                                        style: GoogleFonts.abel(fontSize: 12, color: _currentTab == _tabs.indexOf(tab) ? lightGreen : dark, fontWeight: FontWeight.w500),
+                                        style: GoogleFonts.kronaOne(fontSize: 12, color: _currentTab == _tabs.indexOf(tab) ? lightGreen : dark, fontWeight: FontWeight.w500),
                                         child: Text(tab["picks"].toString()),
                                       ),
                                     ),
@@ -113,7 +113,7 @@ class _BetFundDrawerState extends State<BetFundDrawer> {
                     const Icon(Bootstrap.lightbulb_off, size: 15, color: white),
                     if (widget.state) ...<Widget>[
                       const SizedBox(width: 10),
-                      Visibility(visible: widget.state, child: Text("Logout", style: GoogleFonts.abel(fontSize: 16, color: white, fontWeight: FontWeight.w500))),
+                      Visibility(visible: widget.state, child: Text("Logout", style: GoogleFonts.kronaOne(fontSize: 16, color: white, fontWeight: FontWeight.w500))),
                     ],
                   ],
                 ).animate().fade(),
