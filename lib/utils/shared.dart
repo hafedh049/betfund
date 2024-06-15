@@ -7,6 +7,7 @@ const Color elevenThirteen = Color.fromRGBO(17, 19, 18, 1);
 const Color grey = Color.fromRGBO(175, 175, 175, 1);
 const Color oneC = Color.fromRGBO(28, 28, 28, 1);
 const Color oneE = Color.fromRGBO(30, 27, 30, 1);
+const Color oneA = Color.fromRGBO(26, 27, 35, 1);
 const Color abyss = Color.fromRGBO(12, 14, 15, 1);
 const Color aZero = Color.fromRGBO(160, 160, 160, .12);
 const Color red = Color.fromRGBO(255, 48, 20, 1);

@@ -1,4 +1,4 @@
-import 'package:betfund/views/coming_soon.dart';
+import 'package:betfund/views/why_us.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
@@ -16,7 +16,7 @@ class Main extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
-      home: const ComingSoon(),
+      home: const WhyUs(),
     );
   }
 }
