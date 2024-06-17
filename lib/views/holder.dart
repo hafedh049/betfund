@@ -1,5 +1,6 @@
 import 'package:betfund/utils/shared.dart';
 import 'package:betfund/views/account_balance.dart';
+import 'package:betfund/views/coming_soon.dart';
 import 'package:betfund/views/my_picks.dart';
 import 'package:flutter/material.dart';
 import 'package:ripple_wave/ripple_wave.dart';
@@ -25,7 +26,7 @@ class _HolderState extends State<Holder> {
     AccountBalance(),
     Payout(),
     MyPicks(),
-    Home(),
+    ComingSoon(),
   ];
 
   @override

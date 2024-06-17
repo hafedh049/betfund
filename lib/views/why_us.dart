@@ -51,7 +51,7 @@ class _WhyUsState extends State<WhyUs> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Image.asset("assets/images/why_us.png", width: MediaQuery.sizeOf(context).width * .6, height: 150),
+                  Image.asset("assets/images/why_us.png", height: 36),
                   const SizedBox(height: 20),
                   Text(
                     "You're not just watching the game, you're a part of the action! Here's what you can do with Us",
@@ -69,7 +69,7 @@ class _WhyUsState extends State<WhyUs> {
                         for (final Map<String, dynamic> card in _cards)
                           Container(
                             width: 450,
-                            padding: padding8,
+                            padding: padding16,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
                               color: oneA,
@@ -78,9 +78,9 @@ class _WhyUsState extends State<WhyUs> {
                             child: Column(
                               children: <Widget>[
                                 Row(children: <Widget>[const Spacer(), Image.asset("assets/images/star.png", width: 20, height: 20)]),
-                                const SizedBox(height: 20),
+                                const SizedBox(height: 10),
                                 Text(card["title"], style: GoogleFonts.kronaOne(fontSize: 10, color: lightGreen, fontWeight: FontWeight.w400)),
-                                const SizedBox(height: 20),
+                                const SizedBox(height: 30),
                                 Text(card["subtitle"], style: GoogleFonts.kronaOne(fontSize: 8, color: white, fontWeight: FontWeight.w400)),
                               ],
                             ),

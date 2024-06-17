@@ -16,7 +16,7 @@ class HexagonButton extends StatelessWidget {
       splashColor: transparent,
       hoverColor: transparent,
       child: Container(
-        padding: padding8,
+        padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 8),
         decoration: BoxDecoration(
           color: fill ? color : transparent,
           borderRadius: const BorderRadiusDirectional.only(

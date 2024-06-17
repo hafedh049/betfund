@@ -25,13 +25,13 @@ class _PayoutState extends State<Payout> {
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Text("Request Payout Form", style: GoogleFonts.kronaOne(color: white, fontSize: 22, fontWeight: FontWeight.bold)),
+            Text("Request Payout Form", style: GoogleFonts.kronaOne(color: white, fontSize: 20, fontWeight: FontWeight.bold)),
             const SizedBox(height: 30),
             HexagonButton(
               onTap: () {},
               color: lightGreen,
               fill: true,
-              child: Text("Request Payout", style: GoogleFonts.kronaOne(color: dark, fontSize: 14, fontWeight: FontWeight.bold)),
+              child: Text("Request Payout", style: GoogleFonts.kronaOne(color: dark, fontSize: 12, fontWeight: FontWeight.bold)),
             ),
           ],
         ),

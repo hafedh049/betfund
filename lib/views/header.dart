@@ -69,7 +69,7 @@ class _HeaderState extends State<Header> {
             controller: _profileController,
             menuOnChange: (bool menuState) => _profileArrowKey.currentState!.setState(() {}),
             menuBuilder: () => Container(
-              width: 400,
+              width: 500,
               decoration: BoxDecoration(
                 color: twentyFour,
                 borderRadius: BorderRadius.circular(10),

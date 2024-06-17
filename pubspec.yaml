@@ -22,6 +22,8 @@ dependencies:
   custom_pop_up_menu: ^1.2.4
   ripple_wave: ^0.1.4
   fl_chart: ^0.68.0
+  scrollable_tab_view: ^1.0.6
+  syncfusion_flutter_sliders: ^26.1.35
 
 dev_dependencies:
   flutter_test:
