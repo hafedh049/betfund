@@ -82,14 +82,14 @@ class _HeaderState extends State<Header> {
                 children: <Widget>[
                   Row(
                     children: <Widget>[
-                      Text("Account Information", style: GoogleFonts.kronaOne(fontSize: 18, fontWeight: FontWeight.bold, color: white)),
+                      Text("Account Information", style: GoogleFonts.kronaOne(fontSize: 14, fontWeight: FontWeight.bold, color: white)),
                       const Spacer(),
                       StatefulBuilder(
                         builder: (BuildContext context, void Function(void Function()) _) {
                           return Row(
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
-                              Text(_accountState ? "Active" : "UnActive", style: GoogleFonts.kronaOne(fontSize: 16, fontWeight: FontWeight.bold, color: white)),
+                              Text(_accountState ? "Active" : "UnActive", style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.bold, color: white)),
                               const SizedBox(width: 5),
                               SizedBox(
                                 width: 40,
@@ -114,43 +114,43 @@ class _HeaderState extends State<Header> {
                   const SizedBox(height: 10),
                   Row(
                     children: <Widget>[
-                      Text("Account ID", style: GoogleFonts.kronaOne(fontSize: 16, fontWeight: FontWeight.w500, color: white)),
+                      Text("Account ID", style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w500, color: white)),
                       const Spacer(),
-                      Text("195705", style: GoogleFonts.kronaOne(fontSize: 16, fontWeight: FontWeight.w500, color: lightGreen)),
+                      Text("195705", style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w500, color: lightGreen)),
                     ],
                   ),
                   const SizedBox(height: 10),
                   Row(
                     children: <Widget>[
-                      Text("Current Balance", style: GoogleFonts.kronaOne(fontSize: 16, fontWeight: FontWeight.w500, color: white)),
+                      Text("Current Balance", style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w500, color: white)),
                       const Spacer(),
-                      Text("\$987.83", style: GoogleFonts.kronaOne(fontSize: 16, fontWeight: FontWeight.w500, color: white)),
+                      Text("\$987.83", style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w500, color: white)),
                     ],
                   ),
                   const SizedBox(height: 10),
                   Row(
                     children: <Widget>[
-                      Text("Current Performance", style: GoogleFonts.kronaOne(fontSize: 16, fontWeight: FontWeight.w500, color: white)),
+                      Text("Current Performance", style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w500, color: white)),
                       const Spacer(),
-                      Text("+27.93%", style: GoogleFonts.kronaOne(fontSize: 16, fontWeight: FontWeight.w500, color: white)),
+                      Text("+27.93%", style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w500, color: white)),
                     ],
                   ),
                   const SizedBox(height: 10),
                   Row(
                     children: <Widget>[
-                      Text("Remaining Days", style: GoogleFonts.kronaOne(fontSize: 16, fontWeight: FontWeight.w500, color: white)),
+                      Text("Remaining Days", style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w500, color: white)),
                       const Spacer(),
-                      Text("27", style: GoogleFonts.kronaOne(fontSize: 16, fontWeight: FontWeight.w500, color: white)),
+                      Text("27", style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w500, color: white)),
                     ],
                   ),
                   const SizedBox(height: 10),
                   Row(
                     children: <Widget>[
-                      Text("Account Status", style: GoogleFonts.kronaOne(fontSize: 18, fontWeight: FontWeight.w500, color: white)),
+                      Text("Account Status", style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w500, color: white)),
                       const Spacer(),
-                      Text("Phase", style: GoogleFonts.kronaOne(fontSize: 16, fontWeight: FontWeight.w500, color: white)),
+                      Text("Phase", style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w500, color: white)),
                       const SizedBox(width: 5),
-                      Text("2", style: GoogleFonts.kronaOne(fontSize: 16, fontWeight: FontWeight.w500, color: lightGreen)),
+                      Text("2", style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w500, color: lightGreen)),
                     ],
                   ),
                   const SizedBox(height: 10),

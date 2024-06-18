@@ -24,33 +24,22 @@ class _HomeState extends State<Home> {
 
   final PageController _pagesController = PageController();
 
-  final List<String> _categories = const <String>[
-    "Basketball",
-    "Football",
-    "Baseball",
-    "Soccer",
-    "Mockey",
-    "MMA",
-    "Tennis",
-  ];
+  final List<String> _categories = const <String>["Basketball", "Football", "Baseball", "Soccer", "Mockey", "MMA", "Tennis"];
 
-  final List<String> _states = const <String>[
-    "Spread",
-    "Total",
-    "MoneyLine",
-  ];
+  final List<String> _states = const <String>["Spread", "Total", "MoneyLine"];
 
   final List<Map<String, dynamic>> _data = <Map<String, dynamic>>[
     <String, dynamic>{
       "date": DateTime(2024, 6, 12),
       "timezone": "EST",
-      "products": const <Map<String, dynamic>>[
+      "products": <Map<String, dynamic>>[
         <String, dynamic>{
           "productImage": "https://s3-alpha-sig.figma.com/img/2a00/aacc/e499c5c311ef7267c4f2502731401f03?Expires=1719187200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=PhRUPPDSJZyRqDhxes~PAvsR-y84TNCkr1~mNP-dggbF~WPVgJonL7MfPRbHibmNe2~YkfQYI1qFzXWe6DxI1gvx5Xh9uhnQlrwBiqVUnM2eyEsYKQ6snfGA5Ao9eOJEM1tjI7joIVOoBvFKdjNcvYe2z1OIM8IOWjh-AwsY0IorliQCZS7-9VgvU-5~Qr2mmaYaYnKPjKLD-f3Qeb8aMCyB9jK4EN9MEnw3U9nG2rGZ~bLZsZp~5YVEq5~R9SvLACevLz-CqxjD1HFAQM86Ptm2AiwjR7XwLmAkLGyXC3lDz~Sn~fgGBtkxcM0Wt~LxA0hicosEmBuP0PFgYq5NEQ__",
           "productName": "Baltimore Ravens",
           "spread": <String>["+5", "-115"],
           "total": <String>["O 209.5", "-112"],
           "moneyline": <String>["+160"],
+          "state": "",
         },
         <String, dynamic>{
           "productImage": "https://s3-alpha-sig.figma.com/img/4c38/3f22/bbd26d4c0143b94f57cb31dce1d3cfab?Expires=1719187200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=kJgooRSD-CKMxr3y9CfPyUgX4JcX16yKHuh-le6Az2B8gjuUQxiuudoLQ~1PgTsWu2nkNfe5rPcyOs31G0~zpdlPAiaujdoVJtcM5Jr3ufTkXTqX~IeFsGTxaJBxyeNOQ9aEpWc4V18ZTfcNLqoQS-ULiuaDrCTeeS2mSfw~UK217TdKARASTPPPi7PE4WDF4hAhdcdxIjBleqK0U4tTparSNzUPwkV9GO~15fKOkPM1hutPdytY6~0rKIR2JmQS-RuwxBFO1g06WeWeJyufj2MHmJd1rSctl15MDXzIX8UCTvmNt1osu~bDAKpqdO7TT6M-26HyVpHzgYuyH4arHg__",
@@ -58,19 +47,21 @@ class _HomeState extends State<Home> {
           "spread": <String>["-5", "-105"],
           "total": <String>["U 209.5", "-108"],
           "moneyline": <String>["-192"],
+          "state": "",
         },
       ],
     },
     <String, dynamic>{
       "date": DateTime(2024, 6, 12),
       "timezone": "EST",
-      "products": const <Map<String, dynamic>>[
+      "products": <Map<String, dynamic>>[
         <String, dynamic>{
           "productImage": "https://s3-alpha-sig.figma.com/img/2a00/aacc/e499c5c311ef7267c4f2502731401f03?Expires=1719187200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=PhRUPPDSJZyRqDhxes~PAvsR-y84TNCkr1~mNP-dggbF~WPVgJonL7MfPRbHibmNe2~YkfQYI1qFzXWe6DxI1gvx5Xh9uhnQlrwBiqVUnM2eyEsYKQ6snfGA5Ao9eOJEM1tjI7joIVOoBvFKdjNcvYe2z1OIM8IOWjh-AwsY0IorliQCZS7-9VgvU-5~Qr2mmaYaYnKPjKLD-f3Qeb8aMCyB9jK4EN9MEnw3U9nG2rGZ~bLZsZp~5YVEq5~R9SvLACevLz-CqxjD1HFAQM86Ptm2AiwjR7XwLmAkLGyXC3lDz~Sn~fgGBtkxcM0Wt~LxA0hicosEmBuP0PFgYq5NEQ__",
           "productName": "Baltimore Ravens",
           "spread": <String>["+5", "-115"],
           "total": <String>["O 209.5", "-112"],
           "moneyline": <String>["+160"],
+          "state": "",
         },
         <String, dynamic>{
           "productImage": "https://s3-alpha-sig.figma.com/img/4c38/3f22/bbd26d4c0143b94f57cb31dce1d3cfab?Expires=1719187200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=kJgooRSD-CKMxr3y9CfPyUgX4JcX16yKHuh-le6Az2B8gjuUQxiuudoLQ~1PgTsWu2nkNfe5rPcyOs31G0~zpdlPAiaujdoVJtcM5Jr3ufTkXTqX~IeFsGTxaJBxyeNOQ9aEpWc4V18ZTfcNLqoQS-ULiuaDrCTeeS2mSfw~UK217TdKARASTPPPi7PE4WDF4hAhdcdxIjBleqK0U4tTparSNzUPwkV9GO~15fKOkPM1hutPdytY6~0rKIR2JmQS-RuwxBFO1g06WeWeJyufj2MHmJd1rSctl15MDXzIX8UCTvmNt1osu~bDAKpqdO7TT6M-26HyVpHzgYuyH4arHg__",
@@ -78,19 +69,21 @@ class _HomeState extends State<Home> {
           "spread": <String>["-5", "-105"],
           "total": <String>["U 209.5", "-108"],
           "moneyline": <String>["-192"],
+          "state": "",
         },
       ],
     },
     <String, dynamic>{
       "date": DateTime(2024, 6, 12),
       "timezone": "EST",
-      "products": const <Map<String, dynamic>>[
+      "products": <Map<String, dynamic>>[
         <String, dynamic>{
           "productImage": "https://s3-alpha-sig.figma.com/img/2a00/aacc/e499c5c311ef7267c4f2502731401f03?Expires=1719187200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=PhRUPPDSJZyRqDhxes~PAvsR-y84TNCkr1~mNP-dggbF~WPVgJonL7MfPRbHibmNe2~YkfQYI1qFzXWe6DxI1gvx5Xh9uhnQlrwBiqVUnM2eyEsYKQ6snfGA5Ao9eOJEM1tjI7joIVOoBvFKdjNcvYe2z1OIM8IOWjh-AwsY0IorliQCZS7-9VgvU-5~Qr2mmaYaYnKPjKLD-f3Qeb8aMCyB9jK4EN9MEnw3U9nG2rGZ~bLZsZp~5YVEq5~R9SvLACevLz-CqxjD1HFAQM86Ptm2AiwjR7XwLmAkLGyXC3lDz~Sn~fgGBtkxcM0Wt~LxA0hicosEmBuP0PFgYq5NEQ__",
           "productName": "Baltimore Ravens",
           "spread": <String>["+5", "-115"],
           "total": <String>["O 209.5", "-112"],
           "moneyline": <String>["+160"],
+          "state": "",
         },
         <String, dynamic>{
           "productImage": "https://s3-alpha-sig.figma.com/img/4c38/3f22/bbd26d4c0143b94f57cb31dce1d3cfab?Expires=1719187200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=kJgooRSD-CKMxr3y9CfPyUgX4JcX16yKHuh-le6Az2B8gjuUQxiuudoLQ~1PgTsWu2nkNfe5rPcyOs31G0~zpdlPAiaujdoVJtcM5Jr3ufTkXTqX~IeFsGTxaJBxyeNOQ9aEpWc4V18ZTfcNLqoQS-ULiuaDrCTeeS2mSfw~UK217TdKARASTPPPi7PE4WDF4hAhdcdxIjBleqK0U4tTparSNzUPwkV9GO~15fKOkPM1hutPdytY6~0rKIR2JmQS-RuwxBFO1g06WeWeJyufj2MHmJd1rSctl15MDXzIX8UCTvmNt1osu~bDAKpqdO7TT6M-26HyVpHzgYuyH4arHg__",
@@ -98,6 +91,7 @@ class _HomeState extends State<Home> {
           "spread": <String>["-5", "-105"],
           "total": <String>["U 209.5", "-108"],
           "moneyline": <String>["-192"],
+          "state": "",
         },
       ],
     },
@@ -272,37 +266,100 @@ class _HomeState extends State<Home> {
                                                         ],
                                                       ),
                                                     ),
-                                                    Container(
-                                                      alignment: Alignment.center,
-                                                      padding: padding16,
-                                                      decoration: BoxDecoration(color: oneE, borderRadius: BorderRadius.circular(10)),
-                                                      child: Row(
-                                                        mainAxisAlignment: MainAxisAlignment.center,
-                                                        mainAxisSize: MainAxisSize.min,
-                                                        children: <Widget>[
-                                                          Text(product["spread"].first, style: GoogleFonts.kronaOne(color: white, fontSize: 8, fontWeight: FontWeight.bold)),
-                                                          const SizedBox(width: 10),
-                                                          Text(product["spread"].last, style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 8, fontWeight: FontWeight.bold)),
-                                                        ],
+                                                    InkWell(
+                                                      onTap: () {
+                                                        _(
+                                                          () {
+                                                            if (product["state"] != "spread") {
+                                                              product["state"] = "spread";
+                                                            } else {
+                                                              product["state"] = "";
+                                                            }
+                                                          },
+                                                        );
+                                                      },
+                                                      splashColor: transparent,
+                                                      highlightColor: transparent,
+                                                      hoverColor: transparent,
+                                                      child: AnimatedContainer(
+                                                        duration: 200.ms,
+                                                        alignment: Alignment.center,
+                                                        padding: padding16,
+                                                        decoration: BoxDecoration(
+                                                          color: oneE,
+                                                          borderRadius: BorderRadius.circular(10),
+                                                          border: Border.all(color: product["state"] == "spread" ? lightGreen : transparent),
+                                                        ),
+                                                        child: Row(
+                                                          mainAxisAlignment: MainAxisAlignment.center,
+                                                          mainAxisSize: MainAxisSize.min,
+                                                          children: <Widget>[
+                                                            Text(product["spread"].first, style: GoogleFonts.kronaOne(color: white, fontSize: 8, fontWeight: FontWeight.bold)),
+                                                            const SizedBox(width: 10),
+                                                            Text(product["spread"].last, style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 8, fontWeight: FontWeight.bold)),
+                                                          ],
+                                                        ),
                                                       ),
                                                     ),
-                                                    Container(
-                                                      alignment: Alignment.center,
-                                                      padding: padding16,
-                                                      decoration: BoxDecoration(color: oneE, borderRadius: BorderRadius.circular(10)),
-                                                      child: Row(
-                                                        children: <Widget>[
-                                                          Text(product["total"].first, style: GoogleFonts.kronaOne(color: white, fontSize: 8, fontWeight: FontWeight.bold)),
-                                                          const SizedBox(width: 10),
-                                                          Text(product["moneyline"].last, style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 8, fontWeight: FontWeight.bold)),
-                                                        ],
+                                                    InkWell(
+                                                      onTap: () {
+                                                        _(
+                                                          () {
+                                                            if (product["state"] != "total") {
+                                                              product["state"] = "total";
+                                                            } else {
+                                                              product["state"] = "";
+                                                            }
+                                                          },
+                                                        );
+                                                      },
+                                                      splashColor: transparent,
+                                                      highlightColor: transparent,
+                                                      hoverColor: transparent,
+                                                      child: AnimatedContainer(
+                                                        duration: 200.ms,
+                                                        alignment: Alignment.center,
+                                                        padding: padding16,
+                                                        decoration: BoxDecoration(
+                                                          color: oneE,
+                                                          borderRadius: BorderRadius.circular(10),
+                                                          border: Border.all(color: product["state"] == "total" ? lightGreen : transparent),
+                                                        ),
+                                                        child: Row(
+                                                          children: <Widget>[
+                                                            Text(product["total"].first, style: GoogleFonts.kronaOne(color: white, fontSize: 8, fontWeight: FontWeight.bold)),
+                                                            const SizedBox(width: 10),
+                                                            Text(product["total"].last, style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 8, fontWeight: FontWeight.bold)),
+                                                          ],
+                                                        ),
                                                       ),
                                                     ),
-                                                    Container(
-                                                      alignment: Alignment.center,
-                                                      padding: padding16,
-                                                      decoration: BoxDecoration(color: oneE, borderRadius: BorderRadius.circular(10)),
-                                                      child: Text(product["spread"].last, style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 8, fontWeight: FontWeight.bold)),
+                                                    InkWell(
+                                                      onTap: () {
+                                                        _(
+                                                          () {
+                                                            if (product["state"] != "moneyline") {
+                                                              product["state"] = "moneyline";
+                                                            } else {
+                                                              product["state"] = "";
+                                                            }
+                                                          },
+                                                        );
+                                                      },
+                                                      splashColor: transparent,
+                                                      highlightColor: transparent,
+                                                      hoverColor: transparent,
+                                                      child: AnimatedContainer(
+                                                        duration: 200.ms,
+                                                        alignment: Alignment.center,
+                                                        padding: padding16,
+                                                        decoration: BoxDecoration(
+                                                          color: oneE,
+                                                          borderRadius: BorderRadius.circular(10),
+                                                          border: Border.all(color: product["state"] == "moneyline" ? lightGreen : transparent),
+                                                        ),
+                                                        child: Text(product["moneyline"].last, style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 8, fontWeight: FontWeight.bold)),
+                                                      ),
                                                     ),
                                                   ],
                                                 );
@@ -352,7 +409,6 @@ class _HomeState extends State<Home> {
                     width: 400,
                     height: 380,
                     color: elevenThirteen,
-                    padding: const EdgeInsets.symmetric(vertical: 8),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
@@ -430,17 +486,17 @@ class _HomeState extends State<Home> {
                                   children: <Widget>[
                                     Row(
                                       children: <Widget>[
-                                        Text("Over 209.5 (DAL @MIN)", style: GoogleFonts.kronaOne(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                                        Text("Over 209.5 (DAL @MIN)", style: GoogleFonts.kronaOne(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
                                         const Spacer(),
-                                        IconButton(onPressed: () {}, icon: const Icon(FontAwesome.x_solid, size: 20, color: white)),
+                                        IconButton(onPressed: () {}, icon: const Icon(FontAwesome.x_solid, size: 15, color: white)),
                                       ],
                                     ),
                                     const SizedBox(height: 10),
                                     Row(
                                       children: <Widget>[
-                                        Text("Total Points", style: GoogleFonts.kronaOne(fontSize: 14, color: grey, fontWeight: FontWeight.w500)),
+                                        Text("Total Points", style: GoogleFonts.kronaOne(fontSize: 12, color: grey, fontWeight: FontWeight.w500)),
                                         const Spacer(),
-                                        Text("-112", style: GoogleFonts.kronaOne(fontSize: 14, color: lightGreen, fontWeight: FontWeight.w500)),
+                                        Text("-112", style: GoogleFonts.kronaOne(fontSize: 12, color: lightGreen, fontWeight: FontWeight.w500)),
                                       ],
                                     ),
                                     const SizedBox(height: 10),
@@ -454,8 +510,8 @@ class _HomeState extends State<Home> {
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               mainAxisSize: MainAxisSize.min,
                                               children: <Widget>[
-                                                Text("Pick", style: GoogleFonts.kronaOne(fontSize: 14, color: grey, fontWeight: FontWeight.w500)),
-                                                Text("\$ 10", style: GoogleFonts.kronaOne(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
+                                                Text("Pick", style: GoogleFonts.kronaOne(fontSize: 12, color: grey, fontWeight: FontWeight.w500)),
+                                                Text("\$ 10", style: GoogleFonts.kronaOne(fontSize: 12, color: white, fontWeight: FontWeight.w500)),
                                               ],
                                             ),
                                           ),
@@ -469,8 +525,8 @@ class _HomeState extends State<Home> {
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               mainAxisSize: MainAxisSize.min,
                                               children: <Widget>[
-                                                Text("To Win", style: GoogleFonts.kronaOne(fontSize: 14, color: grey, fontWeight: FontWeight.w500)),
-                                                Text("\$ 19.64", style: GoogleFonts.kronaOne(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
+                                                Text("To Win", style: GoogleFonts.kronaOne(fontSize: 12, color: grey, fontWeight: FontWeight.w500)),
+                                                Text("\$ 19.64", style: GoogleFonts.kronaOne(fontSize: 12, color: white, fontWeight: FontWeight.w500)),
                                               ],
                                             ),
                                           ),
@@ -480,9 +536,9 @@ class _HomeState extends State<Home> {
                                     const SizedBox(height: 20),
                                     Row(
                                       children: <Widget>[
-                                        Text("To Collect", style: GoogleFonts.kronaOne(fontSize: 14, color: lightGreen, fontWeight: FontWeight.w500)),
+                                        Text("To Collect", style: GoogleFonts.kronaOne(fontSize: 12, color: lightGreen, fontWeight: FontWeight.w500)),
                                         const Spacer(),
-                                        Text("46.22 USD", style: GoogleFonts.kronaOne(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
+                                        Text("46.22 USD", style: GoogleFonts.kronaOne(fontSize: 12, color: white, fontWeight: FontWeight.w500)),
                                       ],
                                     ),
                                   ],
@@ -492,17 +548,17 @@ class _HomeState extends State<Home> {
                                   children: <Widget>[
                                     Row(
                                       children: <Widget>[
-                                        Text("Over 209.5 (DAL @MIN)", style: GoogleFonts.kronaOne(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                                        Text("Over 209.5 (DAL @MIN)", style: GoogleFonts.kronaOne(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
                                         const Spacer(),
-                                        IconButton(onPressed: () {}, icon: const Icon(FontAwesome.x_solid, size: 20, color: white)),
+                                        IconButton(onPressed: () {}, icon: const Icon(FontAwesome.x_solid, size: 15, color: white)),
                                       ],
                                     ),
                                     const SizedBox(height: 10),
                                     Row(
                                       children: <Widget>[
-                                        Text("Total Points", style: GoogleFonts.kronaOne(fontSize: 14, color: grey, fontWeight: FontWeight.w500)),
+                                        Text("Total Points", style: GoogleFonts.kronaOne(fontSize: 12, color: grey, fontWeight: FontWeight.w500)),
                                         const Spacer(),
-                                        Text("-112", style: GoogleFonts.kronaOne(fontSize: 14, color: lightGreen, fontWeight: FontWeight.w500)),
+                                        Text("-112", style: GoogleFonts.kronaOne(fontSize: 12, color: lightGreen, fontWeight: FontWeight.w500)),
                                       ],
                                     ),
                                     const SizedBox(height: 10),
@@ -516,8 +572,8 @@ class _HomeState extends State<Home> {
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               mainAxisSize: MainAxisSize.min,
                                               children: <Widget>[
-                                                Text("Pick", style: GoogleFonts.kronaOne(fontSize: 14, color: grey, fontWeight: FontWeight.w500)),
-                                                Text("\$ 10", style: GoogleFonts.kronaOne(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
+                                                Text("Pick", style: GoogleFonts.kronaOne(fontSize: 12, color: grey, fontWeight: FontWeight.w500)),
+                                                Text("\$ 10", style: GoogleFonts.kronaOne(fontSize: 12, color: white, fontWeight: FontWeight.w500)),
                                               ],
                                             ),
                                           ),
@@ -531,8 +587,8 @@ class _HomeState extends State<Home> {
                                               crossAxisAlignment: CrossAxisAlignment.start,
                                               mainAxisSize: MainAxisSize.min,
                                               children: <Widget>[
-                                                Text("To Win", style: GoogleFonts.kronaOne(fontSize: 14, color: grey, fontWeight: FontWeight.w500)),
-                                                Text("\$ 19.64", style: GoogleFonts.kronaOne(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
+                                                Text("To Win", style: GoogleFonts.kronaOne(fontSize: 12, color: grey, fontWeight: FontWeight.w500)),
+                                                Text("\$ 19.64", style: GoogleFonts.kronaOne(fontSize: 12, color: white, fontWeight: FontWeight.w500)),
                                               ],
                                             ),
                                           ),
@@ -542,9 +598,9 @@ class _HomeState extends State<Home> {
                                     const SizedBox(height: 20),
                                     Row(
                                       children: <Widget>[
-                                        Text("To Collect", style: GoogleFonts.kronaOne(fontSize: 14, color: lightGreen, fontWeight: FontWeight.w500)),
+                                        Text("To Collect", style: GoogleFonts.kronaOne(fontSize: 12, color: lightGreen, fontWeight: FontWeight.w500)),
                                         const Spacer(),
-                                        Text("46.22 USD", style: GoogleFonts.kronaOne(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
+                                        Text("46.22 USD", style: GoogleFonts.kronaOne(fontSize: 12, color: white, fontWeight: FontWeight.w500)),
                                       ],
                                     ),
                                   ],
@@ -563,13 +619,13 @@ class _HomeState extends State<Home> {
                                 onTap: () {},
                                 color: white,
                                 fill: false,
-                                child: Text("Clear", style: GoogleFonts.kronaOne(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
+                                child: Text("Clear", style: GoogleFonts.kronaOne(fontSize: 12, color: white, fontWeight: FontWeight.w500)),
                               ),
                               HexagonButton(
                                 onTap: () {},
                                 color: lightGreen,
                                 fill: true,
-                                child: Text("Place Pick", style: GoogleFonts.kronaOne(fontSize: 14, color: dark, fontWeight: FontWeight.w500)),
+                                child: Text("Place Pick", style: GoogleFonts.kronaOne(fontSize: 12, color: dark, fontWeight: FontWeight.w500)),
                               ),
                             ],
                           ),

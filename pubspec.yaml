@@ -22,10 +22,11 @@ dependencies:
   custom_pop_up_menu: ^1.2.4
   ripple_wave: ^0.1.4
   fl_chart: ^0.68.0
-  scrollable_tab_view: ^1.0.6
   syncfusion_flutter_sliders: ^26.1.35
-  syncfusion_flutter_charts: ^26.1.35
   linear_progress_bar: ^1.1.1
+  vertical_tab_bar_view: ^0.0.1
+  flutter_simple_candlesticks: ^1.0.2
+  flutter_native_splash: ^2.4.0
 
 dev_dependencies:
   flutter_test:

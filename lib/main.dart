@@ -14,6 +14,7 @@ class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      title: "BetFund",
       debugShowCheckedModeBanner: false,
       theme: ThemeData.dark(),
       home: const Holder(),

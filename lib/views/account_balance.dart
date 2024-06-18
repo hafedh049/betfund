@@ -4,10 +4,10 @@ import 'package:betfund/utils/shared.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_simple_candlesticks/flutter_simple_candlesticks.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icons_plus/icons_plus.dart';
 import 'package:linear_progress_bar/linear_progress_bar.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
 
 class AccountBalance extends StatefulWidget {
   const AccountBalance({super.key});
@@ -17,29 +17,6 @@ class AccountBalance extends StatefulWidget {
 }
 
 class _AccountBalanceState extends State<AccountBalance> {
-  final List<_ChartData> data = <_ChartData>[
-    _ChartData(
-      'CHN',
-      [12, 22, 22, 23, 25, 25, 25, 26, 27, 27, 28, 28, 29],
-    ),
-    _ChartData(
-      'GER',
-      [22, 24, 25, 30, 32, 34, 36, 38, 39, 41, 40, 56],
-    ),
-    _ChartData(
-      'RUS',
-      [26, 27, 28, 30, 32, 34, 35, 37, 35, 37, 45],
-    ),
-    _ChartData(
-      'BRZ',
-      [21, 26, 27],
-    ),
-    _ChartData(
-      'IND',
-      [26, 27, 29, 32, 34, 35, 36, 37, 38, 39, 41, 43, 58],
-    )
-  ];
-
   final List<List<String>> _dataTable = const <List<String>>[
     <String>["202461762", "Parlay", "Parlay", "Parlay", "Parlay", "+871", "10.00", "Won", "97.12", "May 31,\n09:47 PM", "-"],
     <String>["24162", "Hockey", "New York Rangers VS\nForida Panthers", "NHL", "Puck Line - Edmonton\nOilers-1.5", "-130", "10.00", "Lost", "97.12", "May 31,\n09:47 PM", "May 31,\n09:47 PM"],
@@ -48,6 +25,14 @@ class _AccountBalanceState extends State<AccountBalance> {
     <String>["24162", "Hockey", "New York Rangers VS\nForida Panthers", "NHL", "Puck Line - Edmonton\nOilers-1.5", "-130", "10.00", "Won", "97.12", "May 31,\n09:47 PM", "May 31,\n09:47 PM"],
     <String>["24162", "Hockey", "New York Rangers VS\nForida Panthers", "NHL", "Puck Line - Edmonton\nOilers-1.5", "-130", "10.00", "Won", "97.12", "May 31,\n09:47 PM", "May 31,\n09:47 PM"],
     <String>["24162", "Hockey", "New York Rangers VS\nForida Panthers", "NHL", "Puck Line - Edmonton\nOilers-1.5", "-130", "10.00", "Won", "97.12", "May 31,\n09:47 PM", "May 31,\n09:47 PM"],
+  ];
+
+  final List<CandleModel> _candlesticks = <CandleModel>[
+    CandleModel(date: DateTime.now(), hight: 50, low: 10, open: 10, close: 30),
+    CandleModel(date: DateTime.now(), hight: 70, low: 40, open: 55, close: 45),
+    CandleModel(date: DateTime.now(), hight: 20, low: 10, open: 12, close: 18),
+    CandleModel(date: DateTime.now(), hight: 30, low: 10, open: 20, close: 25),
+    CandleModel(date: DateTime.now(), hight: 60, low: 25, open: 30, close: 50),
   ];
 
   int _selectedPick = 0;
@@ -61,6 +46,15 @@ class _AccountBalanceState extends State<AccountBalance> {
     (20, 50000),
     (25, 60000),
   ];
+
+  final CandlestickChartStyle _style = const CandlestickChartStyle(
+    yLegendStyle: CandlestickChartYLegendStyle(numberOfLabels: 0),
+    tooltipColor: lightGreen,
+    candlestickStyle: CandlestickStyle(
+      bullishColor: lightGreen,
+      bearishColor: red,
+    ),
+  );
 
   String _formatNumbers(double value) {
     return value >= 50000
@@ -516,25 +510,15 @@ class _AccountBalanceState extends State<AccountBalance> {
                             SizedBox(
                               height: 150,
                               width: 150,
-                              child: SfCartesianChart(
-                                legend: const Legend(isVisible: false),
-                                plotAreaBackgroundColor: transparent,
-                                primaryXAxis: const CategoryAxis(isVisible: false),
-                                primaryYAxis: const NumericAxis(isVisible: false),
-                                tooltipBehavior: TooltipBehavior(enable: true),
-                                backgroundColor: transparent,
-                                borderColor: lightGreen,
-                                borderWidth: 1,
-                                series: <CartesianSeries<_ChartData, String>>[
-                                  BoxAndWhiskerSeries<_ChartData, String>(
-                                    dataSource: data,
-                                    borderColor: white,
-                                    xValueMapper: (_ChartData data, _) => data.x,
-                                    yValueMapper: (_ChartData data, _) => data.y,
-                                    name: '',
-                                    color: Colors.blueAccent,
-                                  ),
-                                ],
+                              child: CandlesticksChart<CandleModel>(
+                                height: 200,
+                                data: _candlesticks,
+                                style: _style,
+                                getHightCallback: (CandleModel e) => e.hight,
+                                getCloseCallback: (CandleModel e) => e.close,
+                                getLowCallback: (CandleModel e) => e.low,
+                                getOpenCallback: (CandleModel e) => e.open,
+                                getTimeCallback: (CandleModel e) => e.date,
                               ),
                             ),
                           ],
@@ -656,9 +640,17 @@ class _AccountBalanceState extends State<AccountBalance> {
   }
 }
 
-class _ChartData {
-  _ChartData(this.x, this.y);
+class CandleModel {
+  final DateTime date;
+  final num hight;
+  final num low;
+  final num open;
+  final num close;
 
-  final String x;
-  final List<double> y;
+  CandleModel({required this.date, required this.hight, required this.low, required this.open, required this.close});
+
+  factory CandleModel.generate(DateTime dateTime) {
+    final Random rng = Random();
+    return CandleModel(date: dateTime, hight: rng.nextDouble() * 50 + 150, low: rng.nextDouble() * 50, open: rng.nextDouble() * 50 + 50, close: rng.nextDouble() * 100);
+  }
 }

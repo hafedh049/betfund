@@ -155,7 +155,7 @@ class _MyPicksState extends State<MyPicks> {
                 children: <Widget>[
                   Row(
                     children: <Widget>[
-                      Text("Picks", style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 22, fontWeight: FontWeight.bold)),
+                      Text("Picks", style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 18, fontWeight: FontWeight.bold)),
                       const Spacer(),
                       Container(
                         padding: padding8,
@@ -181,7 +181,7 @@ class _MyPicksState extends State<MyPicks> {
                                     decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: _selectedPick == 0 ? lightGreen : transparent),
                                     child: AnimatedDefaultTextStyle(
                                       duration: 300.ms,
-                                      style: GoogleFonts.kronaOne(color: _selectedPick == 0 ? dark : white, fontSize: 8, fontWeight: FontWeight.bold),
+                                      style: GoogleFonts.kronaOne(color: _selectedPick == 0 ? dark : white, fontSize: 10, fontWeight: FontWeight.bold),
                                       child: const Text("Active"),
                                     ),
                                   ),
@@ -200,10 +200,10 @@ class _MyPicksState extends State<MyPicks> {
                                   child: AnimatedContainer(
                                     duration: 300.ms,
                                     padding: padding4,
-                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: _selectedPick == 1 ? lightGreen : transparent),
+                                    decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: _selectedPick == 1 ? red : transparent),
                                     child: AnimatedDefaultTextStyle(
                                       duration: 300.ms,
-                                      style: GoogleFonts.kronaOne(color: _selectedPick == 1 ? dark : white, fontSize: 8, fontWeight: FontWeight.bold),
+                                      style: GoogleFonts.kronaOne(color: _selectedPick == 1 ? dark : white, fontSize: 10, fontWeight: FontWeight.bold),
                                       child: const Text("Closed"),
                                     ),
                                   ),
@@ -222,10 +222,9 @@ class _MyPicksState extends State<MyPicks> {
                       itemBuilder: (BuildContext context, int index) => _picksHelper.isEmpty
                           ? Center(child: Text("NO ITEMS YET", style: GoogleFonts.kronaOne(color: white, fontSize: 22, fontWeight: FontWeight.bold)))
                           : GridView.builder(
-                              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, crossAxisSpacing: 10, mainAxisSpacing: 10),
+                              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 5, crossAxisSpacing: 10, mainAxisSpacing: 10),
                               itemBuilder: (BuildContext context, int index) => Container(
                                 padding: padding8,
-                                width: 250,
                                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: elevenThirteen),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
