@@ -18,6 +18,12 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int _selectedTab = 0;
 
+  int _selectedPage = 0;
+
+  final List<String> _pages = const <String>["Straight", "Parlay"];
+
+  final PageController _pagesController = PageController();
+
   final List<String> _categories = const <String>[
     "Basketball",
     "Football",
@@ -101,6 +107,7 @@ class _HomeState extends State<Home> {
 
   @override
   void dispose() {
+    _pagesController.dispose();
     _searchController.dispose();
     super.dispose();
   }
@@ -182,139 +189,396 @@ class _HomeState extends State<Home> {
             ),
           ),
           const SizedBox(height: 20),
-          Row(
-            children: <Widget>[
-              Expanded(
-                child: StatefulBuilder(
-                  builder: (BuildContext context, void Function(void Function()) _) {
-                    return TextField(
-                      controller: _searchController,
-                      onChanged: (String value) {},
-                      style: GoogleFonts.kronaOne(color: grey, fontSize: 8, fontWeight: FontWeight.bold),
-                      decoration: InputDecoration(
-                        hintText: "Search by team name",
-                        hintStyle: GoogleFonts.kronaOne(color: grey, fontSize: 8, fontWeight: FontWeight.bold),
-                        labelText: "Perform your search",
-                        labelStyle: GoogleFonts.kronaOne(color: grey, fontSize: 8, fontWeight: FontWeight.bold),
-                        border: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: const BorderSide(color: grey, width: 2)),
-                        suffixIcon: const Icon(FontAwesome.magnifying_glass_solid, size: 15, color: grey),
-                      ),
-                    );
-                  },
-                ),
-              ),
-              const SizedBox(width: 20),
-              Expanded(
-                flex: 2,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: <Widget>[
-                    for (final String state in _states) Text(state, style: GoogleFonts.kronaOne(color: white, fontSize: 8, fontWeight: FontWeight.bold)),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 20),
           Expanded(
-            child: ListView.separated(
-              itemBuilder: (BuildContext context, int index) => Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Container(
-                    padding: padding16,
-                    decoration: const BoxDecoration(
-                      color: elevenThirteen,
-                      borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomLeft: Radius.circular(10)),
-                    ),
-                    child: _dateTransformer(_data[index]["date"], _data[index]["timezone"]),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          Expanded(
+                            child: StatefulBuilder(
+                              builder: (BuildContext context, void Function(void Function()) _) {
+                                return TextField(
+                                  controller: _searchController,
+                                  onChanged: (String value) {},
+                                  style: GoogleFonts.kronaOne(color: grey, fontSize: 8, fontWeight: FontWeight.bold),
+                                  decoration: InputDecoration(
+                                    hintText: "Search by team name",
+                                    hintStyle: GoogleFonts.kronaOne(color: grey, fontSize: 8, fontWeight: FontWeight.bold),
+                                    labelText: "Perform your search",
+                                    labelStyle: GoogleFonts.kronaOne(color: grey, fontSize: 8, fontWeight: FontWeight.bold),
+                                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: const BorderSide(color: grey, width: 2)),
+                                    suffixIcon: const Icon(FontAwesome.magnifying_glass_solid, size: 15, color: grey),
+                                  ),
+                                );
+                              },
+                            ),
+                          ),
+                          const SizedBox(width: 20),
+                          Expanded(
+                            flex: 2,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: <Widget>[
+                                for (final String state in _states) Text(state, style: GoogleFonts.kronaOne(color: white, fontSize: 8, fontWeight: FontWeight.bold)),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+                      Expanded(
+                        child: Row(
+                          children: <Widget>[
+                            Expanded(
+                              child: ListView.separated(
+                                itemBuilder: (BuildContext context, int index) => Row(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Container(
+                                      padding: padding16,
+                                      decoration: const BoxDecoration(
+                                        color: elevenThirteen,
+                                        borderRadius: BorderRadius.only(topLeft: Radius.circular(10), bottomLeft: Radius.circular(10)),
+                                      ),
+                                      child: _dateTransformer(_data[index]["date"], _data[index]["timezone"]),
+                                    ),
+                                    const Divider(color: white, endIndent: 5, indent: 5, height: 100, thickness: 1),
+                                    const SizedBox(height: 20),
+                                    Expanded(
+                                      child: Column(
+                                        mainAxisSize: MainAxisSize.min,
+                                        children: <Widget>[
+                                          for (final Map<String, dynamic> product in _data[index]["products"]) ...<Widget>[
+                                            StatefulBuilder(
+                                              builder: (BuildContext context, void Function(void Function()) _) {
+                                                return Row(
+                                                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                                  children: <Widget>[
+                                                    Container(
+                                                      padding: padding16,
+                                                      decoration: BoxDecoration(color: elevenThirteen, borderRadius: BorderRadius.circular(10)),
+                                                      child: Row(
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        mainAxisSize: MainAxisSize.min,
+                                                        children: <Widget>[
+                                                          Image.network(product["productImage"], width: 20, height: 20),
+                                                          const SizedBox(width: 10),
+                                                          Text(product["productName"], style: GoogleFonts.kronaOne(color: white, fontSize: 8, fontWeight: FontWeight.bold)),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      alignment: Alignment.center,
+                                                      padding: padding16,
+                                                      decoration: BoxDecoration(color: oneE, borderRadius: BorderRadius.circular(10)),
+                                                      child: Row(
+                                                        mainAxisAlignment: MainAxisAlignment.center,
+                                                        mainAxisSize: MainAxisSize.min,
+                                                        children: <Widget>[
+                                                          Text(product["spread"].first, style: GoogleFonts.kronaOne(color: white, fontSize: 8, fontWeight: FontWeight.bold)),
+                                                          const SizedBox(width: 10),
+                                                          Text(product["spread"].last, style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 8, fontWeight: FontWeight.bold)),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      alignment: Alignment.center,
+                                                      padding: padding16,
+                                                      decoration: BoxDecoration(color: oneE, borderRadius: BorderRadius.circular(10)),
+                                                      child: Row(
+                                                        children: <Widget>[
+                                                          Text(product["total"].first, style: GoogleFonts.kronaOne(color: white, fontSize: 8, fontWeight: FontWeight.bold)),
+                                                          const SizedBox(width: 10),
+                                                          Text(product["moneyline"].last, style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 8, fontWeight: FontWeight.bold)),
+                                                        ],
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      alignment: Alignment.center,
+                                                      padding: padding16,
+                                                      decoration: BoxDecoration(color: oneE, borderRadius: BorderRadius.circular(10)),
+                                                      child: Text(product["spread"].last, style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 8, fontWeight: FontWeight.bold)),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            ),
+                                            const SizedBox(height: 10),
+                                          ],
+                                          Center(
+                                            child: HexagonButton(
+                                              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const MorePicks())),
+                                              color: lightGreen,
+                                              fill: true,
+                                              child: Text("More Picks", style: GoogleFonts.kronaOne(color: dark, fontSize: 8, fontWeight: FontWeight.bold)),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                separatorBuilder: (BuildContext context, int index) => const Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 20),
+                                  child: DottedDashedLine(
+                                    height: .3,
+                                    width: double.infinity,
+                                    axis: Axis.horizontal,
+                                    dashColor: white,
+                                    dashHeight: .3,
+                                    dashSpace: 5,
+                                    dashWidth: 10,
+                                    strokeWidth: 1,
+                                  ),
+                                ),
+                                itemCount: _data.length,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
-                  const Divider(color: white, endIndent: 5, indent: 5, height: 100, thickness: 1),
-                  const SizedBox(height: 20),
-                  Expanded(
+                ),
+                const SizedBox(width: 20),
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(25),
+                  child: Container(
+                    width: 400,
+                    height: 380,
+                    color: elevenThirteen,
+                    padding: const EdgeInsets.symmetric(vertical: 8),
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
-                        for (final Map<String, dynamic> product in _data[index]["products"]) ...<Widget>[
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        Container(
+                          color: oneE,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
-                              Container(
-                                padding: padding16,
-                                decoration: BoxDecoration(color: elevenThirteen, borderRadius: BorderRadius.circular(10)),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: <Widget>[
-                                    Image.network(product["productImage"], width: 20, height: 20),
-                                    const SizedBox(width: 10),
-                                    Text(product["productName"], style: GoogleFonts.kronaOne(color: white, fontSize: 8, fontWeight: FontWeight.bold)),
-                                  ],
-                                ),
+                              const SizedBox(height: 10),
+                              Row(
+                                children: <Widget>[
+                                  const SizedBox(width: 10),
+                                  CircleAvatar(
+                                    radius: 8,
+                                    backgroundColor: lightGreen,
+                                    child: Text("2", style: GoogleFonts.kronaOne(fontSize: 8, color: dark, fontWeight: FontWeight.w500)),
+                                  ),
+                                  const SizedBox(width: 10),
+                                  Text("PickSlip", style: GoogleFonts.kronaOne(fontSize: 12, color: white, fontWeight: FontWeight.w500)),
+                                ],
                               ),
-                              Container(
-                                alignment: Alignment.center,
-                                padding: padding16,
-                                decoration: BoxDecoration(color: oneE, borderRadius: BorderRadius.circular(10)),
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: <Widget>[
-                                    Text(product["spread"].first, style: GoogleFonts.kronaOne(color: white, fontSize: 8, fontWeight: FontWeight.bold)),
-                                    const SizedBox(width: 10),
-                                    Text(product["spread"].last, style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 8, fontWeight: FontWeight.bold)),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                alignment: Alignment.center,
-                                padding: padding16,
-                                decoration: BoxDecoration(color: oneE, borderRadius: BorderRadius.circular(10)),
-                                child: Row(
-                                  children: <Widget>[
-                                    Text(product["total"].first, style: GoogleFonts.kronaOne(color: white, fontSize: 8, fontWeight: FontWeight.bold)),
-                                    const SizedBox(width: 10),
-                                    Text(product["moneyline"].last, style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 8, fontWeight: FontWeight.bold)),
-                                  ],
-                                ),
-                              ),
-                              Container(
-                                alignment: Alignment.center,
-                                padding: padding16,
-                                decoration: BoxDecoration(color: oneE, borderRadius: BorderRadius.circular(10)),
-                                child: Text(product["spread"].last, style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 8, fontWeight: FontWeight.bold)),
+                              const SizedBox(height: 20),
+                              StatefulBuilder(
+                                builder: (BuildContext context, void Function(void Function()) _) {
+                                  return Row(
+                                    children: <Widget>[
+                                      for (final String page in _pages)
+                                        Expanded(
+                                          child: InkWell(
+                                            onTap: () {
+                                              _(() => _selectedPage = _pages.indexOf(page));
+                                              _pagesController.animateToPage(_selectedPage, duration: 200.ms, curve: Curves.linear);
+                                            },
+                                            splashColor: transparent,
+                                            highlightColor: transparent,
+                                            hoverColor: transparent,
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: <Widget>[
+                                                Text(page, style: GoogleFonts.kronaOne(fontSize: 12, color: white, fontWeight: FontWeight.w500)),
+                                                const SizedBox(height: 10),
+                                                Row(
+                                                  children: <Widget>[
+                                                    Expanded(
+                                                      child: AnimatedContainer(
+                                                        duration: 200.ms,
+                                                        height: 3,
+                                                        color: _selectedPage == _pages.indexOf(page) ? lightGreen : transparent,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                    ],
+                                  );
+                                },
                               ),
                             ],
                           ),
-                          const SizedBox(height: 10),
-                        ],
-                        Center(
-                          child: HexagonButton(
-                            onTap: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const MorePicks())),
-                            color: lightGreen,
-                            fill: true,
-                            child: Text("More Picks", style: GoogleFonts.kronaOne(color: dark, fontSize: 8, fontWeight: FontWeight.bold)),
+                        ),
+                        Expanded(
+                          child: Container(
+                            padding: padding16,
+                            child: PageView(
+                              controller: _pagesController,
+                              children: <Widget>[
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Row(
+                                      children: <Widget>[
+                                        Text("Over 209.5 (DAL @MIN)", style: GoogleFonts.kronaOne(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                                        const Spacer(),
+                                        IconButton(onPressed: () {}, icon: const Icon(FontAwesome.x_solid, size: 20, color: white)),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Row(
+                                      children: <Widget>[
+                                        Text("Total Points", style: GoogleFonts.kronaOne(fontSize: 14, color: grey, fontWeight: FontWeight.w500)),
+                                        const Spacer(),
+                                        Text("-112", style: GoogleFonts.kronaOne(fontSize: 14, color: lightGreen, fontWeight: FontWeight.w500)),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Row(
+                                      children: <Widget>[
+                                        Expanded(
+                                          child: Container(
+                                            padding: padding8,
+                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: oneE),
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: <Widget>[
+                                                Text("Pick", style: GoogleFonts.kronaOne(fontSize: 14, color: grey, fontWeight: FontWeight.w500)),
+                                                Text("\$ 10", style: GoogleFonts.kronaOne(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 20),
+                                        Expanded(
+                                          child: Container(
+                                            padding: padding8,
+                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: oneE),
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: <Widget>[
+                                                Text("To Win", style: GoogleFonts.kronaOne(fontSize: 14, color: grey, fontWeight: FontWeight.w500)),
+                                                Text("\$ 19.64", style: GoogleFonts.kronaOne(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 20),
+                                    Row(
+                                      children: <Widget>[
+                                        Text("To Collect", style: GoogleFonts.kronaOne(fontSize: 14, color: lightGreen, fontWeight: FontWeight.w500)),
+                                        const Spacer(),
+                                        Text("46.22 USD", style: GoogleFonts.kronaOne(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Row(
+                                      children: <Widget>[
+                                        Text("Over 209.5 (DAL @MIN)", style: GoogleFonts.kronaOne(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
+                                        const Spacer(),
+                                        IconButton(onPressed: () {}, icon: const Icon(FontAwesome.x_solid, size: 20, color: white)),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Row(
+                                      children: <Widget>[
+                                        Text("Total Points", style: GoogleFonts.kronaOne(fontSize: 14, color: grey, fontWeight: FontWeight.w500)),
+                                        const Spacer(),
+                                        Text("-112", style: GoogleFonts.kronaOne(fontSize: 14, color: lightGreen, fontWeight: FontWeight.w500)),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 10),
+                                    Row(
+                                      children: <Widget>[
+                                        Expanded(
+                                          child: Container(
+                                            padding: padding8,
+                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: oneE),
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: <Widget>[
+                                                Text("Pick", style: GoogleFonts.kronaOne(fontSize: 14, color: grey, fontWeight: FontWeight.w500)),
+                                                Text("\$ 10", style: GoogleFonts.kronaOne(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(width: 20),
+                                        Expanded(
+                                          child: Container(
+                                            padding: padding8,
+                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: oneE),
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: <Widget>[
+                                                Text("To Win", style: GoogleFonts.kronaOne(fontSize: 14, color: grey, fontWeight: FontWeight.w500)),
+                                                Text("\$ 19.64", style: GoogleFonts.kronaOne(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 20),
+                                    Row(
+                                      children: <Widget>[
+                                        Text("To Collect", style: GoogleFonts.kronaOne(fontSize: 14, color: lightGreen, fontWeight: FontWeight.w500)),
+                                        const Spacer(),
+                                        Text("46.22 USD", style: GoogleFonts.kronaOne(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        Container(
+                          color: oneE,
+                          padding: const EdgeInsets.symmetric(vertical: 16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: <Widget>[
+                              HexagonButton(
+                                onTap: () {},
+                                color: white,
+                                fill: false,
+                                child: Text("Clear", style: GoogleFonts.kronaOne(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
+                              ),
+                              HexagonButton(
+                                onTap: () {},
+                                color: lightGreen,
+                                fill: true,
+                                child: Text("Place Pick", style: GoogleFonts.kronaOne(fontSize: 14, color: dark, fontWeight: FontWeight.w500)),
+                              ),
+                            ],
                           ),
                         ),
                       ],
                     ),
                   ),
-                ],
-              ),
-              separatorBuilder: (BuildContext context, int index) => const Padding(
-                padding: EdgeInsets.symmetric(vertical: 20),
-                child: DottedDashedLine(
-                  height: .3,
-                  width: double.infinity,
-                  axis: Axis.horizontal,
-                  dashColor: white,
-                  dashHeight: .3,
-                  dashSpace: 5,
-                  dashWidth: 10,
-                  strokeWidth: 1,
                 ),
-              ),
-              itemCount: _data.length,
+              ],
             ),
           ),
         ],

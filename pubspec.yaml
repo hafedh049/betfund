@@ -24,6 +24,8 @@ dependencies:
   fl_chart: ^0.68.0
   scrollable_tab_view: ^1.0.6
   syncfusion_flutter_sliders: ^26.1.35
+  syncfusion_flutter_charts: ^26.1.35
+  linear_progress_bar: ^1.1.1
 
 dev_dependencies:
   flutter_test:
