@@ -1,6 +1,5 @@
 import 'dart:math';
 
-import 'package:betfund/utils/helpers/hexagon.dart';
 import 'package:betfund/utils/shared.dart';
 import 'package:betfund/views/more_picks.dart';
 import 'package:custom_pop_up_menu/custom_pop_up_menu.dart';
@@ -10,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icons_plus/icons_plus.dart';
+
+import '../utils/cart.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -21,15 +22,13 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int _selectedTab = 0;
 
-  int _selectedPage = 0;
-
-  final List<String> _pages = const <String>["Straight", "Parlay"];
-
-  final PageController _pagesController = PageController();
+  bool _morePicksState = false;
 
   final List<String> _categories = const <String>["Basketball", "Football", "Baseball", "Soccer", "Mockey", "MMA", "Tennis"];
 
   final List<GlobalKey<State<StatefulWidget>>> _subcatsKeys = List<GlobalKey<State<StatefulWidget>>>.generate(7, (int index) => GlobalKey<State<StatefulWidget>>());
+
+  final GlobalKey<State<StatefulWidget>> _cartKey = GlobalKey<State<StatefulWidget>>();
 
   final List<CustomPopupMenuController> _subcats = List<CustomPopupMenuController>.generate(7, (int index) => CustomPopupMenuController());
 
@@ -41,7 +40,7 @@ class _HomeState extends State<Home> {
       "timezone": "EST",
       "products": <Map<String, dynamic>>[
         <String, dynamic>{
-          "productImage": "https://s3-alpha-sig.figma.com/img/2a00/aacc/e499c5c311ef7267c4f2502731401f03?Expires=1719187200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=PhRUPPDSJZyRqDhxes~PAvsR-y84TNCkr1~mNP-dggbF~WPVgJonL7MfPRbHibmNe2~YkfQYI1qFzXWe6DxI1gvx5Xh9uhnQlrwBiqVUnM2eyEsYKQ6snfGA5Ao9eOJEM1tjI7joIVOoBvFKdjNcvYe2z1OIM8IOWjh-AwsY0IorliQCZS7-9VgvU-5~Qr2mmaYaYnKPjKLD-f3Qeb8aMCyB9jK4EN9MEnw3U9nG2rGZ~bLZsZp~5YVEq5~R9SvLACevLz-CqxjD1HFAQM86Ptm2AiwjR7XwLmAkLGyXC3lDz~Sn~fgGBtkxcM0Wt~LxA0hicosEmBuP0PFgYq5NEQ__",
+          "productImage": "https://s3-alpha-sig.figma.com/img/2a00/aacc/e499c5c311ef7267c4f2502731401f03?Expires=1720396800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=SutCEfP4IssUUkzdpxEzScxQB-uYFejof33Flm07olg6SGCzVpOr~6WOA3i7Ij6gOo7m6zrxcDiBBevDYX4H861ncSE55aL7n7SgOuOMbimo7o6JUsCAmLw~4WjNKbZRwFOrts9ZN3SMIs6Aifrc4-mS27ITmuMR~e5vbzqB074S30qPT1rO38U6Tq8~oai1ivGzEwinYwY7OYM13JugVE9LXfYK5jKOs8MiUG6vnC1Ns7nQ6Z7xTU-DahxtEjR7~DmMneDAgrn-Em4aSsqrUqj5rzJ93bLGPsDclZEJtezkHArf8EYyLyfnfVgZTIPu0K191w3AAa8iMZEcHkNJcA__",
           "productName": "Baltimore Ravens",
           "spread": <String>["+5", "-115"],
           "total": <String>["O 209.5", "-112"],
@@ -49,7 +48,7 @@ class _HomeState extends State<Home> {
           "state": "",
         },
         <String, dynamic>{
-          "productImage": "https://s3-alpha-sig.figma.com/img/4c38/3f22/bbd26d4c0143b94f57cb31dce1d3cfab?Expires=1719187200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=kJgooRSD-CKMxr3y9CfPyUgX4JcX16yKHuh-le6Az2B8gjuUQxiuudoLQ~1PgTsWu2nkNfe5rPcyOs31G0~zpdlPAiaujdoVJtcM5Jr3ufTkXTqX~IeFsGTxaJBxyeNOQ9aEpWc4V18ZTfcNLqoQS-ULiuaDrCTeeS2mSfw~UK217TdKARASTPPPi7PE4WDF4hAhdcdxIjBleqK0U4tTparSNzUPwkV9GO~15fKOkPM1hutPdytY6~0rKIR2JmQS-RuwxBFO1g06WeWeJyufj2MHmJd1rSctl15MDXzIX8UCTvmNt1osu~bDAKpqdO7TT6M-26HyVpHzgYuyH4arHg__",
+          "productImage": "https://s3-alpha-sig.figma.com/img/4c38/3f22/bbd26d4c0143b94f57cb31dce1d3cfab?Expires=1720396800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=jSmH7UJiGclSbMHHk0gQIrZzwZPezgZSggOZazWlXDQLsv~YJAT7I7PCoi-aEEujWMFR22-uvH6XrtvHiy3k9opBATMWfwsllTgCh0SDCMoKFm5EOTcGKsbS1TyvQVQzrmxXmJHjQ8zyNPD~jW9cV0vaP6abpjA281HjnGCuTgYp6N9fSYd6MtRwaddago1uaJKFFbDw-vUaaWOwaFx9i4mv5e0dXxFICMycj2BxiJhf8HcBXbvV8WMFY39q6c4Sph977k9TIZzsPNgtiP~~THI6LUblC2ljAS7JxlJTgBgiZcVtwlzwTBlqtMaplKIG6Y~kYmkGGCandoD4Zvi1hw__",
           "productName": "Kansas City Chiefs",
           "spread": <String>["-5", "-105"],
           "total": <String>["U 209.5", "-108"],
@@ -63,7 +62,7 @@ class _HomeState extends State<Home> {
       "timezone": "EST",
       "products": <Map<String, dynamic>>[
         <String, dynamic>{
-          "productImage": "https://s3-alpha-sig.figma.com/img/2a00/aacc/e499c5c311ef7267c4f2502731401f03?Expires=1719187200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=PhRUPPDSJZyRqDhxes~PAvsR-y84TNCkr1~mNP-dggbF~WPVgJonL7MfPRbHibmNe2~YkfQYI1qFzXWe6DxI1gvx5Xh9uhnQlrwBiqVUnM2eyEsYKQ6snfGA5Ao9eOJEM1tjI7joIVOoBvFKdjNcvYe2z1OIM8IOWjh-AwsY0IorliQCZS7-9VgvU-5~Qr2mmaYaYnKPjKLD-f3Qeb8aMCyB9jK4EN9MEnw3U9nG2rGZ~bLZsZp~5YVEq5~R9SvLACevLz-CqxjD1HFAQM86Ptm2AiwjR7XwLmAkLGyXC3lDz~Sn~fgGBtkxcM0Wt~LxA0hicosEmBuP0PFgYq5NEQ__",
+          "productImage": "https://s3-alpha-sig.figma.com/img/2a00/aacc/e499c5c311ef7267c4f2502731401f03?Expires=1720396800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=SutCEfP4IssUUkzdpxEzScxQB-uYFejof33Flm07olg6SGCzVpOr~6WOA3i7Ij6gOo7m6zrxcDiBBevDYX4H861ncSE55aL7n7SgOuOMbimo7o6JUsCAmLw~4WjNKbZRwFOrts9ZN3SMIs6Aifrc4-mS27ITmuMR~e5vbzqB074S30qPT1rO38U6Tq8~oai1ivGzEwinYwY7OYM13JugVE9LXfYK5jKOs8MiUG6vnC1Ns7nQ6Z7xTU-DahxtEjR7~DmMneDAgrn-Em4aSsqrUqj5rzJ93bLGPsDclZEJtezkHArf8EYyLyfnfVgZTIPu0K191w3AAa8iMZEcHkNJcA__",
           "productName": "Baltimore Ravens",
           "spread": <String>["+5", "-115"],
           "total": <String>["O 209.5", "-112"],
@@ -71,7 +70,7 @@ class _HomeState extends State<Home> {
           "state": "",
         },
         <String, dynamic>{
-          "productImage": "https://s3-alpha-sig.figma.com/img/4c38/3f22/bbd26d4c0143b94f57cb31dce1d3cfab?Expires=1719187200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=kJgooRSD-CKMxr3y9CfPyUgX4JcX16yKHuh-le6Az2B8gjuUQxiuudoLQ~1PgTsWu2nkNfe5rPcyOs31G0~zpdlPAiaujdoVJtcM5Jr3ufTkXTqX~IeFsGTxaJBxyeNOQ9aEpWc4V18ZTfcNLqoQS-ULiuaDrCTeeS2mSfw~UK217TdKARASTPPPi7PE4WDF4hAhdcdxIjBleqK0U4tTparSNzUPwkV9GO~15fKOkPM1hutPdytY6~0rKIR2JmQS-RuwxBFO1g06WeWeJyufj2MHmJd1rSctl15MDXzIX8UCTvmNt1osu~bDAKpqdO7TT6M-26HyVpHzgYuyH4arHg__",
+          "productImage": "https://s3-alpha-sig.figma.com/img/4c38/3f22/bbd26d4c0143b94f57cb31dce1d3cfab?Expires=1720396800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=jSmH7UJiGclSbMHHk0gQIrZzwZPezgZSggOZazWlXDQLsv~YJAT7I7PCoi-aEEujWMFR22-uvH6XrtvHiy3k9opBATMWfwsllTgCh0SDCMoKFm5EOTcGKsbS1TyvQVQzrmxXmJHjQ8zyNPD~jW9cV0vaP6abpjA281HjnGCuTgYp6N9fSYd6MtRwaddago1uaJKFFbDw-vUaaWOwaFx9i4mv5e0dXxFICMycj2BxiJhf8HcBXbvV8WMFY39q6c4Sph977k9TIZzsPNgtiP~~THI6LUblC2ljAS7JxlJTgBgiZcVtwlzwTBlqtMaplKIG6Y~kYmkGGCandoD4Zvi1hw__",
           "productName": "Kansas City Chiefs",
           "spread": <String>["-5", "-105"],
           "total": <String>["U 209.5", "-108"],
@@ -85,7 +84,7 @@ class _HomeState extends State<Home> {
       "timezone": "EST",
       "products": <Map<String, dynamic>>[
         <String, dynamic>{
-          "productImage": "https://s3-alpha-sig.figma.com/img/2a00/aacc/e499c5c311ef7267c4f2502731401f03?Expires=1719187200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=PhRUPPDSJZyRqDhxes~PAvsR-y84TNCkr1~mNP-dggbF~WPVgJonL7MfPRbHibmNe2~YkfQYI1qFzXWe6DxI1gvx5Xh9uhnQlrwBiqVUnM2eyEsYKQ6snfGA5Ao9eOJEM1tjI7joIVOoBvFKdjNcvYe2z1OIM8IOWjh-AwsY0IorliQCZS7-9VgvU-5~Qr2mmaYaYnKPjKLD-f3Qeb8aMCyB9jK4EN9MEnw3U9nG2rGZ~bLZsZp~5YVEq5~R9SvLACevLz-CqxjD1HFAQM86Ptm2AiwjR7XwLmAkLGyXC3lDz~Sn~fgGBtkxcM0Wt~LxA0hicosEmBuP0PFgYq5NEQ__",
+          "productImage": "https://s3-alpha-sig.figma.com/img/2a00/aacc/e499c5c311ef7267c4f2502731401f03?Expires=1720396800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=SutCEfP4IssUUkzdpxEzScxQB-uYFejof33Flm07olg6SGCzVpOr~6WOA3i7Ij6gOo7m6zrxcDiBBevDYX4H861ncSE55aL7n7SgOuOMbimo7o6JUsCAmLw~4WjNKbZRwFOrts9ZN3SMIs6Aifrc4-mS27ITmuMR~e5vbzqB074S30qPT1rO38U6Tq8~oai1ivGzEwinYwY7OYM13JugVE9LXfYK5jKOs8MiUG6vnC1Ns7nQ6Z7xTU-DahxtEjR7~DmMneDAgrn-Em4aSsqrUqj5rzJ93bLGPsDclZEJtezkHArf8EYyLyfnfVgZTIPu0K191w3AAa8iMZEcHkNJcA__",
           "productName": "Baltimore Ravens",
           "spread": <String>["+5", "-115"],
           "total": <String>["O 209.5", "-112"],
@@ -93,7 +92,7 @@ class _HomeState extends State<Home> {
           "state": "",
         },
         <String, dynamic>{
-          "productImage": "https://s3-alpha-sig.figma.com/img/4c38/3f22/bbd26d4c0143b94f57cb31dce1d3cfab?Expires=1719187200&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=kJgooRSD-CKMxr3y9CfPyUgX4JcX16yKHuh-le6Az2B8gjuUQxiuudoLQ~1PgTsWu2nkNfe5rPcyOs31G0~zpdlPAiaujdoVJtcM5Jr3ufTkXTqX~IeFsGTxaJBxyeNOQ9aEpWc4V18ZTfcNLqoQS-ULiuaDrCTeeS2mSfw~UK217TdKARASTPPPi7PE4WDF4hAhdcdxIjBleqK0U4tTparSNzUPwkV9GO~15fKOkPM1hutPdytY6~0rKIR2JmQS-RuwxBFO1g06WeWeJyufj2MHmJd1rSctl15MDXzIX8UCTvmNt1osu~bDAKpqdO7TT6M-26HyVpHzgYuyH4arHg__",
+          "productImage": "https://s3-alpha-sig.figma.com/img/4c38/3f22/bbd26d4c0143b94f57cb31dce1d3cfab?Expires=1720396800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=jSmH7UJiGclSbMHHk0gQIrZzwZPezgZSggOZazWlXDQLsv~YJAT7I7PCoi-aEEujWMFR22-uvH6XrtvHiy3k9opBATMWfwsllTgCh0SDCMoKFm5EOTcGKsbS1TyvQVQzrmxXmJHjQ8zyNPD~jW9cV0vaP6abpjA281HjnGCuTgYp6N9fSYd6MtRwaddago1uaJKFFbDw-vUaaWOwaFx9i4mv5e0dXxFICMycj2BxiJhf8HcBXbvV8WMFY39q6c4Sph977k9TIZzsPNgtiP~~THI6LUblC2ljAS7JxlJTgBgiZcVtwlzwTBlqtMaplKIG6Y~kYmkGGCandoD4Zvi1hw__",
           "productName": "Kansas City Chiefs",
           "spread": <String>["-5", "-105"],
           "total": <String>["U 209.5", "-108"],
@@ -108,7 +107,6 @@ class _HomeState extends State<Home> {
 
   @override
   void dispose() {
-    _pagesController.dispose();
     _searchController.dispose();
     super.dispose();
   }
@@ -120,12 +118,12 @@ class _HomeState extends State<Home> {
       children: <Widget>[
         Text(
           "${date.hour.toString().padLeft(2, "0")} : ${date.minute.toString().padLeft(2, "0")} (${timeZone.toUpperCase()})",
-          style: GoogleFonts.kronaOne(color: white, fontSize: 8, fontWeight: FontWeight.bold),
+          style: GoogleFonts.kronaOne(color: white, fontSize: 16, fontWeight: FontWeight.w400),
         ),
         const SizedBox(height: 10),
         Text(
           formatDate(date, const <String>[M, " ", d]).toUpperCase(),
-          style: GoogleFonts.kronaOne(color: grey, fontSize: 8, fontWeight: FontWeight.bold),
+          style: GoogleFonts.kronaOne(color: grey, fontSize: 16, fontWeight: FontWeight.w400),
         ),
       ],
     );
@@ -230,32 +228,33 @@ class _HomeState extends State<Home> {
                     children: <Widget>[
                       Row(
                         children: <Widget>[
-                          Expanded(
-                            child: StatefulBuilder(
-                              builder: (BuildContext context, void Function(void Function()) _) {
-                                return TextField(
+                          StatefulBuilder(
+                            builder: (BuildContext context, void Function(void Function()) _) {
+                              return SizedBox(
+                                height: 48,
+                                width: 564,
+                                child: TextField(
                                   controller: _searchController,
                                   onChanged: (String value) {},
-                                  style: GoogleFonts.kronaOne(color: grey, fontSize: 8, fontWeight: FontWeight.bold),
+                                  style: GoogleFonts.kronaOne(color: grey, fontSize: 14, fontWeight: FontWeight.w400),
                                   decoration: InputDecoration(
                                     hintText: "Search by team name",
-                                    hintStyle: GoogleFonts.kronaOne(color: grey, fontSize: 8, fontWeight: FontWeight.bold),
+                                    hintStyle: GoogleFonts.kronaOne(color: grey, fontSize: 14, fontWeight: FontWeight.w400),
                                     labelText: "Perform your search",
-                                    labelStyle: GoogleFonts.kronaOne(color: grey, fontSize: 8, fontWeight: FontWeight.bold),
+                                    labelStyle: GoogleFonts.kronaOne(color: grey, fontSize: 14, fontWeight: FontWeight.w400),
                                     border: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: const BorderSide(color: grey, width: 2)),
                                     suffixIcon: const Icon(FontAwesome.magnifying_glass_solid, size: 15, color: grey),
                                   ),
-                                );
-                              },
-                            ),
+                                ),
+                              );
+                            },
                           ),
-                          const SizedBox(width: 20),
                           Expanded(
                             flex: 2,
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: <Widget>[
-                                for (final String state in _states) Text(state, style: GoogleFonts.kronaOne(color: white, fontSize: 8, fontWeight: FontWeight.bold)),
+                                for (final String state in _states) Text(state, style: GoogleFonts.kronaOne(color: white, fontSize: 14, fontWeight: FontWeight.w400)),
                               ],
                             ),
                           ),
@@ -271,6 +270,8 @@ class _HomeState extends State<Home> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
                                     Container(
+                                      width: 233,
+                                      height: 138,
                                       padding: padding16,
                                       decoration: const BoxDecoration(
                                         color: elevenThirteen,
@@ -278,7 +279,6 @@ class _HomeState extends State<Home> {
                                       ),
                                       child: _dateTransformer(_data[index]["date"], _data[index]["timezone"]),
                                     ),
-                                    const Divider(color: white, endIndent: 5, indent: 5, height: 100, thickness: 1),
                                     const SizedBox(height: 20),
                                     Expanded(
                                       child: Column(
@@ -292,14 +292,16 @@ class _HomeState extends State<Home> {
                                                   children: <Widget>[
                                                     Container(
                                                       padding: padding16,
+                                                      width: 319,
+                                                      height: 60,
                                                       decoration: BoxDecoration(color: elevenThirteen, borderRadius: BorderRadius.circular(10)),
                                                       child: Row(
                                                         mainAxisAlignment: MainAxisAlignment.center,
                                                         mainAxisSize: MainAxisSize.min,
                                                         children: <Widget>[
-                                                          Image.network(product["productImage"], width: 20, height: 20),
+                                                          Image.network(product["productImage"], width: 39, height: 32),
                                                           const SizedBox(width: 10),
-                                                          Text(product["productName"], style: GoogleFonts.kronaOne(color: white, fontSize: 8, fontWeight: FontWeight.bold)),
+                                                          Text(product["productName"], style: GoogleFonts.kronaOne(color: white, fontSize: 14, fontWeight: FontWeight.w400)),
                                                         ],
                                                       ),
                                                     ),
@@ -314,6 +316,7 @@ class _HomeState extends State<Home> {
                                                             }
                                                           },
                                                         );
+                                                        _cartKey.currentState!.setState(() {});
                                                       },
                                                       splashColor: transparent,
                                                       highlightColor: transparent,
@@ -331,9 +334,9 @@ class _HomeState extends State<Home> {
                                                           mainAxisAlignment: MainAxisAlignment.center,
                                                           mainAxisSize: MainAxisSize.min,
                                                           children: <Widget>[
-                                                            Text(product["spread"].first, style: GoogleFonts.kronaOne(color: white, fontSize: 8, fontWeight: FontWeight.bold)),
+                                                            Text(product["spread"].first, style: GoogleFonts.kronaOne(color: white, fontSize: 18, fontWeight: FontWeight.w400)),
                                                             const SizedBox(width: 10),
-                                                            Text(product["spread"].last, style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 8, fontWeight: FontWeight.bold)),
+                                                            Text(product["spread"].last, style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 18, fontWeight: FontWeight.w400)),
                                                           ],
                                                         ),
                                                       ),
@@ -349,6 +352,7 @@ class _HomeState extends State<Home> {
                                                             }
                                                           },
                                                         );
+                                                        _cartKey.currentState!.setState(() {});
                                                       },
                                                       splashColor: transparent,
                                                       highlightColor: transparent,
@@ -364,9 +368,9 @@ class _HomeState extends State<Home> {
                                                         ),
                                                         child: Row(
                                                           children: <Widget>[
-                                                            Text(product["total"].first, style: GoogleFonts.kronaOne(color: white, fontSize: 8, fontWeight: FontWeight.bold)),
+                                                            Text(product["total"].first, style: GoogleFonts.kronaOne(color: white, fontSize: 18, fontWeight: FontWeight.w400)),
                                                             const SizedBox(width: 10),
-                                                            Text(product["total"].last, style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 8, fontWeight: FontWeight.bold)),
+                                                            Text(product["total"].last, style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 18, fontWeight: FontWeight.w400)),
                                                           ],
                                                         ),
                                                       ),
@@ -382,6 +386,7 @@ class _HomeState extends State<Home> {
                                                             }
                                                           },
                                                         );
+                                                        _cartKey.currentState!.setState(() {});
                                                       },
                                                       splashColor: transparent,
                                                       highlightColor: transparent,
@@ -395,7 +400,7 @@ class _HomeState extends State<Home> {
                                                           borderRadius: BorderRadius.circular(10),
                                                           border: Border.all(color: product["state"] == "moneyline" ? lightGreen : transparent),
                                                         ),
-                                                        child: Text(product["moneyline"].last, style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 8, fontWeight: FontWeight.bold)),
+                                                        child: Text(product["moneyline"].last, style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 18, fontWeight: FontWeight.w400)),
                                                       ),
                                                     ),
                                                   ],
@@ -405,11 +410,33 @@ class _HomeState extends State<Home> {
                                             const SizedBox(height: 10),
                                           ],
                                           Center(
-                                            child: HexagonButton(
-                                              onTap: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const MorePicks())),
-                                              color: lightGreen,
-                                              fill: true,
-                                              child: Text("More Picks", style: GoogleFonts.kronaOne(color: dark, fontSize: 8, fontWeight: FontWeight.bold)),
+                                            child: StatefulBuilder(
+                                              builder: (BuildContext context, void Function(void Function()) _) {
+                                                return InkWell(
+                                                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const MorePicks())),
+                                                  highlightColor: transparent,
+                                                  splashColor: transparent,
+                                                  hoverColor: transparent,
+                                                  onHover: (bool value) => _(() => _morePicksState = value),
+                                                  child: AnimatedScale(
+                                                    scale: _morePicksState ? 1.05 : 1,
+                                                    duration: 200.ms,
+                                                    child: AnimatedContainer(
+                                                      duration: 200.ms,
+                                                      width: 188,
+                                                      height: 54,
+                                                      padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 8),
+                                                      alignment: Alignment.center,
+                                                      decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/${!_morePicksState ? 'filled' : 'empty'}_green_hexagon.png"), fit: BoxFit.contain)),
+                                                      child: AnimatedDefaultTextStyle(
+                                                        duration: 200.ms,
+                                                        style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w400, color: _morePicksState ? lightGreen : dark),
+                                                        child: const Text("More Picks"),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                );
+                                              },
                                             ),
                                           ),
                                         ],
@@ -439,237 +466,21 @@ class _HomeState extends State<Home> {
                     ],
                   ),
                 ),
-                const SizedBox(width: 20),
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(25),
-                  child: Container(
-                    width: 400,
-                    height: 380,
-                    color: elevenThirteen,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Container(
-                          color: oneE,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              const SizedBox(height: 10),
-                              Row(
-                                children: <Widget>[
-                                  const SizedBox(width: 10),
-                                  CircleAvatar(
-                                    radius: 8,
-                                    backgroundColor: lightGreen,
-                                    child: Text("2", style: GoogleFonts.kronaOne(fontSize: 8, color: dark, fontWeight: FontWeight.w500)),
-                                  ),
-                                  const SizedBox(width: 10),
-                                  Text("PickSlip", style: GoogleFonts.kronaOne(fontSize: 12, color: white, fontWeight: FontWeight.w500)),
-                                ],
-                              ),
-                              const SizedBox(height: 20),
-                              StatefulBuilder(
-                                builder: (BuildContext context, void Function(void Function()) _) {
-                                  return Row(
-                                    children: <Widget>[
-                                      for (final String page in _pages)
-                                        Expanded(
-                                          child: InkWell(
-                                            onTap: () {
-                                              _(() => _selectedPage = _pages.indexOf(page));
-                                              _pagesController.animateToPage(_selectedPage, duration: 200.ms, curve: Curves.linear);
-                                            },
-                                            splashColor: transparent,
-                                            highlightColor: transparent,
-                                            hoverColor: transparent,
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: <Widget>[
-                                                Text(page, style: GoogleFonts.kronaOne(fontSize: 12, color: white, fontWeight: FontWeight.w500)),
-                                                const SizedBox(height: 10),
-                                                Row(
-                                                  children: <Widget>[
-                                                    Expanded(
-                                                      child: AnimatedContainer(
-                                                        duration: 200.ms,
-                                                        height: 3,
-                                                        color: _selectedPage == _pages.indexOf(page) ? lightGreen : transparent,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                    ],
-                                  );
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                        Expanded(
-                          child: Container(
-                            padding: padding16,
-                            child: PageView(
-                              controller: _pagesController,
-                              children: <Widget>[
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Row(
-                                      children: <Widget>[
-                                        Text("Over 209.5 (DAL @MIN)", style: GoogleFonts.kronaOne(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
-                                        const Spacer(),
-                                        IconButton(onPressed: () {}, icon: const Icon(FontAwesome.x_solid, size: 15, color: white)),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 10),
-                                    Row(
-                                      children: <Widget>[
-                                        Text("Total Points", style: GoogleFonts.kronaOne(fontSize: 12, color: grey, fontWeight: FontWeight.w500)),
-                                        const Spacer(),
-                                        Text("-112", style: GoogleFonts.kronaOne(fontSize: 12, color: lightGreen, fontWeight: FontWeight.w500)),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 10),
-                                    Row(
-                                      children: <Widget>[
-                                        Expanded(
-                                          child: Container(
-                                            padding: padding8,
-                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: oneE),
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: <Widget>[
-                                                Text("Pick", style: GoogleFonts.kronaOne(fontSize: 12, color: grey, fontWeight: FontWeight.w500)),
-                                                Text("\$ 10", style: GoogleFonts.kronaOne(fontSize: 12, color: white, fontWeight: FontWeight.w500)),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        const SizedBox(width: 20),
-                                        Expanded(
-                                          child: Container(
-                                            padding: padding8,
-                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: oneE),
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: <Widget>[
-                                                Text("To Win", style: GoogleFonts.kronaOne(fontSize: 12, color: grey, fontWeight: FontWeight.w500)),
-                                                Text("\$ 19.64", style: GoogleFonts.kronaOne(fontSize: 12, color: white, fontWeight: FontWeight.w500)),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 20),
-                                    Row(
-                                      children: <Widget>[
-                                        Text("To Collect", style: GoogleFonts.kronaOne(fontSize: 12, color: lightGreen, fontWeight: FontWeight.w500)),
-                                        const Spacer(),
-                                        Text("46.22 USD", style: GoogleFonts.kronaOne(fontSize: 12, color: white, fontWeight: FontWeight.w500)),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Row(
-                                      children: <Widget>[
-                                        Text("Over 209.5 (DAL @MIN)", style: GoogleFonts.kronaOne(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
-                                        const Spacer(),
-                                        IconButton(onPressed: () {}, icon: const Icon(FontAwesome.x_solid, size: 15, color: white)),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 10),
-                                    Row(
-                                      children: <Widget>[
-                                        Text("Total Points", style: GoogleFonts.kronaOne(fontSize: 12, color: grey, fontWeight: FontWeight.w500)),
-                                        const Spacer(),
-                                        Text("-112", style: GoogleFonts.kronaOne(fontSize: 12, color: lightGreen, fontWeight: FontWeight.w500)),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 10),
-                                    Row(
-                                      children: <Widget>[
-                                        Expanded(
-                                          child: Container(
-                                            padding: padding8,
-                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: oneE),
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: <Widget>[
-                                                Text("Pick", style: GoogleFonts.kronaOne(fontSize: 12, color: grey, fontWeight: FontWeight.w500)),
-                                                Text("\$ 10", style: GoogleFonts.kronaOne(fontSize: 12, color: white, fontWeight: FontWeight.w500)),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        const SizedBox(width: 20),
-                                        Expanded(
-                                          child: Container(
-                                            padding: padding8,
-                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: oneE),
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: <Widget>[
-                                                Text("To Win", style: GoogleFonts.kronaOne(fontSize: 12, color: grey, fontWeight: FontWeight.w500)),
-                                                Text("\$ 19.64", style: GoogleFonts.kronaOne(fontSize: 12, color: white, fontWeight: FontWeight.w500)),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 20),
-                                    Row(
-                                      children: <Widget>[
-                                        Text("To Collect", style: GoogleFonts.kronaOne(fontSize: 12, color: lightGreen, fontWeight: FontWeight.w500)),
-                                        const Spacer(),
-                                        Text("46.22 USD", style: GoogleFonts.kronaOne(fontSize: 12, color: white, fontWeight: FontWeight.w500)),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Container(
-                          color: oneE,
-                          padding: const EdgeInsets.symmetric(vertical: 16),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              HexagonButton(
-                                onTap: () {},
-                                color: white,
-                                fill: false,
-                                child: Text("Clear", style: GoogleFonts.kronaOne(fontSize: 12, color: white, fontWeight: FontWeight.w500)),
-                              ),
-                              HexagonButton(
-                                onTap: () {},
-                                color: lightGreen,
-                                fill: true,
-                                child: Text("Place Pick", style: GoogleFonts.kronaOne(fontSize: 12, color: dark, fontWeight: FontWeight.w500)),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+                StatefulBuilder(
+                  key: _cartKey,
+                  builder: (BuildContext context, void Function(void Function()) _) => (<Map<String, dynamic>>[
+                    for (List<Map<String, dynamic>> item in _data.map((Map<String, dynamic> e) => e["products"])) ...item,
+                  ].map((dynamic e) => e["state"]).any((dynamic element) => element.isNotEmpty))
+                      ? const Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: <Widget>[
+                            ...<Widget>[
+                              SizedBox(width: 20),
+                              Cart(),
+                            ]
+                          ],
+                        )
+                      : const SizedBox(),
                 ),
               ],
             ),

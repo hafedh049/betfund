@@ -3,7 +3,6 @@ import 'package:betfund/views/outside/holder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:icons_plus/icons_plus.dart';
 
 class BetFundDrawer extends StatefulWidget {
   const BetFundDrawer({super.key, required this.callback, required this.state});
@@ -128,10 +127,10 @@ class _BetFundDrawerState extends State<BetFundDrawer> {
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    const Icon(Bootstrap.lightbulb_off, size: 15, color: white),
+                    Image.asset("assets/images/logout.png", width: 18, height: 18),
                     if (widget.state) ...<Widget>[
                       const SizedBox(width: 10),
-                      Visibility(visible: widget.state, child: Text("Logout", style: GoogleFonts.kronaOne(fontSize: 14, color: white, fontWeight: FontWeight.w500))),
+                      Visibility(visible: widget.state, child: Text("Logout", style: GoogleFonts.readexPro(fontSize: 16, color: white, fontWeight: FontWeight.w400))),
                     ],
                   ],
                 ).animate().fade(),

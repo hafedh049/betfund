@@ -20,7 +20,6 @@ dependencies:
   dotted_dashed_line: ^0.0.3
   date_format: ^2.0.7
   custom_pop_up_menu: ^1.2.4
-  ripple_wave: ^0.1.4
   fl_chart: ^0.68.0
   syncfusion_flutter_sliders: ^26.1.35
   linear_progress_bar: ^1.1.1
@@ -28,6 +27,7 @@ dependencies:
   flutter_simple_candlesticks: ^1.0.2
   flutter_native_splash: ^2.4.0
   easy_stepper: ^0.8.5
+  cached_network_image: ^3.3.1
 
 dev_dependencies:
   flutter_test:

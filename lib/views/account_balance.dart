@@ -98,9 +98,9 @@ class _AccountBalanceState extends State<AccountBalance> {
                   children: <Widget>[
                     Row(
                       children: <Widget>[
-                        Text("Balance History", style: GoogleFonts.kronaOne(color: white, fontSize: 8, fontWeight: FontWeight.bold)),
+                        Text("Balance History", style: GoogleFonts.kronaOne(color: white, fontSize: 20, fontWeight: FontWeight.w400)),
                         const Spacer(),
-                        Text("\$49807.83", style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 8, fontWeight: FontWeight.bold)),
+                        Text("\$49807.83", style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 24, fontWeight: FontWeight.w400)),
                       ],
                     ),
                     const SizedBox(height: 10),
@@ -116,10 +116,11 @@ class _AccountBalanceState extends State<AccountBalance> {
                             leftTitles: AxisTitles(
                               sideTitles: SideTitles(
                                 showTitles: true,
+                                reservedSize: 60,
                                 getTitlesWidget: (double value, TitleMeta meta) => _data.any(((double, double) e) => e.$2 == value)
                                     ? Text(
                                         _formatNumbers(value),
-                                        style: GoogleFonts.kronaOne(color: white, fontSize: 8, fontWeight: FontWeight.bold),
+                                        style: GoogleFonts.kronaOne(color: white, fontSize: 8, fontWeight: FontWeight.w400),
                                       )
                                     : const SizedBox(),
                               ),
@@ -128,9 +129,12 @@ class _AccountBalanceState extends State<AccountBalance> {
                               sideTitles: SideTitles(
                                 showTitles: true,
                                 getTitlesWidget: (double value, TitleMeta meta) => _data.any(((double, double) e) => e.$1 == value) && value > 5
-                                    ? Text(
-                                        "${value.toInt()}th May",
-                                        style: GoogleFonts.kronaOne(color: white, fontSize: 8, fontWeight: FontWeight.bold),
+                                    ? Container(
+                                        padding: const EdgeInsets.only(top: 12),
+                                        child: Text(
+                                          "${value.toInt()}th May",
+                                          style: GoogleFonts.kronaOne(color: white, fontSize: 8, fontWeight: FontWeight.w400),
+                                        ),
                                       )
                                     : const SizedBox(),
                               ),
@@ -169,23 +173,24 @@ class _AccountBalanceState extends State<AccountBalance> {
               child: Row(
                 children: <Widget>[
                   Container(
-                    width: 300,
+                    height: 338,
+                    width: 356,
                     padding: padding16,
                     decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: oneC),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text("Net Profit / Loss", style: GoogleFonts.kronaOne(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
+                        Text("Net Profit / Loss", style: GoogleFonts.kronaOne(color: white, fontSize: 20, fontWeight: FontWeight.w400)),
                         Expanded(
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
-                              Text("+6%", style: GoogleFonts.kronaOne(color: white, fontSize: 20, fontWeight: FontWeight.bold)),
+                              Text("+6%", style: GoogleFonts.kronaOne(color: white, fontSize: 50, fontWeight: FontWeight.w400)),
                               const SizedBox(height: 10),
                               Container(
-                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: white),
+                                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: white),
                                 padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
@@ -223,7 +228,7 @@ class _AccountBalanceState extends State<AccountBalance> {
                                       ),
                                     ),
                                     const SizedBox(width: 10),
-                                    Text("+15%", style: GoogleFonts.kronaOne(color: dark, fontSize: 16, fontWeight: FontWeight.w500)),
+                                    Text("+15%", style: GoogleFonts.kronaOne(color: dark, fontSize: 16, fontWeight: FontWeight.w400)),
                                   ],
                                 ),
                               ),
@@ -232,12 +237,12 @@ class _AccountBalanceState extends State<AccountBalance> {
                         ),
                         Row(
                           children: <Widget>[
-                            Text("Last Pick", style: GoogleFonts.kronaOne(color: grey, fontSize: 12, fontWeight: FontWeight.w500)),
+                            Text("Last Pick", style: GoogleFonts.kronaOne(color: grey, fontSize: 16, fontWeight: FontWeight.w400)),
                             const Spacer(),
                             Container(
-                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: lightGreen),
+                              decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: lightGreen),
                               padding: padding8,
-                              child: Text("\$10.00", style: GoogleFonts.kronaOne(color: dark, fontSize: 12, fontWeight: FontWeight.w500)),
+                              child: Text("\$10.00", style: GoogleFonts.kronaOne(color: dark, fontSize: 16, fontWeight: FontWeight.w400)),
                             ),
                           ],
                         ),
@@ -247,18 +252,17 @@ class _AccountBalanceState extends State<AccountBalance> {
                   const SizedBox(width: 20),
                   Expanded(
                     child: Container(
+                      height: 338,
                       padding: padding16,
                       decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: oneC),
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
-                          Text("Net Profit / Loss", style: GoogleFonts.kronaOne(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
-                          const SizedBox(height: 20),
                           Row(
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
-                              Text("Pick Objectifs", style: GoogleFonts.kronaOne(color: white, fontSize: 20, fontWeight: FontWeight.bold)),
+                              Text("Pick Objectifs", style: GoogleFonts.kronaOne(color: white, fontSize: 20, fontWeight: FontWeight.w400)),
                               const Spacer(),
                               Container(
                                 decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: oneF),
@@ -266,9 +270,9 @@ class _AccountBalanceState extends State<AccountBalance> {
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: <Widget>[
-                                    const CircleAvatar(radius: 6, backgroundColor: lightGreen),
+                                    const CircleAvatar(radius: 8, backgroundColor: lightGreen),
                                     const SizedBox(width: 5),
-                                    Text("In Progress", style: GoogleFonts.kronaOne(color: white, fontSize: 10, fontWeight: FontWeight.bold)),
+                                    Text("In Progress", style: GoogleFonts.kronaOne(color: white, fontSize: 14, fontWeight: FontWeight.w400)),
                                   ],
                                 ),
                               ),
@@ -277,7 +281,7 @@ class _AccountBalanceState extends State<AccountBalance> {
                           const SizedBox(height: 20),
                           Row(
                             children: <Widget>[
-                              Text("# Of Picks", style: GoogleFonts.kronaOne(color: white, fontSize: 12, fontWeight: FontWeight.bold)),
+                              Text("# Of Picks", style: GoogleFonts.kronaOne(color: white, fontSize: 14, fontWeight: FontWeight.w400)),
                               const Spacer(),
                               SizedBox(
                                 width: 350,
@@ -285,7 +289,7 @@ class _AccountBalanceState extends State<AccountBalance> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisSize: MainAxisSize.min,
                                   children: <Widget>[
-                                    Text("35/37", style: GoogleFonts.kronaOne(color: white, fontSize: 10, fontWeight: FontWeight.bold)),
+                                    Text("35/37", style: GoogleFonts.kronaOne(color: white, fontSize: 14, fontWeight: FontWeight.w400)),
                                     const SizedBox(height: 10),
                                     const SizedBox(height: 5, child: LinearProgressBar(currentStep: 35, maxSteps: 37, progressColor: lightGreen, backgroundColor: grey)),
                                   ],
@@ -296,7 +300,7 @@ class _AccountBalanceState extends State<AccountBalance> {
                           const SizedBox(height: 10),
                           Row(
                             children: <Widget>[
-                              Text("Profile Target", style: GoogleFonts.kronaOne(color: white, fontSize: 12, fontWeight: FontWeight.bold)),
+                              Text("Profile Target", style: GoogleFonts.kronaOne(color: white, fontSize: 14, fontWeight: FontWeight.w400)),
                               const Spacer(),
                               SizedBox(
                                 width: 350,
@@ -304,7 +308,7 @@ class _AccountBalanceState extends State<AccountBalance> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisSize: MainAxisSize.min,
                                   children: <Widget>[
-                                    Text("\$17,948 / \$50,320", style: GoogleFonts.kronaOne(color: white, fontSize: 10, fontWeight: FontWeight.bold)),
+                                    Text("\$17,948 / \$50,320", style: GoogleFonts.kronaOne(color: white, fontSize: 14, fontWeight: FontWeight.w400)),
                                     const SizedBox(height: 10),
                                     const SizedBox(height: 5, child: LinearProgressBar(currentStep: 17948, maxSteps: 50320, progressColor: lightGreen, backgroundColor: grey)),
                                   ],
@@ -315,7 +319,7 @@ class _AccountBalanceState extends State<AccountBalance> {
                           const SizedBox(height: 10),
                           Row(
                             children: <Widget>[
-                              Text("Maximum Daily Loss", style: GoogleFonts.kronaOne(color: white, fontSize: 12, fontWeight: FontWeight.bold)),
+                              Text("Maximum Daily Loss", style: GoogleFonts.kronaOne(color: white, fontSize: 14, fontWeight: FontWeight.w400)),
                               const Spacer(),
                               SizedBox(
                                 width: 350,
@@ -323,7 +327,7 @@ class _AccountBalanceState extends State<AccountBalance> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisSize: MainAxisSize.min,
                                   children: <Widget>[
-                                    Text("\$5,948 / \$8,320", style: GoogleFonts.kronaOne(color: white, fontSize: 10, fontWeight: FontWeight.bold)),
+                                    Text("\$5,948 / \$8,320", style: GoogleFonts.kronaOne(color: white, fontSize: 14, fontWeight: FontWeight.w400)),
                                     const SizedBox(height: 10),
                                     const SizedBox(height: 5, child: LinearProgressBar(currentStep: 5948, maxSteps: 8320, progressColor: lightGreen, backgroundColor: grey)),
                                   ],
@@ -334,7 +338,7 @@ class _AccountBalanceState extends State<AccountBalance> {
                           const SizedBox(height: 10),
                           Row(
                             children: <Widget>[
-                              Text("Maximum Loss", style: GoogleFonts.kronaOne(color: white, fontSize: 12, fontWeight: FontWeight.bold)),
+                              Text("Maximum Loss", style: GoogleFonts.kronaOne(color: white, fontSize: 14, fontWeight: FontWeight.w400)),
                               const Spacer(),
                               SizedBox(
                                 width: 350,
@@ -342,7 +346,7 @@ class _AccountBalanceState extends State<AccountBalance> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   mainAxisSize: MainAxisSize.min,
                                   children: <Widget>[
-                                    Text("\$148 / \$200,00", style: GoogleFonts.kronaOne(color: white, fontSize: 10, fontWeight: FontWeight.bold)),
+                                    Text("\$148 / \$200,00", style: GoogleFonts.kronaOne(color: white, fontSize: 14, fontWeight: FontWeight.w400)),
                                     const SizedBox(height: 10),
                                     const SizedBox(height: 5, child: LinearProgressBar(currentStep: 148, maxSteps: 200, progressColor: lightGreen, backgroundColor: grey)),
                                   ],
@@ -357,17 +361,18 @@ class _AccountBalanceState extends State<AccountBalance> {
                   const SizedBox(width: 20),
                   Container(
                     width: 400,
+                    height: 338,
                     padding: padding16,
                     decoration: BoxDecoration(borderRadius: BorderRadius.circular(10), color: oneC),
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text("Challenge Info", style: GoogleFonts.kronaOne(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
+                        Text("Challenge Info", style: GoogleFonts.kronaOne(color: white, fontSize: 20, fontWeight: FontWeight.w400)),
                         const SizedBox(height: 20),
                         Row(
                           children: <Widget>[
-                            Text("Time Remaining", style: GoogleFonts.kronaOne(color: grey, fontSize: 12, fontWeight: FontWeight.bold)),
+                            Text("Time Remaining", style: GoogleFonts.kronaOne(color: grey, fontSize: 14, fontWeight: FontWeight.w400)),
                             const Spacer(),
                             Row(
                               mainAxisSize: MainAxisSize.min,
@@ -375,25 +380,25 @@ class _AccountBalanceState extends State<AccountBalance> {
                                 Container(
                                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: lightGreen)),
                                   padding: padding4,
-                                  child: Text("24", style: GoogleFonts.kronaOne(color: white, fontSize: 10, fontWeight: FontWeight.bold)),
+                                  child: Text("24", style: GoogleFonts.kronaOne(color: white, fontSize: 14, fontWeight: FontWeight.w400)),
                                 ),
-                                Text(" : ", style: GoogleFonts.kronaOne(color: white, fontSize: 10, fontWeight: FontWeight.bold)),
+                                Text(" : ", style: GoogleFonts.kronaOne(color: white, fontSize: 14, fontWeight: FontWeight.w400)),
                                 Container(
                                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: lightGreen)),
                                   padding: padding4,
-                                  child: Text("17", style: GoogleFonts.kronaOne(color: white, fontSize: 10, fontWeight: FontWeight.bold)),
+                                  child: Text("17", style: GoogleFonts.kronaOne(color: white, fontSize: 14, fontWeight: FontWeight.w400)),
                                 ),
-                                Text(" : ", style: GoogleFonts.kronaOne(color: white, fontSize: 10, fontWeight: FontWeight.bold)),
+                                Text(" : ", style: GoogleFonts.kronaOne(color: white, fontSize: 14, fontWeight: FontWeight.w400)),
                                 Container(
                                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: lightGreen)),
                                   padding: padding4,
-                                  child: Text("56", style: GoogleFonts.kronaOne(color: white, fontSize: 10, fontWeight: FontWeight.bold)),
+                                  child: Text("56", style: GoogleFonts.kronaOne(color: white, fontSize: 14, fontWeight: FontWeight.w400)),
                                 ),
-                                Text(" : ", style: GoogleFonts.kronaOne(color: white, fontSize: 10, fontWeight: FontWeight.bold)),
+                                Text(" : ", style: GoogleFonts.kronaOne(color: white, fontSize: 14, fontWeight: FontWeight.w400)),
                                 Container(
                                   decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), border: Border.all(color: lightGreen)),
                                   padding: padding4,
-                                  child: Text("10", style: GoogleFonts.kronaOne(color: white, fontSize: 10, fontWeight: FontWeight.bold)),
+                                  child: Text("10", style: GoogleFonts.kronaOne(color: white, fontSize: 14, fontWeight: FontWeight.w400)),
                                 ),
                               ],
                             ),
@@ -402,30 +407,30 @@ class _AccountBalanceState extends State<AccountBalance> {
                         const SizedBox(height: 10),
                         Row(
                           children: <Widget>[
-                            Text("Start Date", style: GoogleFonts.kronaOne(color: grey, fontSize: 12, fontWeight: FontWeight.bold)),
+                            Text("Start Date", style: GoogleFonts.kronaOne(color: grey, fontSize: 14, fontWeight: FontWeight.w400)),
                             const Spacer(),
-                            Text("07/03/2024", style: GoogleFonts.kronaOne(color: white, fontSize: 10, fontWeight: FontWeight.bold)),
+                            Text("07/03/2024", style: GoogleFonts.kronaOne(color: white, fontSize: 14, fontWeight: FontWeight.w400)),
                           ],
                         ),
                         const SizedBox(height: 10),
                         Row(
                           children: <Widget>[
-                            Text("End Date", style: GoogleFonts.kronaOne(color: grey, fontSize: 12, fontWeight: FontWeight.bold)),
+                            Text("End Date", style: GoogleFonts.kronaOne(color: grey, fontSize: 14, fontWeight: FontWeight.w400)),
                             const Spacer(),
-                            Text("07/07/2024", style: GoogleFonts.kronaOne(color: white, fontSize: 10, fontWeight: FontWeight.bold)),
+                            Text("07/07/2024", style: GoogleFonts.kronaOne(color: white, fontSize: 14, fontWeight: FontWeight.w400)),
                           ],
                         ),
                         const SizedBox(height: 10),
                         Row(
                           children: <Widget>[
-                            Text("Challenge", style: GoogleFonts.kronaOne(color: grey, fontSize: 12, fontWeight: FontWeight.bold)),
+                            Text("Challenge", style: GoogleFonts.kronaOne(color: grey, fontSize: 14, fontWeight: FontWeight.w400)),
                             const Spacer(),
                             RichText(
                               text: TextSpan(
                                 children: <TextSpan>[
-                                  TextSpan(text: "1K ", style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 10, fontWeight: FontWeight.bold)),
-                                  TextSpan(text: "Player, Phase N° ", style: GoogleFonts.kronaOne(color: white, fontSize: 10, fontWeight: FontWeight.bold)),
-                                  TextSpan(text: "1", style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 10, fontWeight: FontWeight.bold)),
+                                  TextSpan(text: "1K ", style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 14, fontWeight: FontWeight.w400)),
+                                  TextSpan(text: "Player, Phase N° ", style: GoogleFonts.kronaOne(color: white, fontSize: 14, fontWeight: FontWeight.w400)),
+                                  TextSpan(text: "1", style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 14, fontWeight: FontWeight.w400)),
                                 ],
                               ),
                             ),
@@ -434,13 +439,13 @@ class _AccountBalanceState extends State<AccountBalance> {
                         const SizedBox(height: 10),
                         Row(
                           children: <Widget>[
-                            Text("Account Size", style: GoogleFonts.kronaOne(color: grey, fontSize: 12, fontWeight: FontWeight.bold)),
+                            Text("Account Size", style: GoogleFonts.kronaOne(color: grey, fontSize: 14, fontWeight: FontWeight.w400)),
                             const Spacer(),
                             RichText(
                               text: TextSpan(
                                 children: <TextSpan>[
-                                  TextSpan(text: "\$ ", style: GoogleFonts.kronaOne(color: white, fontSize: 10, fontWeight: FontWeight.bold)),
-                                  TextSpan(text: "1.000.00", style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 10, fontWeight: FontWeight.bold)),
+                                  TextSpan(text: "\$ ", style: GoogleFonts.kronaOne(color: white, fontSize: 14, fontWeight: FontWeight.w400)),
+                                  TextSpan(text: "1.000.00", style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 14, fontWeight: FontWeight.w400)),
                                 ],
                               ),
                             ),
@@ -449,13 +454,13 @@ class _AccountBalanceState extends State<AccountBalance> {
                         const SizedBox(height: 10),
                         Row(
                           children: <Widget>[
-                            Text("Profil", style: GoogleFonts.kronaOne(color: grey, fontSize: 12, fontWeight: FontWeight.bold)),
+                            Text("Profil", style: GoogleFonts.kronaOne(color: grey, fontSize: 14, fontWeight: FontWeight.w400)),
                             const Spacer(),
                             RichText(
                               text: TextSpan(
                                 children: <TextSpan>[
-                                  TextSpan(text: "\$ ", style: GoogleFonts.kronaOne(color: white, fontSize: 10, fontWeight: FontWeight.bold)),
-                                  TextSpan(text: "14", style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 10, fontWeight: FontWeight.bold)),
+                                  TextSpan(text: "\$ ", style: GoogleFonts.kronaOne(color: white, fontSize: 14, fontWeight: FontWeight.w400)),
+                                  TextSpan(text: "14", style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 14, fontWeight: FontWeight.w400)),
                                 ],
                               ),
                             ),
@@ -486,11 +491,11 @@ class _AccountBalanceState extends State<AccountBalance> {
                       children: <Widget>[
                         Row(
                           children: <Widget>[
-                            Text("Number Of Picks", style: GoogleFonts.kronaOne(color: white, fontSize: 12, fontWeight: FontWeight.bold)),
+                            Text("Number Of Picks", style: GoogleFonts.kronaOne(color: white, fontSize: 16, fontWeight: FontWeight.w400)),
                             const Spacer(),
                             const Icon(FontAwesome.caret_up_solid, color: lightGreen, size: 15),
                             const SizedBox(width: 5),
-                            Text("+0.25%", style: GoogleFonts.kronaOne(color: white, fontSize: 10, fontWeight: FontWeight.bold)),
+                            Text("+0.25%", style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 14, fontWeight: FontWeight.w400)),
                           ],
                         ),
                         const SizedBox(height: 20),
@@ -499,11 +504,11 @@ class _AccountBalanceState extends State<AccountBalance> {
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
-                                Text("32", style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 14, fontWeight: FontWeight.bold)),
+                                Text("32", style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 24, fontWeight: FontWeight.w400)),
                                 const SizedBox(height: 10),
-                                Text("Last Pick", style: GoogleFonts.kronaOne(color: grey, fontSize: 12, fontWeight: FontWeight.bold)),
+                                Text("Last Pick", style: GoogleFonts.kronaOne(color: grey, fontSize: 14, fontWeight: FontWeight.w400)),
                                 const SizedBox(height: 10),
-                                Text("\$ 9,170", style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 10, fontWeight: FontWeight.bold)),
+                                Text("\$ 9,170", style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 28, fontWeight: FontWeight.w400)),
                               ],
                             ),
                             const Spacer(),
@@ -537,7 +542,7 @@ class _AccountBalanceState extends State<AccountBalance> {
                 children: <Widget>[
                   Row(
                     children: <Widget>[
-                      Text("My Picks", style: GoogleFonts.kronaOne(color: white, fontSize: 16, fontWeight: FontWeight.bold)),
+                      Text("My Picks", style: GoogleFonts.kronaOne(color: white, fontSize: 20, fontWeight: FontWeight.w400)),
                       const Spacer(),
                       Container(
                         padding: padding8,
@@ -550,7 +555,6 @@ class _AccountBalanceState extends State<AccountBalance> {
                                 InkWell(
                                   onTap: () {
                                     _(() => _selectedPick = 0);
-                                    // _picksController.animateToPage(_selectedPick, duration: 300.ms, curve: Curves.linear);
                                   },
                                   child: AnimatedContainer(
                                     duration: 300.ms,
@@ -558,7 +562,7 @@ class _AccountBalanceState extends State<AccountBalance> {
                                     decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: _selectedPick == 0 ? lightGreen : transparent),
                                     child: AnimatedDefaultTextStyle(
                                       duration: 300.ms,
-                                      style: GoogleFonts.kronaOne(color: _selectedPick == 0 ? dark : white, fontSize: 10, fontWeight: FontWeight.bold),
+                                      style: GoogleFonts.kronaOne(color: _selectedPick == 0 ? dark : white, fontSize: 14, fontWeight: FontWeight.w400),
                                       child: const Text("Active"),
                                     ),
                                   ),
@@ -567,7 +571,6 @@ class _AccountBalanceState extends State<AccountBalance> {
                                 InkWell(
                                   onTap: () {
                                     _(() => _selectedPick = 1);
-                                    //  _picksController.animateToPage(_selectedPick, duration: 300.ms, curve: Curves.linear);
                                   },
                                   child: AnimatedContainer(
                                     duration: 300.ms,
@@ -575,7 +578,7 @@ class _AccountBalanceState extends State<AccountBalance> {
                                     decoration: BoxDecoration(borderRadius: BorderRadius.circular(5), color: _selectedPick == 1 ? red : transparent),
                                     child: AnimatedDefaultTextStyle(
                                       duration: 300.ms,
-                                      style: GoogleFonts.kronaOne(color: _selectedPick == 1 ? dark : white, fontSize: 10, fontWeight: FontWeight.bold),
+                                      style: GoogleFonts.kronaOne(color: _selectedPick == 1 ? dark : white, fontSize: 14, fontWeight: FontWeight.w400),
                                       child: const Text("Closed"),
                                     ),
                                   ),
@@ -589,45 +592,51 @@ class _AccountBalanceState extends State<AccountBalance> {
                   ),
                   const SizedBox(height: 20),
                   Center(
-                    child: DataTable(
-                      columns: <DataColumn>[
-                        for (final String column in const <String>[
-                          "ID",
-                          "Sport",
-                          "Event",
-                          "League",
-                          "Your Pick",
-                          "Odds",
-                          "Picks",
-                          "Outcome",
-                          "Payout",
-                          "Date",
-                          "Game Date",
-                        ])
-                          DataColumn(label: Text(column, style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 10, fontWeight: FontWeight.bold))),
-                      ],
-                      rows: <DataRow>[
-                        for (final List<String> row in _dataTable)
-                          DataRow(
-                            cells: <DataCell>[
-                              for (final String cell in row)
-                                DataCell(
-                                  Text(
-                                    cell,
-                                    style: GoogleFonts.kronaOne(
-                                      color: cell == "Lost"
-                                          ? red
-                                          : cell == "Won"
-                                              ? lightGreen
-                                              : white,
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.bold,
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: DataTable(
+                        dataRowMinHeight: 80,
+                        dataRowMaxHeight: 80,
+                        columnSpacing: 100,
+                        columns: <DataColumn>[
+                          for (final String column in const <String>[
+                            "ID",
+                            "Sport",
+                            "Event",
+                            "League",
+                            "Your Pick",
+                            "Odds",
+                            "Picks",
+                            "Outcome",
+                            "Payout",
+                            "Date",
+                            "Game Date",
+                          ])
+                            DataColumn(label: Text(column, style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 14, fontWeight: FontWeight.w400))),
+                        ],
+                        rows: <DataRow>[
+                          for (final List<String> row in _dataTable)
+                            DataRow(
+                              cells: <DataCell>[
+                                for (final String cell in row)
+                                  DataCell(
+                                    Text(
+                                      cell,
+                                      style: GoogleFonts.kronaOne(
+                                        color: cell == "Lost"
+                                            ? red
+                                            : cell == "Won"
+                                                ? lightGreen
+                                                : white,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w400,
+                                      ),
                                     ),
                                   ),
-                                ),
-                            ],
-                          ),
-                      ],
+                              ],
+                            ),
+                        ],
+                      ),
                     ),
                   ),
                 ],

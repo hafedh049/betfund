@@ -34,6 +34,7 @@ class _ChallengeState extends State<Challenge> {
             borderRadius: BorderRadius.circular(15),
             child: Container(
               width: 800,
+              padding: const EdgeInsets.all(64),
               alignment: Alignment.center,
               decoration: BoxDecoration(border: Border.all(width: 2, color: lightGreen)),
               child: Column(
@@ -44,6 +45,7 @@ class _ChallengeState extends State<Challenge> {
                     padding: padding24,
                     alignment: Alignment.centerLeft,
                     child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisSize: MainAxisSize.min,
                       children: <Widget>[
                         StatefulBuilder(
@@ -59,15 +61,11 @@ class _ChallengeState extends State<Challenge> {
                                 duration: 200.ms,
                                 child: AnimatedContainer(
                                   duration: 200.ms,
+                                  width: 188,
+                                  height: 54,
                                   padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 8),
-                                  decoration: BoxDecoration(
-                                    color: !_amountState ? lightGreen : transparent,
-                                    borderRadius: const BorderRadiusDirectional.only(
-                                      topStart: Radius.elliptical(30, 30),
-                                      bottomEnd: Radius.elliptical(30, 30),
-                                    ),
-                                    border: Border.all(width: 2, color: lightGreen),
-                                  ),
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/${!_amountState ? 'filled' : 'empty'}_green_hexagon.png"), fit: BoxFit.contain)),
                                   child: AnimatedDefaultTextStyle(
                                     duration: 200.ms,
                                     style: GoogleFonts.kronaOne(fontSize: 14, fontWeight: FontWeight.w400, color: _amountState ? lightGreen : dark),
@@ -83,7 +81,7 @@ class _ChallengeState extends State<Challenge> {
                             );
                           },
                         ),
-                        const SizedBox(width: 10),
+                        const SizedBox(width: 20),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisSize: MainAxisSize.min,

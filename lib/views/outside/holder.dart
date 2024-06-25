@@ -1,6 +1,6 @@
 import 'package:betfund/utils/shared.dart';
+import 'package:betfund/views/opening.dart';
 import 'package:betfund/views/outside/coming_soon.dart';
-import 'package:betfund/views/holder.dart' as holder;
 import 'package:betfund/views/outside/challenge.dart';
 import 'package:betfund/views/outside/home.dart';
 import 'package:betfund/views/outside/why_us.dart';
@@ -141,7 +141,7 @@ class HolderState extends State<Holder> {
                 StatefulBuilder(
                   builder: (BuildContext context, void Function(void Function()) _) {
                     return InkWell(
-                      onTap: () => Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (BuildContext context) => const holder.Holder()), (Route route) => false),
+                      onTap: () => Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (BuildContext context) => const Opening()), (Route route) => false),
                       highlightColor: transparent,
                       splashColor: transparent,
                       hoverColor: transparent,

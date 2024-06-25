@@ -3,7 +3,7 @@ import 'package:betfund/views/account_balance.dart';
 import 'package:betfund/views/outside/coming_soon.dart';
 import 'package:betfund/views/my_picks.dart';
 import 'package:flutter/material.dart';
-import 'package:ripple_wave/ripple_wave.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 import 'betfund_drawer.dart';
 import 'header.dart';
@@ -39,73 +39,52 @@ class _HolderState extends State<Holder> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: abyss,
-      body: Padding(
-        padding: padding16,
-        child: Row(
-          children: <Widget>[
-            StatefulBuilder(
-              key: _drawerKey,
-              builder: (BuildContext context, void Function(void Function()) _) {
-                return BetFundDrawer(callback: (int index) => _holderController.jumpToPage(index), state: _drawerState);
-              },
-            ),
-            Expanded(
-              child: Row(
-                children: <Widget>[
-                  const SizedBox(width: 10),
-                  Expanded(
-                    child: Stack(
-                      children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: <Widget>[
-                                  const Expanded(child: SizedBox()),
-                                  Expanded(child: RippleWave(waveCount: 0, color: dark.withOpacity(.01), repeat: false, child: Container())),
-                                ],
-                              ),
+      body: Row(
+        children: <Widget>[
+          StatefulBuilder(
+            key: _drawerKey,
+            builder: (BuildContext context, void Function(void Function()) _) {
+              return BetFundDrawer(callback: (int index) => _holderController.animateToPage(index, duration: 200.ms, curve: Curves.linear), state: _drawerState);
+            },
+          ),
+          Expanded(
+            child: Row(
+              children: <Widget>[
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Stack(
+                    children: <Widget>[
+                      Positioned.fill(child: Image.asset("assets/images/glow.png", fit: BoxFit.cover)),
+                      Column(
+                        children: <Widget>[
+                          const SizedBox(height: 10),
+                          StatefulBuilder(
+                            builder: (BuildContext context, void Function(void Function()) _) {
+                              return Header(
+                                state: _drawerState,
+                                callback: () => _(() => _drawerKey.currentState!.setState(() => _drawerState = !_drawerState)),
+                              );
+                            },
+                          ),
+                          const SizedBox(height: 10),
+                          Expanded(
+                            child: PageView.builder(
+                              physics: const NeverScrollableScrollPhysics(),
+                              controller: _holderController,
+                              itemCount: _tabs.length,
+                              itemBuilder: (BuildContext context, int index) => _tabs[index],
                             ),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.end,
-                                children: <Widget>[
-                                  Expanded(child: RippleWave(waveCount: 0, color: dark.withOpacity(.01), repeat: false, child: Container())),
-                                  const Expanded(child: SizedBox()),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                        Column(
-                          children: <Widget>[
-                            StatefulBuilder(
-                              builder: (BuildContext context, void Function(void Function()) _) {
-                                return Header(
-                                  state: _drawerState,
-                                  callback: () => _(() => _drawerKey.currentState!.setState(() => _drawerState = !_drawerState)),
-                                );
-                              },
-                            ),
-                            const SizedBox(height: 10),
-                            Expanded(
-                              child: PageView.builder(
-                                controller: _holderController,
-                                itemCount: _tabs.length,
-                                itemBuilder: (BuildContext context, int index) => _tabs[index],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
+                          ),
+                        ],
+                      ),
+                    ],
                   ),
-                ],
-              ),
+                ),
+                const SizedBox(width: 10),
+              ],
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
