@@ -10,7 +10,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:icons_plus/icons_plus.dart';
 
-import '../utils/cart.dart';
+import '../utils/helpers/cart.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
