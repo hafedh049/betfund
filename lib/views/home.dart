@@ -1,6 +1,9 @@
+import 'dart:math';
+
 import 'package:betfund/utils/helpers/hexagon.dart';
 import 'package:betfund/utils/shared.dart';
 import 'package:betfund/views/more_picks.dart';
+import 'package:custom_pop_up_menu/custom_pop_up_menu.dart';
 import 'package:date_format/date_format.dart';
 import 'package:dotted_dashed_line/dotted_dashed_line.dart';
 import 'package:flutter/material.dart';
@@ -25,6 +28,10 @@ class _HomeState extends State<Home> {
   final PageController _pagesController = PageController();
 
   final List<String> _categories = const <String>["Basketball", "Football", "Baseball", "Soccer", "Mockey", "MMA", "Tennis"];
+
+  final List<GlobalKey<State<StatefulWidget>>> _subcatsKeys = List<GlobalKey<State<StatefulWidget>>>.generate(7, (int index) => GlobalKey<State<StatefulWidget>>());
+
+  final List<CustomPopupMenuController> _subcats = List<CustomPopupMenuController>.generate(7, (int index) => CustomPopupMenuController());
 
   final List<String> _states = const <String>["Spread", "Total", "MoneyLine"];
 
@@ -162,15 +169,45 @@ class _HomeState extends State<Home> {
                               AnimatedDefaultTextStyle(
                                 style: GoogleFonts.kronaOne(
                                   color: _selectedTab == _categories.indexOf(tab) ? dark : white,
-                                  fontSize: 8,
-                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w500,
                                 ),
                                 duration: 300.ms,
                                 child: Text(tab),
                               ),
-                              if (_selectedTab == _categories.indexOf(tab)) ...const <Widget>[
-                                SizedBox(width: 10),
-                                Icon(FontAwesome.caret_down_solid, size: 15, color: dark),
+                              if (_selectedTab == _categories.indexOf(tab)) ...<Widget>[
+                                const SizedBox(width: 10),
+                                CustomPopupMenu(
+                                  controller: _subcats[_categories.indexOf(tab)],
+                                  menuOnChange: (bool menuState) => _subcatsKeys[_categories.indexOf(tab)].currentState!.setState(() {}),
+                                  menuBuilder: () => Container(
+                                    width: 200,
+                                    decoration: BoxDecoration(
+                                      color: twentyFour,
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(width: 2, color: white),
+                                    ),
+                                    padding: padding8,
+                                    child: Column(
+                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: <Widget>[
+                                        for (int index = 0; index < Random().nextInt(3) + 1; index += 1)
+                                          Padding(
+                                            padding: padding8,
+                                            child: Text("MLB", style: GoogleFonts.kronaOne(fontSize: 14, fontWeight: FontWeight.w400, color: white)),
+                                          ),
+                                      ],
+                                    ),
+                                  ),
+                                  pressType: PressType.singleClick,
+                                  child: StatefulBuilder(
+                                    key: _subcatsKeys[_categories.indexOf(tab)],
+                                    builder: (BuildContext context, void Function(void Function()) _) {
+                                      return Icon(_subcats[_categories.indexOf(tab)].menuIsShowing ? FontAwesome.caret_up_solid : FontAwesome.caret_down_solid, size: 15, color: dark);
+                                    },
+                                  ),
+                                ),
                               ],
                             ],
                           ),

@@ -35,9 +35,8 @@ class _HeaderState extends State<Header> {
       padding: padding4,
       child: Row(
         children: <Widget>[
-          IconButton(onPressed: widget.callback, icon: Icon(widget.state ? FontAwesome.chevron_left_solid : FontAwesome.chevron_right_solid, size: 20, color: lightGreen)),
-          const SizedBox(width: 20),
-          Text("Welcome Back", style: GoogleFonts.kronaOne(fontSize: 22, color: white, fontWeight: FontWeight.w500)),
+          IconButton(onPressed: widget.callback, icon: Icon(widget.state ? FontAwesome.chevron_left_solid : FontAwesome.chevron_right_solid, size: 25, color: lightGreen)),
+          Text("Welcome Back", style: GoogleFonts.kronaOne(fontSize: 20, color: white, fontWeight: FontWeight.w400)),
           const Spacer(),
           HexagonButton(
             onTap: () {},
@@ -48,7 +47,7 @@ class _HeaderState extends State<Header> {
               children: <Widget>[
                 const Icon(FontAwesome.wallet_solid, color: lightGreen, size: 15),
                 const SizedBox(width: 10),
-                Text("\$3500.00", style: GoogleFonts.kronaOne(fontSize: 14, fontWeight: FontWeight.w500, color: white)),
+                Text("\$3500.00", style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w500, color: white)),
                 const SizedBox(width: 10),
                 IgnorePointer(
                   ignoring: true,
@@ -56,7 +55,7 @@ class _HeaderState extends State<Header> {
                     onTap: null,
                     color: lightGreen,
                     fill: true,
-                    child: Text("Wallet", style: GoogleFonts.kronaOne(fontSize: 10, fontWeight: FontWeight.bold, color: dark)),
+                    child: Text("Wallet", style: GoogleFonts.kronaOne(fontSize: 10, fontWeight: FontWeight.w500, color: dark)),
                   ),
                 ),
               ],
@@ -82,7 +81,7 @@ class _HeaderState extends State<Header> {
                 children: <Widget>[
                   Row(
                     children: <Widget>[
-                      Text("Account Information", style: GoogleFonts.kronaOne(fontSize: 14, fontWeight: FontWeight.bold, color: white)),
+                      Text("Account Information", style: GoogleFonts.kronaOne(fontSize: 14, fontWeight: FontWeight.w400, color: white)),
                       const Spacer(),
                       StatefulBuilder(
                         builder: (BuildContext context, void Function(void Function()) _) {
@@ -99,6 +98,7 @@ class _HeaderState extends State<Header> {
                                   child: Switch(
                                     materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                                     value: _accountState,
+                                    activeTrackColor: lightGreen,
                                     activeColor: lightGreen,
                                     thumbColor: const WidgetStatePropertyAll<Color>(white),
                                     onChanged: (bool state) => _(() => _accountState = state),
@@ -114,7 +114,7 @@ class _HeaderState extends State<Header> {
                   const SizedBox(height: 10),
                   Row(
                     children: <Widget>[
-                      Text("Account ID", style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w500, color: white)),
+                      Text("Account ID", style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w500, color: grey)),
                       const Spacer(),
                       Text("195705", style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w500, color: lightGreen)),
                     ],
@@ -122,7 +122,7 @@ class _HeaderState extends State<Header> {
                   const SizedBox(height: 10),
                   Row(
                     children: <Widget>[
-                      Text("Current Balance", style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w500, color: white)),
+                      Text("Current Balance", style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w500, color: grey)),
                       const Spacer(),
                       Text("\$987.83", style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w500, color: white)),
                     ],
@@ -130,7 +130,7 @@ class _HeaderState extends State<Header> {
                   const SizedBox(height: 10),
                   Row(
                     children: <Widget>[
-                      Text("Current Performance", style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w500, color: white)),
+                      Text("Current Performance", style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w500, color: grey)),
                       const Spacer(),
                       Text("+27.93%", style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w500, color: white)),
                     ],
@@ -138,7 +138,7 @@ class _HeaderState extends State<Header> {
                   const SizedBox(height: 10),
                   Row(
                     children: <Widget>[
-                      Text("Remaining Days", style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w500, color: white)),
+                      Text("Remaining Days", style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w500, color: grey)),
                       const Spacer(),
                       Text("27", style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w500, color: white)),
                     ],
@@ -146,7 +146,7 @@ class _HeaderState extends State<Header> {
                   const SizedBox(height: 10),
                   Row(
                     children: <Widget>[
-                      Text("Account Status", style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w500, color: white)),
+                      Text("Account Status", style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w500, color: grey)),
                       const Spacer(),
                       Text("Phase", style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w500, color: white)),
                       const SizedBox(width: 5),

@@ -10,23 +10,27 @@ class HexagonButton extends StatelessWidget {
   final Widget child;
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      highlightColor: transparent,
-      splashColor: transparent,
-      hoverColor: transparent,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 8),
-        decoration: BoxDecoration(
-          color: fill ? color : transparent,
-          borderRadius: const BorderRadiusDirectional.only(
-            topStart: Radius.elliptical(30, 30),
-            bottomEnd: Radius.elliptical(30, 30),
+    return StatefulBuilder(
+      builder: (BuildContext context, void Function(void Function()) _) {
+        return InkWell(
+          onTap: onTap,
+          highlightColor: transparent,
+          splashColor: transparent,
+          hoverColor: transparent,
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 8),
+            decoration: BoxDecoration(
+              color: fill ? color : transparent,
+              borderRadius: const BorderRadiusDirectional.only(
+                topStart: Radius.elliptical(30, 30),
+                bottomEnd: Radius.elliptical(30, 30),
+              ),
+              border: Border.all(width: 2, color: color),
+            ),
+            child: child,
           ),
-          border: Border.all(width: 2, color: color),
-        ),
-        child: child,
-      ),
+        );
+      },
     );
   }
 }

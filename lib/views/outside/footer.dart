@@ -1,9 +1,9 @@
-import 'dart:ui';
+//import 'dart:ui';
 
-import 'package:betfund/utils/shared.dart';
+//import 'package:betfund/utils/shared.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:icons_plus/icons_plus.dart';
+/*import 'package:google_fonts/google_fonts.dart';
+import 'package:icons_plus/icons_plus.dart';*/
 
 class Footer extends StatefulWidget {
   const Footer({super.key});
@@ -15,7 +15,7 @@ class Footer extends StatefulWidget {
 class _FooterState extends State<Footer> {
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return /*Container(
       height: 180,
       decoration: const BoxDecoration(border: Border(top: BorderSide(color: lightGreen, width: 2))),
       child: Stack(
@@ -118,6 +118,7 @@ class _FooterState extends State<Footer> {
           ),
         ],
       ),
-    );
+    );*/
+        Image.asset("assets/images/footer.png", fit: BoxFit.fitWidth, height: 330);
   }
 }
