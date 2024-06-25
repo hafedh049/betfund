@@ -109,7 +109,7 @@ class _BetFundDrawerState extends State<BetFundDrawer> {
                 );
               },
             ),
-            if (tab != _tabs.last) const SizedBox(height: 20),
+            if (tab != _tabs.last) const SizedBox(height: 30),
           ],
           const Spacer(),
           InkWell(
