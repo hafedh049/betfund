@@ -232,7 +232,7 @@ class _HomeState extends State<Home> {
                             builder: (BuildContext context, void Function(void Function()) _) {
                               return SizedBox(
                                 height: 48,
-                                width: 564,
+                                width: 575,
                                 child: TextField(
                                   controller: _searchController,
                                   onChanged: (String value) {},
@@ -279,7 +279,7 @@ class _HomeState extends State<Home> {
                                       ),
                                       child: _dateTransformer(_data[index]["date"], _data[index]["timezone"]),
                                     ),
-                                    const SizedBox(height: 20),
+                                    const SizedBox(width: 20),
                                     Expanded(
                                       child: Column(
                                         mainAxisSize: MainAxisSize.min,
@@ -305,102 +305,112 @@ class _HomeState extends State<Home> {
                                                         ],
                                                       ),
                                                     ),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        _(
-                                                          () {
-                                                            if (product["state"] != "spread") {
-                                                              product["state"] = "spread";
-                                                            } else {
-                                                              product["state"] = "";
-                                                            }
-                                                          },
-                                                        );
-                                                        _cartKey.currentState!.setState(() {});
-                                                      },
-                                                      splashColor: transparent,
-                                                      highlightColor: transparent,
-                                                      hoverColor: transparent,
-                                                      child: AnimatedContainer(
-                                                        duration: 200.ms,
-                                                        alignment: Alignment.center,
-                                                        padding: padding16,
-                                                        decoration: BoxDecoration(
-                                                          color: oneE,
-                                                          borderRadius: BorderRadius.circular(10),
-                                                          border: Border.all(color: product["state"] == "spread" ? lightGreen : transparent),
-                                                        ),
-                                                        child: Row(
-                                                          mainAxisAlignment: MainAxisAlignment.center,
-                                                          mainAxisSize: MainAxisSize.min,
-                                                          children: <Widget>[
-                                                            Text(product["spread"].first, style: GoogleFonts.kronaOne(color: white, fontSize: 18, fontWeight: FontWeight.w400)),
-                                                            const SizedBox(width: 10),
-                                                            Text(product["spread"].last, style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 18, fontWeight: FontWeight.w400)),
-                                                          ],
-                                                        ),
-                                                      ),
-                                                    ),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        _(
-                                                          () {
-                                                            if (product["state"] != "total") {
-                                                              product["state"] = "total";
-                                                            } else {
-                                                              product["state"] = "";
-                                                            }
-                                                          },
-                                                        );
-                                                        _cartKey.currentState!.setState(() {});
-                                                      },
-                                                      splashColor: transparent,
-                                                      highlightColor: transparent,
-                                                      hoverColor: transparent,
-                                                      child: AnimatedContainer(
-                                                        duration: 200.ms,
-                                                        alignment: Alignment.center,
-                                                        padding: padding16,
-                                                        decoration: BoxDecoration(
-                                                          color: oneE,
-                                                          borderRadius: BorderRadius.circular(10),
-                                                          border: Border.all(color: product["state"] == "total" ? lightGreen : transparent),
-                                                        ),
-                                                        child: Row(
-                                                          children: <Widget>[
-                                                            Text(product["total"].first, style: GoogleFonts.kronaOne(color: white, fontSize: 18, fontWeight: FontWeight.w400)),
-                                                            const SizedBox(width: 10),
-                                                            Text(product["total"].last, style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 18, fontWeight: FontWeight.w400)),
-                                                          ],
+                                                    const SizedBox(width: 20),
+                                                    Expanded(
+                                                      child: InkWell(
+                                                        onTap: () {
+                                                          _(
+                                                            () {
+                                                              if (product["state"] != "spread") {
+                                                                product["state"] = "spread";
+                                                              } else {
+                                                                product["state"] = "";
+                                                              }
+                                                            },
+                                                          );
+                                                          _cartKey.currentState!.setState(() {});
+                                                        },
+                                                        splashColor: transparent,
+                                                        highlightColor: transparent,
+                                                        hoverColor: transparent,
+                                                        child: AnimatedContainer(
+                                                          duration: 200.ms,
+                                                          alignment: Alignment.center,
+                                                          padding: padding16,
+                                                          decoration: BoxDecoration(
+                                                            color: oneE,
+                                                            borderRadius: BorderRadius.circular(10),
+                                                            border: Border.all(color: product["state"] == "spread" ? lightGreen : transparent),
+                                                          ),
+                                                          child: Row(
+                                                            mainAxisAlignment: MainAxisAlignment.center,
+                                                            mainAxisSize: MainAxisSize.min,
+                                                            children: <Widget>[
+                                                              Text(product["spread"].first, style: GoogleFonts.kronaOne(color: white, fontSize: 18, fontWeight: FontWeight.w400)),
+                                                              const SizedBox(width: 10),
+                                                              Text(product["spread"].last, style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 18, fontWeight: FontWeight.w400)),
+                                                            ],
+                                                          ),
                                                         ),
                                                       ),
                                                     ),
-                                                    InkWell(
-                                                      onTap: () {
-                                                        _(
-                                                          () {
-                                                            if (product["state"] != "moneyline") {
-                                                              product["state"] = "moneyline";
-                                                            } else {
-                                                              product["state"] = "";
-                                                            }
-                                                          },
-                                                        );
-                                                        _cartKey.currentState!.setState(() {});
-                                                      },
-                                                      splashColor: transparent,
-                                                      highlightColor: transparent,
-                                                      hoverColor: transparent,
-                                                      child: AnimatedContainer(
-                                                        duration: 200.ms,
-                                                        alignment: Alignment.center,
-                                                        padding: padding16,
-                                                        decoration: BoxDecoration(
-                                                          color: oneE,
-                                                          borderRadius: BorderRadius.circular(10),
-                                                          border: Border.all(color: product["state"] == "moneyline" ? lightGreen : transparent),
+                                                    const SizedBox(width: 20),
+                                                    Expanded(
+                                                      child: InkWell(
+                                                        onTap: () {
+                                                          _(
+                                                            () {
+                                                              if (product["state"] != "total") {
+                                                                product["state"] = "total";
+                                                              } else {
+                                                                product["state"] = "";
+                                                              }
+                                                            },
+                                                          );
+                                                          _cartKey.currentState!.setState(() {});
+                                                        },
+                                                        splashColor: transparent,
+                                                        highlightColor: transparent,
+                                                        hoverColor: transparent,
+                                                        child: AnimatedContainer(
+                                                          duration: 200.ms,
+                                                          alignment: Alignment.center,
+                                                          padding: padding16,
+                                                          decoration: BoxDecoration(
+                                                            color: oneE,
+                                                            borderRadius: BorderRadius.circular(10),
+                                                            border: Border.all(color: product["state"] == "total" ? lightGreen : transparent),
+                                                          ),
+                                                          child: Row(
+                                                            mainAxisAlignment: MainAxisAlignment.center,
+                                                            children: <Widget>[
+                                                              Text(product["total"].first, style: GoogleFonts.kronaOne(color: white, fontSize: 18, fontWeight: FontWeight.w400)),
+                                                              const SizedBox(width: 10),
+                                                              Text(product["total"].last, style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 18, fontWeight: FontWeight.w400)),
+                                                            ],
+                                                          ),
                                                         ),
-                                                        child: Text(product["moneyline"].last, style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 18, fontWeight: FontWeight.w400)),
+                                                      ),
+                                                    ),
+                                                    const SizedBox(width: 20),
+                                                    Expanded(
+                                                      child: InkWell(
+                                                        onTap: () {
+                                                          _(
+                                                            () {
+                                                              if (product["state"] != "moneyline") {
+                                                                product["state"] = "moneyline";
+                                                              } else {
+                                                                product["state"] = "";
+                                                              }
+                                                            },
+                                                          );
+                                                          _cartKey.currentState!.setState(() {});
+                                                        },
+                                                        splashColor: transparent,
+                                                        highlightColor: transparent,
+                                                        hoverColor: transparent,
+                                                        child: AnimatedContainer(
+                                                          duration: 200.ms,
+                                                          alignment: Alignment.center,
+                                                          padding: padding16,
+                                                          decoration: BoxDecoration(
+                                                            color: oneE,
+                                                            borderRadius: BorderRadius.circular(10),
+                                                            border: Border.all(color: product["state"] == "moneyline" ? lightGreen : transparent),
+                                                          ),
+                                                          child: Text(product["moneyline"].last, style: GoogleFonts.kronaOne(color: lightGreen, fontSize: 18, fontWeight: FontWeight.w400)),
+                                                        ),
                                                       ),
                                                     ),
                                                   ],
@@ -409,35 +419,39 @@ class _HomeState extends State<Home> {
                                             ),
                                             const SizedBox(height: 10),
                                           ],
-                                          Center(
-                                            child: StatefulBuilder(
-                                              builder: (BuildContext context, void Function(void Function()) _) {
-                                                return InkWell(
-                                                  onTap: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const MorePicks())),
-                                                  highlightColor: transparent,
-                                                  splashColor: transparent,
-                                                  hoverColor: transparent,
-                                                  onHover: (bool value) => _(() => _morePicksState = value),
-                                                  child: AnimatedScale(
-                                                    scale: _morePicksState ? 1.05 : 1,
-                                                    duration: 200.ms,
-                                                    child: AnimatedContainer(
+                                          Row(
+                                            children: <Widget>[
+                                              const Spacer(),
+                                              StatefulBuilder(
+                                                builder: (BuildContext context, void Function(void Function()) _) {
+                                                  return InkWell(
+                                                    onTap: () => Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => const MorePicks())),
+                                                    highlightColor: transparent,
+                                                    splashColor: transparent,
+                                                    hoverColor: transparent,
+                                                    onHover: (bool value) => _(() => _morePicksState = value),
+                                                    child: AnimatedScale(
+                                                      scale: _morePicksState ? 1.05 : 1,
                                                       duration: 200.ms,
-                                                      width: 188,
-                                                      height: 54,
-                                                      padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 8),
-                                                      alignment: Alignment.center,
-                                                      decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/${!_morePicksState ? 'filled' : 'empty'}_green_hexagon.png"), fit: BoxFit.contain)),
-                                                      child: AnimatedDefaultTextStyle(
+                                                      child: AnimatedContainer(
                                                         duration: 200.ms,
-                                                        style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w400, color: _morePicksState ? lightGreen : dark),
-                                                        child: const Text("More Picks"),
+                                                        width: 188,
+                                                        height: 54,
+                                                        padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 8),
+                                                        alignment: Alignment.center,
+                                                        decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/${!_morePicksState ? 'filled' : 'empty'}_green_hexagon.png"), fit: BoxFit.contain)),
+                                                        child: AnimatedDefaultTextStyle(
+                                                          duration: 200.ms,
+                                                          style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w400, color: _morePicksState ? lightGreen : dark),
+                                                          child: const Text("More Picks"),
+                                                        ),
                                                       ),
                                                     ),
-                                                  ),
-                                                );
-                                              },
-                                            ),
+                                                  );
+                                                },
+                                              ),
+                                              const SizedBox(width: 360),
+                                            ],
                                           ),
                                         ],
                                       ),
