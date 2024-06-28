@@ -22,18 +22,19 @@ class Home extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: <Widget>[
+              const SizedBox(width: 90),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
-                    Text("WE FUND WINNING SPORTS STRATEGIES UP TO \$50K", style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w400, color: grey, letterSpacing: 2)),
-                    const SizedBox(height: 20),
+                    Text("WE FUND WINNING SPORTS STRATEGIES UP TO \$50K", style: GoogleFonts.kronaOne(fontSize: 14, fontWeight: FontWeight.w400, color: white, letterSpacing: 2)),
+                    const SizedBox(height: 30),
                     RichText(
                       text: TextSpan(
                         children: <TextSpan>[
                           TextSpan(
-                            text: "Place Picks on Your Favorite Sports & ",
+                            text: "Place Picks on Your Favorite Sports \n& ",
                             style: GoogleFonts.kronaOne(fontSize: 55, fontWeight: FontWeight.w400, color: white),
                           ),
                           TextSpan(
@@ -48,9 +49,9 @@ class Home extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 20),
-                    Text("Take the Funded challenge & show us your skills.", style: GoogleFonts.inter(fontSize: 14.63, fontWeight: FontWeight.w400, color: grey)),
+                    Text("Take the Funded challenge & show us your skills.", style: GoogleFonts.inter(fontSize: 14.63, fontWeight: FontWeight.w400, color: white)),
                     const SizedBox(height: 5),
-                    Text("If you have what it takes we will fund all you picks up!", style: GoogleFonts.inter(fontSize: 14.63, fontWeight: FontWeight.w400, color: grey)),
+                    Text("If you have what it takes we will fund all you picks up!", style: GoogleFonts.inter(fontSize: 14.63, fontWeight: FontWeight.w400, color: white)),
                     const SizedBox(height: 20),
                     Row(
                       mainAxisSize: MainAxisSize.min,
@@ -66,12 +67,13 @@ class Home extends StatelessWidget {
                               child: AnimatedScale(
                                 scale: buyState ? 1.02 : 1,
                                 duration: 200.ms,
-                                child: Container(
+                                child: AnimatedContainer(
+                                  duration: 200.ms,
                                   width: 188,
                                   height: 54,
                                   padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 8),
                                   alignment: Alignment.center,
-                                  decoration: const BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/filled_green_hexagon.png"))),
+                                  decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/launch_${buyState ? 'hovered' : 'normal'}.png"))),
                                   child: AnimatedDefaultTextStyle(
                                     duration: 200.ms,
                                     style: GoogleFonts.kronaOne(fontSize: 14, fontWeight: FontWeight.w400, color: buyState ? white : dark),
@@ -82,68 +84,51 @@ class Home extends StatelessWidget {
                             );
                           },
                         ),
-                        const SizedBox(width: 10),
+                        const SizedBox(width: 15),
                         InkWell(
                           onTap: () {},
                           highlightColor: transparent,
                           splashColor: transparent,
                           hoverColor: transparent,
-                          child: Container(
-                            width: 63,
-                            height: 54,
-                            alignment: Alignment.center,
-                            decoration: const BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/empty_white_hexagon.png"))),
-                            child: Image.asset("assets/images/x.png", width: 20.47, height: 22),
-                          ),
+                          child: Image.asset("assets/images/x.png", width: 63, height: 54),
                         ),
-                        const SizedBox(width: 10),
+                        const SizedBox(width: 15),
                         InkWell(
                           onTap: () {},
                           highlightColor: transparent,
                           splashColor: transparent,
                           hoverColor: transparent,
-                          child: Container(
-                            width: 63,
-                            height: 54,
-                            alignment: Alignment.center,
-                            decoration: const BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/empty_white_hexagon.png"))),
-                            child: Image.asset("assets/images/telegram.png", width: 24, height: 22),
-                          ),
+                          child: Image.asset("assets/images/telegram.png", width: 63, height: 54),
                         ),
                       ],
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 20),
                     InkWell(
                       onTap: () {},
                       highlightColor: transparent,
                       splashColor: transparent,
                       hoverColor: transparent,
-                      child: Container(
-                        width: 325,
-                        height: 54,
-                        alignment: Alignment.center,
-                        decoration: const BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/empty_green_hexagon.png"))),
-                        child: Text("OxcomingsoonxOxcomingsoonxO", style: GoogleFonts.kronaOne(fontSize: 14, fontWeight: FontWeight.w400, color: lightGreen)),
-                      ),
+                      child: Image.asset("assets/images/cs.png", width: 335, height: 54),
                     ),
                   ],
                 ),
               ),
-              const SizedBox(width: 20),
+              const SizedBox(width: 10),
               Expanded(
                 child: Row(
                   children: <Widget>[
-                    Container(height: MediaQuery.sizeOf(context).height * .7, width: 3, color: white),
+                    Container(height: MediaQuery.sizeOf(context).height, width: 3, color: white),
                     Expanded(
                       child: Container(
-                        height: MediaQuery.sizeOf(context).height * .6,
-                        decoration: BoxDecoration(
-                          borderRadius: const BorderRadius.only(topRight: Radius.circular(15), bottomRight: Radius.circular(15)),
-                          border: Border.all(color: white, width: 5),
-                          image: const DecorationImage(
-                            image: AssetImage("assets/images/home_screen.png"),
-                            fit: BoxFit.cover,
+                        height: MediaQuery.sizeOf(context).height * .9,
+                        decoration: const BoxDecoration(
+                          borderRadius: BorderRadius.only(topRight: Radius.circular(15), bottomRight: Radius.circular(15)),
+                          border: Border(
+                            top: BorderSide(color: white, width: 5),
+                            bottom: BorderSide(color: white, width: 5),
+                            right: BorderSide(color: white, width: 5),
                           ),
+                          image: DecorationImage(image: AssetImage("assets/images/home_screen.png"), fit: BoxFit.cover),
                         ),
                       ),
                     ),
@@ -153,6 +138,7 @@ class Home extends StatelessWidget {
             ],
           ),
         ),
+        const SizedBox(height: 160),
         Container(
           alignment: Alignment.center,
           width: MediaQuery.sizeOf(context).width,

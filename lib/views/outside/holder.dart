@@ -75,17 +75,20 @@ class HolderState extends State<Holder> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: abyss,
+      backgroundColor: const Color.fromARGB(255, 13, 17, 16),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Padding(
-            padding: padding24,
+          SizedBox(
+            height: 117,
             child: Row(
               children: <Widget>[
-                const SizedBox(width: 50),
-                Image.asset("assets/images/betfund.png", height: 38, width: 191),
-                const Spacer(),
+                const SizedBox(width: 117),
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 39.5),
+                  child: Image.asset("assets/images/betfund.png", height: 38, width: 191),
+                ),
+                const SizedBox(width: 675),
                 Expanded(
                   child: SingleChildScrollView(
                     scrollDirection: Axis.horizontal,
@@ -120,7 +123,6 @@ class HolderState extends State<Holder> {
                                 onHover: (bool value) => _(() => _tabsStates[_tabs.indexOf(tab)] = value),
                                 child: AnimatedContainer(
                                   duration: 200.ms,
-                                  padding: padding8,
                                   decoration: BoxDecoration(border: Border(bottom: _selectedTab == tab ? const BorderSide(color: lightGreen, width: 2) : BorderSide.none)),
                                   child: AnimatedDefaultTextStyle(
                                     duration: 200.ms,
@@ -129,7 +131,7 @@ class HolderState extends State<Holder> {
                                   ),
                                 ),
                               ),
-                              if (tab != _tabs.last) const SizedBox(width: 40),
+                              if (tab != _tabs.last) const SizedBox(width: 52),
                             ],
                           ],
                         );
@@ -137,7 +139,6 @@ class HolderState extends State<Holder> {
                     ),
                   ),
                 ),
-                const SizedBox(width: 100),
                 StatefulBuilder(
                   builder: (BuildContext context, void Function(void Function()) _) {
                     return InkWell(
@@ -155,25 +156,18 @@ class HolderState extends State<Holder> {
                           height: 54,
                           padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 8),
                           alignment: Alignment.center,
-                          /*decoration: BoxDecoration(
-                            color: !_launchHover ? lightGreen : transparent,
-                            borderRadius: const BorderRadiusDirectional.only(
-                              topStart: Radius.elliptical(30, 30),
-                              bottomEnd: Radius.elliptical(30, 30),
-                            ),
-                            border: Border.all(width: 2, color: lightGreen),
-                          ),*/
-                          decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/${!_launchHover ? 'filled' : 'empty'}_green_hexagon.png"), fit: BoxFit.contain)),
+                          decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/launch_${_launchHover ? 'hovered' : 'normal'}.png"), fit: BoxFit.contain)),
                           child: AnimatedDefaultTextStyle(
                             duration: 200.ms,
                             style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w400, color: _launchHover ? lightGreen : dark),
-                            child: const Text("Launch App"),
+                            child: const Text("Launch Dapp"),
                           ),
                         ),
                       ),
                     );
                   },
                 ),
+                const SizedBox(width: 50),
               ],
             ),
           ),
