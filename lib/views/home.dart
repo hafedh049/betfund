@@ -439,7 +439,7 @@ class _HomeState extends State<Home> {
                                                         height: 54,
                                                         padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 8),
                                                         alignment: Alignment.center,
-                                                        decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/${!_morePicksState ? 'filled' : 'empty'}_green_hexagon.png"), fit: BoxFit.contain)),
+                                                        decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/launch_${_morePicksState ? 'hovered' : 'normal'}.png"), fit: BoxFit.contain)),
                                                         child: AnimatedDefaultTextStyle(
                                                           duration: 200.ms,
                                                           style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w400, color: _morePicksState ? lightGreen : dark),

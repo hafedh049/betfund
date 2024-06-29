@@ -39,12 +39,14 @@ class _ChallengeState extends State<Challenge> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
               children: <Widget>[
                 Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
+                    const SizedBox(width: 140),
                     StatefulBuilder(
                       builder: (BuildContext context, void Function(void Function()) _) {
                         return InkWell(
@@ -60,7 +62,6 @@ class _ChallengeState extends State<Challenge> {
                               duration: 200.ms,
                               width: 188,
                               height: 54,
-                              padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 8),
                               alignment: Alignment.center,
                               decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/launch_${_amountState ? 'hovered' : 'normal'}.png"), fit: BoxFit.contain)),
                               child: AnimatedDefaultTextStyle(
@@ -88,45 +89,43 @@ class _ChallengeState extends State<Challenge> {
                         const SizedBox(height: 10),
                         StatefulBuilder(
                           builder: (BuildContext context, void Function(void Function()) _) {
-                            return StatefulBuilder(
-                              builder: (BuildContext context, void Function(void Function()) _) {
-                                return EasyStepper(
-                                  activeStep: _activeStep,
-                                  activeStepTextColor: lightGreen,
-                                  finishedStepTextColor: lightGreen,
-                                  activeStepBackgroundColor: transparent,
-                                  activeStepBorderColor: transparent,
-                                  activeStepIconColor: transparent,
-                                  lineStyle: const LineStyle(defaultLineColor: white, lineType: LineType.normal),
-                                  disableScroll: true,
-                                  internalPadding: 0,
-                                  showLoadingAnimation: false,
-                                  stepRadius: 8,
-                                  showStepBorder: false,
-                                  steps: <EasyStep>[
-                                    for (int index = 0; index < _steps.length; index++)
-                                      EasyStep(
-                                        customStep: AnimatedContainer(
-                                          duration: 300.ms,
-                                          padding: EdgeInsets.all(_activeStep == index ? 2 : 0),
-                                          decoration: BoxDecoration(border: Border.all(color: lightGreen, width: 3), shape: BoxShape.circle, color: _activeStep == index ? lightGreen : white),
-                                          child: AnimatedContainer(
-                                            duration: 300.ms,
-                                            decoration: BoxDecoration(shape: BoxShape.circle, color: _activeStep == index ? dark : white),
-                                          ),
-                                        ),
-                                        customTitle: AnimatedDefaultTextStyle(
-                                          style: GoogleFonts.inter(fontSize: 15.25, fontWeight: FontWeight.w500, color: _activeStep == index ? lightGreen : white),
-                                          duration: 300.ms,
-                                          child: Text(_steps[index], textAlign: TextAlign.center),
-                                        ),
+                            return EasyStepper(
+                              borderThickness: 3,
+                              activeStep: _activeStep,
+                              activeStepTextColor: lightGreen,
+                              finishedStepTextColor: lightGreen,
+                              activeStepBackgroundColor: transparent,
+                              activeStepBorderColor: transparent,
+                              activeStepIconColor: transparent,
+                              lineStyle: const LineStyle(defaultLineColor: white, lineType: LineType.normal),
+                              disableScroll: true,
+                              internalPadding: 0,
+                              showLoadingAnimation: false,
+                              stepRadius: 8,
+                              showStepBorder: false,
+                              steps: <EasyStep>[
+                                for (int index = 0; index < _steps.length; index++)
+                                  EasyStep(
+                                    customLineWidget: Container(width: 120, color: white, height: 5),
+                                    customStep: AnimatedContainer(
+                                      duration: 300.ms,
+                                      padding: EdgeInsets.all(_activeStep == index ? 2 : 0),
+                                      decoration: BoxDecoration(border: Border.all(color: lightGreen, width: 3), shape: BoxShape.circle, color: _activeStep == index ? lightGreen : white),
+                                      child: AnimatedContainer(
+                                        duration: 300.ms,
+                                        decoration: BoxDecoration(shape: BoxShape.circle, color: _activeStep == index ? dark : white),
                                       ),
-                                  ],
-                                  onStepReached: (int index) {
-                                    _(() => _activeStep = index);
-                                    _amountKey.currentState!.setState(() => _amount = double.parse(_steps[index].replaceAll("K", "")));
-                                  },
-                                );
+                                    ),
+                                    customTitle: AnimatedDefaultTextStyle(
+                                      style: GoogleFonts.inter(fontSize: 15.25, fontWeight: FontWeight.w500, color: _activeStep == index ? lightGreen : white),
+                                      duration: 300.ms,
+                                      child: Text(_steps[index], textAlign: TextAlign.center),
+                                    ),
+                                  ),
+                              ],
+                              onStepReached: (int index) {
+                                _(() => _activeStep = index);
+                                _amountKey.currentState!.setState(() => _amount = double.parse(_steps[index].replaceAll("K", "")));
                               },
                             );
                           },
@@ -135,6 +134,7 @@ class _ChallengeState extends State<Challenge> {
                     ),
                   ],
                 ),
+                const SizedBox(height: 20),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisSize: MainAxisSize.min,
@@ -143,7 +143,7 @@ class _ChallengeState extends State<Challenge> {
                     Center(child: Image.asset("assets/images/table.png", height: 650, width: 1239)),
                     Center(
                       child: Container(
-                        padding: padding16,
+                        padding: const EdgeInsets.all(20),
                         width: 1190,
                         decoration: const BoxDecoration(
                           color: oneA,

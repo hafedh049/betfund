@@ -1,10 +1,8 @@
 import 'package:betfund/utils/shared.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:custom_pop_up_menu/custom_pop_up_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:icons_plus/icons_plus.dart';
 
 class Header extends StatefulWidget {
   const Header({super.key, required this.callback, required this.state});
@@ -30,12 +28,20 @@ class _HeaderState extends State<Header> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 60,
-      decoration: BoxDecoration(color: oneC, borderRadius: BorderRadius.circular(10)),
-      padding: padding4,
+      height: 96,
+      color: oneC,
+      padding: padding16,
       child: Row(
         children: <Widget>[
-          IconButton(onPressed: widget.callback, icon: Icon(widget.state ? FontAwesome.chevron_left_solid : FontAwesome.chevron_right_solid, size: 25, color: lightGreen)),
+          const SizedBox(width: 20),
+          InkWell(
+            splashColor: transparent,
+            highlightColor: transparent,
+            hoverColor: transparent,
+            onTap: widget.callback,
+            child: Image.asset("assets/images/${widget.state ? 'backward' : 'forward'}.png", width: 28, height: 28),
+          ),
+          const SizedBox(width: 30),
           Text("Welcome Back", style: GoogleFonts.kronaOne(fontSize: 20, color: white, fontWeight: FontWeight.w400)),
           const Spacer(),
           InkWell(
@@ -44,32 +50,30 @@ class _HeaderState extends State<Header> {
             splashColor: transparent,
             hoverColor: transparent,
             child: Container(
-              width: 210,
-              height: 60,
               alignment: Alignment.center,
-              margin: padding4,
-              decoration: const BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/empty_green_hexagon.png"))),
+              padding: padding8,
+              decoration: const BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/outer_wallet.png"))),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
-                  const Icon(FontAwesome.wallet_solid, color: lightGreen, size: 15),
-                  const SizedBox(width: 10),
-                  Text("\$3500.00", style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w500, color: white)),
+                  Image.asset("assets/images/pig.png", width: 20, height: 20.81),
+                  const SizedBox(width: 5),
+                  Text("\$3500.00", style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w400, color: white)),
                   const SizedBox(width: 10),
                   Container(
                     alignment: Alignment.center,
                     width: 80,
                     height: 33.61,
-                    decoration: const BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/filled_green_hexagon.png"))),
+                    decoration: const BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/inner_wallet.png"))),
                     child: Text("Wallet", style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w500, color: dark)),
                   ),
                 ],
               ),
             ),
           ),
-          const SizedBox(width: 20),
-          Container(color: white, height: 30, width: 1),
-          const SizedBox(width: 20),
+          const SizedBox(width: 30),
+          Container(color: grey, height: 40, width: 1),
+          const SizedBox(width: 30),
           CustomPopupMenu(
             controller: _profileController,
             menuOnChange: (bool menuState) => _profileArrowKey.currentState!.setState(() {}),
@@ -168,20 +172,27 @@ class _HeaderState extends State<Header> {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: <Widget>[
-                const CircleAvatar(backgroundColor: lightGreen, radius: 20, backgroundImage: CachedNetworkImageProvider("https://s3-alpha-sig.figma.com/img/5be2/5330/90cf4764105270f3f742f0b5bf46a79d?Expires=1720396800&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=oDKwzr~luCN31STywFIy7Mg6~dt4c2KW3835TqpQtn10doZH~6LQj6BkAOMVI9igPVRyfWIn3N7ZxzlJrfgOYkwQOKpbHR1QGMXGJ~lg1OdAV5kdRqjmsGT97r-duMC2xjsfDcV8noIXVBQ7GURv3Hfgjb2cYbUAFFtYpgUl~OJwU9zn1wvCSEhmRK7az9MQ2GqiD5e9oLfTtlnsGxwUOSU7Elb4wgT4G01r1taPfvvOZAR3xJQQP6rhsEkRnOO8Di77-ZP8~i3yXYsUy7NXGDMxNsB3APdojbYNstcRuy3ovcG6uugG4WGASH-d2FxVeLLoavAZUMLsCjWwA6RKBw__")),
-                const SizedBox(width: 10),
+                Container(
+                  decoration: const BoxDecoration(
+                    color: lightGreen,
+                    image: DecorationImage(image: AssetImage("assets/images/avatar.png")),
+                    shape: BoxShape.circle,
+                  ),
+                  width: 60,
+                  height: 60,
+                ),
+                const SizedBox(width: 20),
                 StatefulBuilder(
                   key: _profileArrowKey,
                   builder: (BuildContext context, void Function(void Function()) _) {
                     return AnimatedCrossFade(
                       duration: 300.ms,
-                      firstChild: const Icon(FontAwesome.chevron_up_solid, size: 20, color: lightGreen),
-                      secondChild: const Icon(FontAwesome.chevron_down_solid, size: 20, color: lightGreen),
+                      firstChild: Image.asset("assets/images/caret_up.png", width: 19, height: 10),
+                      secondChild: Image.asset("assets/images/caret_down.png", width: 19, height: 10),
                       crossFadeState: _profileController.menuIsShowing ? CrossFadeState.showFirst : CrossFadeState.showSecond,
                     );
                   },
                 ),
-                const SizedBox(width: 10),
               ],
             ),
           ),

@@ -117,7 +117,7 @@ class Home extends StatelessWidget {
               Expanded(
                 child: Row(
                   children: <Widget>[
-                    Container(height: MediaQuery.sizeOf(context).height, width: 3, color: white),
+                    Container(height: MediaQuery.sizeOf(context).height, width: 5, color: white),
                     Expanded(
                       child: Container(
                         height: MediaQuery.sizeOf(context).height * .9,

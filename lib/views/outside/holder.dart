@@ -1,5 +1,5 @@
 import 'package:betfund/utils/shared.dart';
-import 'package:betfund/views/opening.dart';
+import 'package:betfund/views/outside/opening.dart';
 import 'package:betfund/views/outside/coming_soon.dart';
 import 'package:betfund/views/outside/challenge.dart';
 import 'package:betfund/views/outside/home.dart';

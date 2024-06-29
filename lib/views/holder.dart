@@ -48,39 +48,30 @@ class _HolderState extends State<Holder> {
             },
           ),
           Expanded(
-            child: Row(
+            child: Stack(
               children: <Widget>[
-                const SizedBox(width: 10),
-                Expanded(
-                  child: Stack(
-                    children: <Widget>[
-                      Positioned.fill(child: Image.asset("assets/images/glow.png", fit: BoxFit.cover)),
-                      Column(
-                        children: <Widget>[
-                          const SizedBox(height: 10),
-                          StatefulBuilder(
-                            builder: (BuildContext context, void Function(void Function()) _) {
-                              return Header(
-                                state: _drawerState,
-                                callback: () => _(() => _drawerKey.currentState!.setState(() => _drawerState = !_drawerState)),
-                              );
-                            },
-                          ),
-                          const SizedBox(height: 10),
-                          Expanded(
-                            child: PageView.builder(
-                              physics: const NeverScrollableScrollPhysics(),
-                              controller: _holderController,
-                              itemCount: _tabs.length,
-                              itemBuilder: (BuildContext context, int index) => _tabs[index],
-                            ),
-                          ),
-                        ],
+                Positioned.fill(child: Image.asset("assets/images/glow.png", fit: BoxFit.cover)),
+                Column(
+                  children: <Widget>[
+                    StatefulBuilder(
+                      builder: (BuildContext context, void Function(void Function()) _) {
+                        return Header(
+                          state: _drawerState,
+                          callback: () => _(() => _drawerKey.currentState!.setState(() => _drawerState = !_drawerState)),
+                        );
+                      },
+                    ),
+                    const SizedBox(height: 10),
+                    Expanded(
+                      child: PageView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        controller: _holderController,
+                        itemCount: _tabs.length,
+                        itemBuilder: (BuildContext context, int index) => _tabs[index],
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
-                const SizedBox(width: 10),
               ],
             ),
           ),

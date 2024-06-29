@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../utils/shared.dart';
+import '../../utils/shared.dart';
 
 class Opening extends StatelessWidget {
   const Opening({super.key});
@@ -19,15 +19,16 @@ class Opening extends StatelessWidget {
         child: Center(
           child: Container(
             alignment: Alignment.center,
-            decoration: const BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/empty_green_hexagon.png"), fit: BoxFit.contain)),
+            decoration: const BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/connect.png"), fit: BoxFit.contain)),
             child: Padding(
               padding: padding36,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
+                  const SizedBox(height: 120),
                   Image.asset("assets/images/betfund.png", width: 397, height: 79),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 30),
                   StatefulBuilder(
                     builder: (BuildContext context, void Function(void Function()) _) {
                       return InkWell(
@@ -42,10 +43,10 @@ class Opening extends StatelessWidget {
                           child: AnimatedContainer(
                             duration: 200.ms,
                             width: 200,
-                            height: 54,
+                            height: 60,
                             padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 8),
                             alignment: Alignment.center,
-                            decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/${!connectState ? 'filled' : 'empty'}_green_hexagon.png"), fit: BoxFit.contain)),
+                            decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/launch_${connectState ? 'hovered' : 'normal'}.png"), fit: BoxFit.contain)),
                             child: AnimatedDefaultTextStyle(
                               duration: 200.ms,
                               style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w400, color: connectState ? lightGreen : dark),
@@ -56,7 +57,7 @@ class Opening extends StatelessWidget {
                       );
                     },
                   ),
-                  const SizedBox(height: 30),
+                  const SizedBox(height: 100),
                   StatefulBuilder(
                     builder: (BuildContext context, void Function(void Function()) _) {
                       return InkWell(
