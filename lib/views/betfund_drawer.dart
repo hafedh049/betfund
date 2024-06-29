@@ -26,13 +26,13 @@ class _BetFundDrawerState extends State<BetFundDrawer> {
     return AnimatedContainer(
       decoration: BoxDecoration(color: drawerColor, borderRadius: BorderRadius.circular(5)),
       duration: 300.ms,
-      width: widget.state ? 319 : 50,
+      width: widget.state ? 319 : 88,
       padding: padding8,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           const SizedBox(height: 24),
-          Center(child: Image.asset("assets/images/betfund.png", width: widget.state ? 180 : 80, height: 32)),
+          Center(child: Image.asset("assets/images/betfund.png", width: widget.state ? 160 : 59, height: widget.state ? 32 : 12)),
           const SizedBox(height: 30),
           for (Map<String, dynamic> tab in _tabs) ...<Widget>[
             StatefulBuilder(
@@ -49,7 +49,9 @@ class _BetFundDrawerState extends State<BetFundDrawer> {
                   onHover: (bool value) => _(() => tab["state"] = value),
                   child: AnimatedContainer(
                     duration: 300.ms,
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+                    width: 283,
+                    height: 48,
+                    padding: padding8,
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                       color: _currentTab == _tabs.indexOf(tab) || tab["state"] ? lightGreen : transparent,
@@ -67,40 +69,39 @@ class _BetFundDrawerState extends State<BetFundDrawer> {
                           Expanded(
                             child: SingleChildScrollView(
                               scrollDirection: Axis.horizontal,
-                              child: Visibility(
-                                visible: widget.state,
-                                child: Row(
-                                  children: <Widget>[
-                                    const SizedBox(width: 20),
-                                    AnimatedDefaultTextStyle(
-                                      duration: 300.ms,
-                                      style: GoogleFonts.kronaOne(
-                                        fontSize: 16,
-                                        color: _currentTab == _tabs.indexOf(tab) || tab["state"] ? dark : lightGreen,
-                                        fontWeight: FontWeight.w400,
-                                      ),
-                                      child: Text(tab["tab"]),
+                              child: Row(
+                                children: <Widget>[
+                                  const SizedBox(width: 20),
+                                  AnimatedDefaultTextStyle(
+                                    duration: 300.ms,
+                                    style: GoogleFonts.kronaOne(
+                                      fontSize: 16,
+                                      color: _currentTab == _tabs.indexOf(tab) || tab["state"] ? dark : lightGreen,
+                                      fontWeight: FontWeight.w400,
                                     ),
-                                    if (tab["tab"] == "My Picks") ...<Widget>[
-                                      const SizedBox(width: 120),
-                                      Card(
-                                        shadowColor: dark,
-                                        color: lightGreen,
-                                        shape: const CircleBorder(),
-                                        child: Container(
-                                          decoration: const BoxDecoration(shape: BoxShape.circle),
-                                          padding: const EdgeInsets.all(7),
-                                          child: AnimatedDefaultTextStyle(
-                                            duration: 300.ms,
-                                            style: GoogleFonts.readexPro(fontSize: 14, color: dark, fontWeight: FontWeight.w400),
-                                            child: Text(tab["picks"].toString()),
-                                          ),
+                                    child: Text(tab["tab"]),
+                                  ),
+                                  if (tab["tab"] == "My Picks") ...<Widget>[
+                                    const SizedBox(width: 100),
+                                    Card(
+                                      shadowColor: dark,
+                                      color: lightGreen,
+                                      shape: const CircleBorder(),
+                                      child: Container(
+                                        alignment: Alignment.center,
+                                        width: 24,
+                                        height: 24,
+                                        decoration: const BoxDecoration(shape: BoxShape.circle),
+                                        child: AnimatedDefaultTextStyle(
+                                          duration: 300.ms,
+                                          style: GoogleFonts.readexPro(fontSize: 14, color: dark, fontWeight: FontWeight.w400),
+                                          child: Text(tab["picks"].toString()),
                                         ),
                                       ),
-                                    ],
+                                    ),
                                   ],
-                                ).animate().fade(),
-                              ),
+                                ],
+                              ).animate().fade(),
                             ),
                           ),
                       ],

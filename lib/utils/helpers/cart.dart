@@ -33,7 +33,7 @@ class _CartState extends State<Cart> {
     return ClipRRect(
       borderRadius: BorderRadius.circular(25),
       child: Container(
-        width: 400,
+        width: 350,
         height: 390,
         color: elevenThirteen,
         child: Column(
@@ -194,14 +194,13 @@ class _CartState extends State<Cart> {
                           duration: 200.ms,
                           child: AnimatedContainer(
                             duration: 200.ms,
-                            width: 188,
+                            width: 150,
                             height: 54,
-                            padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 8),
                             alignment: Alignment.center,
                             decoration: const BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/white_hex.png"), fit: BoxFit.contain)),
                             child: AnimatedDefaultTextStyle(
                               duration: 200.ms,
-                              style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w400, color: _clearState ? lightGreen : white),
+                              style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w400, color: white),
                               child: const Text("Clear"),
                             ),
                           ),
@@ -209,6 +208,7 @@ class _CartState extends State<Cart> {
                       );
                     },
                   ),
+                  const SizedBox(width: 5),
                   StatefulBuilder(
                     builder: (BuildContext context, void Function(void Function()) _) {
                       return InkWell(
@@ -222,11 +222,10 @@ class _CartState extends State<Cart> {
                           duration: 200.ms,
                           child: AnimatedContainer(
                             duration: 200.ms,
-                            width: 188,
+                            width: 150,
                             height: 54,
-                            padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 8),
                             alignment: Alignment.center,
-                            decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/${!_placeState ? 'filled' : 'empty'}_green_hexagon.png"), fit: BoxFit.contain)),
+                            decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/launch_${_placeState ? 'hovered' : 'normal'}.png"), fit: BoxFit.contain)),
                             child: AnimatedDefaultTextStyle(
                               duration: 200.ms,
                               style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w400, color: _placeState ? lightGreen : dark),

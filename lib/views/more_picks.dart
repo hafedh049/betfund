@@ -87,6 +87,7 @@ class _MorePicksState extends State<MorePicks> {
                                         crossAxisAlignment: CrossAxisAlignment.start,
                                         children: <Widget>[
                                           Container(
+                                            height: 62,
                                             padding: padding8,
                                             alignment: Alignment.center,
                                             decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: oneE),
@@ -99,7 +100,6 @@ class _MorePicksState extends State<MorePicks> {
                                               ),
                                             ),
                                           ),
-                                          const SizedBox(height: 20),
                                           Expanded(
                                             child: Padding(
                                               padding: padding16,
@@ -108,7 +108,11 @@ class _MorePicksState extends State<MorePicks> {
                                                 children: <Widget>[
                                                   Row(
                                                     children: <Widget>[
-                                                      Image.network("https://s3-alpha-sig.figma.com/img/2a00/aacc/e499c5c311ef7267c4f2502731401f03?Expires=1719792000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=l-ZJlFezMABFPkxNoD21FdBihmQs-IO4lNXqnSkUm~-mS6cfBzJXG36p0spd8L5xm2X3IREh~xsVbhW2mZHiDxFBD7vpEvg2eD2neTA3PCXp6iDLrjURLJbWwmLq36~v6VicMVszdOGMFIXvYXTLGP7j0tXQ1yJitOe1i8RSHZc98OPTOzioFuhwFv4~6EScOHvqR46JM-1dQD1f3he8mPZF8-UNwSwpTDet2jeWJpjkA7j91wz1HjF3JokrpHUneQaYJNT5zgFocPqlEp6MmnlGq0fCklCpbvg1fe7OD818oEpBcbpW5GF-icOzJ-G9feE8-5lRhiGLOQexFx6nkA__", height: 20, width: 20),
+                                                      Image.network(
+                                                        "https://s3-alpha-sig.figma.com/img/2a00/aacc/e499c5c311ef7267c4f2502731401f03?Expires=1719792000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=l-ZJlFezMABFPkxNoD21FdBihmQs-IO4lNXqnSkUm~-mS6cfBzJXG36p0spd8L5xm2X3IREh~xsVbhW2mZHiDxFBD7vpEvg2eD2neTA3PCXp6iDLrjURLJbWwmLq36~v6VicMVszdOGMFIXvYXTLGP7j0tXQ1yJitOe1i8RSHZc98OPTOzioFuhwFv4~6EScOHvqR46JM-1dQD1f3he8mPZF8-UNwSwpTDet2jeWJpjkA7j91wz1HjF3JokrpHUneQaYJNT5zgFocPqlEp6MmnlGq0fCklCpbvg1fe7OD818oEpBcbpW5GF-icOzJ-G9feE8-5lRhiGLOQexFx6nkA__",
+                                                        height: 30,
+                                                        width: 30,
+                                                      ),
                                                       const SizedBox(width: 10),
                                                       Expanded(child: Text("Baltimore Ravens", style: GoogleFonts.kronaOne(fontSize: 14, color: white, fontWeight: FontWeight.w400))),
                                                       const SizedBox(width: 10),
@@ -122,7 +126,11 @@ class _MorePicksState extends State<MorePicks> {
                                                   const SizedBox(height: 10),
                                                   Row(
                                                     children: <Widget>[
-                                                      Image.network("https://s3-alpha-sig.figma.com/img/4c38/3f22/bbd26d4c0143b94f57cb31dce1d3cfab?Expires=1719792000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=neQBYF573gtOSlt~zpVb99yBlm361WJ910qCznA8S-X0t2FEXqwSLccT2iapnrLxg1Z4TNpzRbWslYldRSdvbSNrufGhQyjM76TP8h8ny06K1RGHOp0CFjB9uUUWkjdyilnYYAgBxsDaDHydnlD~T5G~jlUHpSw5Y~ya84KkJQviOPZzLUaba8MEzbSCByqogUwa7kizZA8QXlQ-h3-oGz8umf6N~txC1iT9Oj9RCA0DFv~BtnA7uSmH5Sq5euIUJVmqhFr583fdkpEyK6XX~tuvVbUoxZtYpm99T5OP9AAOC0MwuWw8KC3rjNR5g9zTkSpVroIJsEbfO7P5b-4A~g__", height: 20, width: 20),
+                                                      Image.network(
+                                                        "https://s3-alpha-sig.figma.com/img/4c38/3f22/bbd26d4c0143b94f57cb31dce1d3cfab?Expires=1719792000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=neQBYF573gtOSlt~zpVb99yBlm361WJ910qCznA8S-X0t2FEXqwSLccT2iapnrLxg1Z4TNpzRbWslYldRSdvbSNrufGhQyjM76TP8h8ny06K1RGHOp0CFjB9uUUWkjdyilnYYAgBxsDaDHydnlD~T5G~jlUHpSw5Y~ya84KkJQviOPZzLUaba8MEzbSCByqogUwa7kizZA8QXlQ-h3-oGz8umf6N~txC1iT9Oj9RCA0DFv~BtnA7uSmH5Sq5euIUJVmqhFr583fdkpEyK6XX~tuvVbUoxZtYpm99T5OP9AAOC0MwuWw8KC3rjNR5g9zTkSpVroIJsEbfO7P5b-4A~g__",
+                                                        height: 30,
+                                                        width: 30,
+                                                      ),
                                                       const SizedBox(width: 10),
                                                       Expanded(child: Text("Kansas City Chiefs", style: GoogleFonts.kronaOne(fontSize: 14, color: white, fontWeight: FontWeight.w400))),
                                                       const SizedBox(width: 10),
@@ -149,7 +157,7 @@ class _MorePicksState extends State<MorePicks> {
                       ),
                       const SizedBox(height: 20),
                       Container(
-                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), border: Border.all(color: lightGreen)),
+                        decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), border: Border.all(color: lightGreen, width: 2)),
                         padding: const EdgeInsets.symmetric(vertical: 8),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -193,7 +201,7 @@ class _MorePicksState extends State<MorePicks> {
                           labelText: "Perform your search",
                           labelStyle: GoogleFonts.kronaOne(color: grey, fontSize: 14, fontWeight: FontWeight.bold),
                           border: OutlineInputBorder(borderRadius: BorderRadius.circular(10), borderSide: const BorderSide(color: grey, width: 2)),
-                          suffixIcon: const Icon(FontAwesome.magnifying_glass_solid, size: 15, color: grey),
+                          suffixIcon: const Icon(FontAwesome.magnifying_glass_solid, size: 25, color: grey),
                         ),
                       ),
                       const SizedBox(height: 20),
@@ -260,282 +268,6 @@ class _MorePicksState extends State<MorePicks> {
                   ),
                 ),
                 const SizedBox(width: 20),
-                /*ClipRRect(
-                  borderRadius: BorderRadius.circular(25),
-                  child: Container(
-                    width: 400,
-                    height: 380,
-                    color: elevenThirteen,
-                    padding: const EdgeInsets.symmetric(vertical: 8),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Container(
-                          color: oneE,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            mainAxisSize: MainAxisSize.min,
-                            children: <Widget>[
-                              const SizedBox(height: 10),
-                              Row(
-                                children: <Widget>[
-                                  const SizedBox(width: 10),
-                                  CircleAvatar(
-                                    radius: 8,
-                                    backgroundColor: lightGreen,
-                                    child: Text("2", style: GoogleFonts.kronaOne(fontSize: 8, color: dark, fontWeight: FontWeight.w500)),
-                                  ),
-                                  const SizedBox(width: 10),
-                                  Text("PickSlip", style: GoogleFonts.kronaOne(fontSize: 12, color: white, fontWeight: FontWeight.w500)),
-                                ],
-                              ),
-                              const SizedBox(height: 20),
-                              StatefulBuilder(
-                                builder: (BuildContext context, void Function(void Function()) _) {
-                                  return Row(
-                                    children: <Widget>[
-                                      for (final String tab in _tabs)
-                                        Expanded(
-                                          child: InkWell(
-                                            onTap: () {
-                                              _(() => _selectedTab = _tabs.indexOf(tab));
-                                              _tabsController.animateToPage(_selectedTab, duration: 200.ms, curve: Curves.linear);
-                                            },
-                                            splashColor: transparent,
-                                            highlightColor: transparent,
-                                            hoverColor: transparent,
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              mainAxisAlignment: MainAxisAlignment.center,
-                                              children: <Widget>[
-                                                Text(tab, style: GoogleFonts.kronaOne(fontSize: 12, color: white, fontWeight: FontWeight.w500)),
-                                                const SizedBox(height: 10),
-                                                Row(
-                                                  children: <Widget>[
-                                                    Expanded(
-                                                      child: AnimatedContainer(
-                                                        duration: 200.ms,
-                                                        height: 3,
-                                                        color: _selectedTab == _tabs.indexOf(tab) ? lightGreen : transparent,
-                                                      ),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                    ],
-                                  );
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                        Expanded(
-                          child: Container(
-                            padding: padding16,
-                            child: PageView(
-                              controller: _tabsController,
-                              children: <Widget>[
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Row(
-                                      children: <Widget>[
-                                        Text("Over 209.5 (DAL @MIN)", style: GoogleFonts.kronaOne(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
-                                        const Spacer(),
-                                        IconButton(onPressed: () {}, icon: const Icon(FontAwesome.x_solid, size: 20, color: white)),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 10),
-                                    Row(
-                                      children: <Widget>[
-                                        Text("Total Points", style: GoogleFonts.kronaOne(fontSize: 14, color: grey, fontWeight: FontWeight.w500)),
-                                        const Spacer(),
-                                        Text("-112", style: GoogleFonts.kronaOne(fontSize: 14, color: lightGreen, fontWeight: FontWeight.w500)),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 10),
-                                    Row(
-                                      children: <Widget>[
-                                        Expanded(
-                                          child: Container(
-                                            padding: padding8,
-                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: oneE),
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: <Widget>[
-                                                Text("Pick", style: GoogleFonts.kronaOne(fontSize: 14, color: grey, fontWeight: FontWeight.w500)),
-                                                Text("\$ 10", style: GoogleFonts.kronaOne(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        const SizedBox(width: 20),
-                                        Expanded(
-                                          child: Container(
-                                            padding: padding8,
-                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: oneE),
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: <Widget>[
-                                                Text("To Win", style: GoogleFonts.kronaOne(fontSize: 14, color: grey, fontWeight: FontWeight.w500)),
-                                                Text("\$ 19.64", style: GoogleFonts.kronaOne(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 20),
-                                    Row(
-                                      children: <Widget>[
-                                        Text("To Collect", style: GoogleFonts.kronaOne(fontSize: 14, color: lightGreen, fontWeight: FontWeight.w500)),
-                                        const Spacer(),
-                                        Text("46.22 USD", style: GoogleFonts.kronaOne(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: <Widget>[
-                                    Row(
-                                      children: <Widget>[
-                                        Text("Over 209.5 (DAL @MIN)", style: GoogleFonts.kronaOne(fontSize: 16, color: white, fontWeight: FontWeight.w500)),
-                                        const Spacer(),
-                                        IconButton(onPressed: () {}, icon: const Icon(FontAwesome.x_solid, size: 20, color: white)),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 10),
-                                    Row(
-                                      children: <Widget>[
-                                        Text("Total Points", style: GoogleFonts.kronaOne(fontSize: 14, color: grey, fontWeight: FontWeight.w500)),
-                                        const Spacer(),
-                                        Text("-112", style: GoogleFonts.kronaOne(fontSize: 14, color: lightGreen, fontWeight: FontWeight.w500)),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 10),
-                                    Row(
-                                      children: <Widget>[
-                                        Expanded(
-                                          child: Container(
-                                            padding: padding8,
-                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: oneE),
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: <Widget>[
-                                                Text("Pick", style: GoogleFonts.kronaOne(fontSize: 14, color: grey, fontWeight: FontWeight.w500)),
-                                                Text("\$ 10", style: GoogleFonts.kronaOne(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        const SizedBox(width: 20),
-                                        Expanded(
-                                          child: Container(
-                                            padding: padding8,
-                                            decoration: BoxDecoration(borderRadius: BorderRadius.circular(15), color: oneE),
-                                            child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
-                                              mainAxisSize: MainAxisSize.min,
-                                              children: <Widget>[
-                                                Text("To Win", style: GoogleFonts.kronaOne(fontSize: 14, color: grey, fontWeight: FontWeight.w500)),
-                                                Text("\$ 19.64", style: GoogleFonts.kronaOne(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 20),
-                                    Row(
-                                      children: <Widget>[
-                                        Text("To Collect", style: GoogleFonts.kronaOne(fontSize: 14, color: lightGreen, fontWeight: FontWeight.w500)),
-                                        const Spacer(),
-                                        Text("46.22 USD", style: GoogleFonts.kronaOne(fontSize: 14, color: white, fontWeight: FontWeight.w500)),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                        Container(
-                          color: oneE,
-                          padding: const EdgeInsets.symmetric(vertical: 16),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: <Widget>[
-                              StatefulBuilder(
-                                builder: (BuildContext context, void Function(void Function()) _) {
-                                  return InkWell(
-                                    onTap: () {},
-                                    highlightColor: transparent,
-                                    splashColor: transparent,
-                                    hoverColor: transparent,
-                                    onHover: (bool value) => _(() => _clearState = value),
-                                    child: AnimatedScale(
-                                      scale: _clearState ? 1.05 : 1,
-                                      duration: 200.ms,
-                                      child: AnimatedContainer(
-                                        duration: 200.ms,
-                                        width: 188,
-                                        height: 54,
-                                        padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 8),
-                                        alignment: Alignment.center,
-                                        decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/${!_clearState ? 'filled' : 'empty'}_green_hexagon.png"), fit: BoxFit.contain)),
-                                        child: AnimatedDefaultTextStyle(
-                                          duration: 200.ms,
-                                          style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w400, color: _clearState ? lightGreen : dark),
-                                          child: const Text("Clear"),
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
-                              StatefulBuilder(
-                                builder: (BuildContext context, void Function(void Function()) _) {
-                                  return InkWell(
-                                    onTap: () {},
-                                    highlightColor: transparent,
-                                    splashColor: transparent,
-                                    hoverColor: transparent,
-                                    onHover: (bool value) => _(() => _placeState = value),
-                                    child: AnimatedScale(
-                                      scale: _placeState ? 1.05 : 1,
-                                      duration: 200.ms,
-                                      child: AnimatedContainer(
-                                        duration: 200.ms,
-                                        width: 188,
-                                        height: 54,
-                                        padding: const EdgeInsets.symmetric(horizontal: 36, vertical: 8),
-                                        alignment: Alignment.center,
-                                        decoration: BoxDecoration(image: DecorationImage(image: AssetImage("assets/images/${!_placeState ? 'filled' : 'empty'}_green_hexagon.png"), fit: BoxFit.contain)),
-                                        child: AnimatedDefaultTextStyle(
-                                          duration: 200.ms,
-                                          style: GoogleFonts.kronaOne(fontSize: 12, fontWeight: FontWeight.w400, color: _placeState ? lightGreen : dark),
-                                          child: const Text("Place Pick"),
-                                        ),
-                                      ),
-                                    ),
-                                  );
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),*/
                 const Cart(),
               ],
             ),
